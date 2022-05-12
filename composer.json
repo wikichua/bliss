@@ -1,0 +1,55 @@
+{
+    "name": "wikichua/bliss",
+    "description": ":package_description",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Wiki Chua",
+            "email": "wikichua@gmail.com"
+        }
+    ],
+    "homepage": "https://github.com/wikichua/bliss",
+    "keywords": ["Laravel", "Bliss"],
+    "require": {
+        "laravel/breeze": "^1.9",
+        "livewire/livewire": "^2.10",
+        "illuminate/support": "^9.12",
+        "laravel/helpers": "^1.5",
+        "jenssegers/agent": "^2.6",
+        "rap2hpoutre/fast-excel": "^3.2",
+        "lab404/laravel-impersonate": "^1.7",
+        "pda/pheanstalk": "^4.0",
+        "spatie/laravel-collection-macros": "^7.11",
+        "jenssegers/mongodb": "^3.9",
+        "react/child-process": "^0.6.4",
+        "predis/predis": "^1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Wikichua\\Bliss\\": "src/",
+            "Wikichua\\Bliss\\Exp\\": "experiments/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Wikichua\\Bliss\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Wikichua\\Bliss\\BlissServiceProvider",
+                "Wikichua\\Bliss\\Providers\\QueueServiceProvider",
+                "Wikichua\\Bliss\\Providers\\RouteServiceProvider",
+                "Wikichua\\Bliss\\Providers\\EventServiceProvider",
+                "Wikichua\\Bliss\\Exp\\ExperimentServiceProvider"
+            ],
+            "aliases": {
+                "Bliss": "Wikichua\\Bliss\\Facades\\Bliss"
+            }
+        }
+    }
+}

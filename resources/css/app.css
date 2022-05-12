@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import 'tailwindcss/variants';
+@import 'tom-select/dist/css/tom-select';
+@import 'flatpickr/dist/flatpickr';
+@import 'sweetalert2/dist/sweetalert2';
+@import 'codemirror/lib/codemirror';
+@import 'codemirror/addon/search/matchesonscrollbar';
+@import 'codemirror/addon/dialog/dialog';
+@import 'codemirror/addon/fold/foldgutter';
+@import 'codemirror/theme/elegant';
+@import 'filepond/dist/filepond';
+@import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview';
+@import 'filepond-plugin-file-poster/dist/filepond-plugin-file-poster';
+
+[x-cloak] {
+    display: none;
+}
+
+.filepond--credits {
+    display: none;
+}
+
+.strike-through {
+    text-decoration: line-through;
+}
+
+    .header-title {
+        @apply font-semibold text-xl text-gray-800 leading-tight dark:text-gray-100;
+    }
+    .body-content {
+        @apply overflow-hidden shadow-sm rounded-lg dark:text-gray-100 mt-6;
+    }
+    .bg-dark-default {
+        @apply bg-white text-slate-900 dark:bg-slate-800 dark:text-gray-100;
+    }
+    .action-link {
+        @apply inline-block border p-1 font-light border-gray-300 text-gray-500 dark:border-gray-200 dark:text-gray-200 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 dark:hover:bg-slate-700 dark:hover:text-gray-500;
+    }
+    .modal-button {
+        @apply inline-block border p-2 font-light border-gray-300 text-gray-500 dark:border-gray-200 dark:text-gray-200 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 dark:hover:bg-slate-700 dark:hover:text-gray-500;
+    }
+    .action-button {
+        @apply inline-block border p-2 font-light border-gray-300 text-gray-500 dark:border-gray-200 dark:text-gray-200 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 dark:hover:bg-slate-700 dark:hover:text-gray-500;
+    }
+    select.action-button {
+        @apply dark:bg-slate-800 inline-block border p-2 pt-1.5 pb-2.5 font-light border-gray-300 text-gray-500 dark:border-gray-200 dark:text-gray-200 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 dark:hover:bg-slate-700 dark:hover:text-gray-500;
+    }
+
+    .ts-wrapper.single .ts-control,
+    .ts-wrapper.multi .ts-control {
+        @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
+    }
+
+    .plugin-clear_button .clear-button {
+        @apply text-2xl;
+    }
+
+    .ts-wrapper.plugin-remove_button .item {
+        @apply rounded-md;
+    }
+
+    .ts-wrapper.plugin-remove_button .item .remove {
+        @apply border-none text-lg leading-none py-1 rounded-r-lg;
+    }
+
+    .ts-dropdown {
+        @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
+    }
+
+    .ts-dropdown [data-selectable].option:first-child {
+        @apply rounded-t-md;
+    }
+
+    .ts-dropdown [data-selectable].option:last-child {
+        @apply rounded-b-md;
+    }
+
+    .ts-dropdown .create:hover, .ts-dropdown .option:hover, .ts-dropdown .active {
+        @apply bg-indigo-100 text-indigo-900;
+    }
+
+    .ts-dropdown-content .option input {
+        @apply w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600;
+    }
+
+
