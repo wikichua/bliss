@@ -44,6 +44,13 @@ to read
 1. https://github.com/voku/stop-words
 
 setup:
+
+```
+laravel new bliss-playground
+cd bliss-playground
+git clone git@github.com:wikichua/bliss.git ./package/wikichua/bliss
+```
+
 paste this in composer.json
 
 ```
