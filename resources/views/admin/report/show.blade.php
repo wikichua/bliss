@@ -34,56 +34,51 @@
 
     <x-bliss::content-card>
         <x-slot name="full">
-                <div class="block p-6 rounded-lg shadow-lg bg-white dark:bg-slate-900 max-w-full">
-                    <div class="mb-1">
-                        <ul class="nav nav-tabs flex flex-col md:flex-row flex-wrap list-none border-b-0 pl-0 mb-4" role="tablist">
+            <div class="block p-6 rounded-lg shadow-lg bg-white dark:bg-slate-900 max-w-full">
+                <div class="mb-1">
+                    <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+                        <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="{{ uniqid() }}" data-tabs-toggle="#reportTab" role="tablist">
                             @foreach ($model->queries as $query)
-                            <li class="nav-item" role="presentation">
-                                <a href="#tabs-{{ $loop->iteration }}-content" class="nav-link w-full block font-medium text-xs leading-tight uppercase border-x-0 border-t-0 border-b-2 border-transparent px-6 py-3 my-2 hover:border-transparent hover:bg-gray-100 focus:border-transparent {{ $loop->first? 'active':'' }}" id="tabs-{{ $loop->iteration }}" data-bs-toggle="pill" data-bs-target="#tabs-{{ $loop->iteration }}-content" role="tab" aria-controls="tabs-{{ $loop->iteration }}" aria-selected="true">
+                            <li class="mr-2" role="presentation">
+                                <button class="inline-block p-4 rounded-t-lg border-b-2 text-blue-600 hover:text-blue-600 dark:text-blue-500 dark:hover:text-blue-500 border-blue-600 dark:border-blue-500" id="report-{{ $loop->iteration }}-tab" data-tabs-target="#report-{{ $loop->iteration }}" type="button" role="tab" aria-controls="report-{{ $loop->iteration }}" aria-selected="{{ $loop->first ? 'true' : 'false' }}">
                                     Query {{ $loop->iteration }}
-                                </a>
+                                </button>
                             </li>
                             @endforeach
                         </ul>
-                        <div class="tab-content">
-                            @foreach ($reports as $report)
-                            @php
-                                $cols = array_keys(collect($report)->first());
-                            @endphp
-                            <div class="tab-pane fade  {{ $loop->first? 'show active':'' }}" id="tabs-{{ $loop->iteration }}-content" role="tabpanel" aria-labelledby="tabs-{{ $loop->iteration }}">
-                                <div class="flex flex-col">
-                                    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                                        <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-                                            <div class="overflow-x-auto">
-                                                <table class="min-w-full">
-                                                    <thead class="border-b">
-                                                        <tr>
-                                                        @foreach ($cols as $col)
-                                                            <th scope="col" class="text-sm font-medium p-4 text-left">
-                                                                {{ $col }}
-                                                            </th>
-                                                        @endforeach
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @foreach ($report as $row)
-                                                        <tr class="border-b">
-                                                            @foreach ($cols as $col)
-                                                            <td class="text-sm font-light p-4 whitespace-normal">
-                                                                {{ $row[$col] }}
-                                                            </td>
-                                                            @endforeach
-                                                        </tr>
-                                                        @endforeach
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                    </div>
+                    <div id="reportTab">
+                        @foreach ($reports as $report)
+                        @php
+                            $cols = array_keys(collect($report)->first());
+                        @endphp
+                        <div class="p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="report-{{ $loop->iteration }}" role="tabpanel" aria-labelledby="report-{{ $loop->iteration }}-tab">
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full">
+                                    <thead class="border-b">
+                                        <tr>
+                                        @foreach ($cols as $col)
+                                            <th scope="col" class="text-sm font-medium p-4 text-left">
+                                                {{ $col }}
+                                            </th>
+                                        @endforeach
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($report as $row)
+                                        <tr class="border-b">
+                                            @foreach ($cols as $col)
+                                            <td class="text-sm font-light p-4 whitespace-normal">
+                                                {{ $row[$col] }}
+                                            </td>
+                                            @endforeach
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
-                            @endforeach
                         </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
