@@ -4,8 +4,6 @@ namespace Wikichua\Bliss\Http\Livewire\Admin\FailedJob;
 
 class Listing extends Component
 {
-    use \Livewire\WithPagination;
-
     protected $listeners = [];
     protected $bulkActionEnabled = true;
     protected $reauthEnabled = true;

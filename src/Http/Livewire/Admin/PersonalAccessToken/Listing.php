@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Listing extends Component
 {
-    use \Livewire\WithPagination;
-
     protected $listeners = [];
     protected $bulkActionEnabled = false;
     protected $reauthEnabled = true;

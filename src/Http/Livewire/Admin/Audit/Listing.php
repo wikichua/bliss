@@ -4,8 +4,6 @@ namespace Wikichua\Bliss\Http\Livewire\Admin\Audit;
 
 class Listing extends Component
 {
-    use \Livewire\WithPagination;
-
     protected $listeners = [];
     protected $bulkActionEnabled = true;
     protected $reauthEnabled = true;

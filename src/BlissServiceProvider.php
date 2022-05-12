@@ -46,6 +46,7 @@ class BlissServiceProvider extends ServiceProvider
             Console\Commands\Report::class,
             Console\Commands\Work::class,
         ]);
+
     }
 
     /**

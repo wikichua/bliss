@@ -40,6 +40,11 @@ trait ComponentTraits
         }
     }
 
+    public function initializeComponentTraits()
+    {
+
+    }
+
     public function viewShare()
     {
         view()->share('headerTitle', $this->headerTitle);
@@ -57,6 +62,11 @@ trait ComponentTraits
         return $listeners;
     }
 
+    public function paginationView()
+    {
+        return 'bliss::livewire.pagination';
+    }
+
     /*public function getQueryString()
     {
         $predefined = [
@@ -70,11 +80,6 @@ trait ComponentTraits
         $queryString = array_merge($this->queryString, $predefined);
         return $queryString;
     }*/
-
-    public function paginationView()
-    {
-        return 'bliss::livewire.pagination';
-    }
 
     public function resetFilters()
     {

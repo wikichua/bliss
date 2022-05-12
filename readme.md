@@ -21,10 +21,6 @@
 1. https://flowbite.com/
 
 todo
-1. form request for all https://twitter.com/RiatAbduramani/status/1519809501150466051
-1. from https://tailwind-elements.com to https://flowbite.com/
-    - dropdown
-    - pagination
 1. need user status Active, Inactive
 1. log logged-in user into local storage as persist if user login before and ask for only password
 1. individual model searchable (allow live search on listing)
@@ -75,8 +71,9 @@ features:
 
 1.
     a. helper dispatchToWorker - use this to keep track work record and dynamically create worker in ASYNC using artisan bliss:work
-    b. with trait Wikichua\Bliss\Traits\Queueable, you can use onQueue to create worker in ASYNC using artisan bliss:work
+    b. or adding use Wikichua\Bliss\Traits\Queueable into job class, then you can use onQueue to create worker in ASYNC using artisan bliss:work
 
+```
 [program:bliss-worker]
 process_name=%(program_name)s_%(process_num)02d
 command=php /home/forge/app.com/artisan bliss:work --stop-when-empty --backoff=3
@@ -89,6 +86,7 @@ numprocs=8
 redirect_stderr=true
 stdout_logfile=/home/forge/app.com/worker.log
 stopwaitsecs=3600
+```
 
 2.
 searchable
