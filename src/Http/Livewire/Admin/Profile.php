@@ -3,7 +3,9 @@
 namespace Wikichua\Bliss\Http\Livewire\Admin;
 
 use Livewire\Component;
-use Wikichua\Bliss\Rules\MatchCurrentPassword;
+use Wikichua\Bliss\Http\Requests\Admin\ProfileSaveProfileRequest;
+use Wikichua\Bliss\Http\Requests\Admin\ProfileSavePasswordRequest;
+use Wikichua\Bliss\Http\Requests\Admin\ProfileSaveAvatarRequest;
 
 class Profile extends Component
 {
@@ -38,18 +40,12 @@ class Profile extends Component
 
     public function rules()
     {
-        return [
-            'name' => 'required',
-            'email' => 'required',
-            'timezone' => 'required',
-        ];
+        return (new ProfileSaveProfileRequest)->rules();
     }
 
     public function onSaveAvatar()
     {
-        $this->validate([
-            'avatar' => ['required', 'mimes:jpeg,jpg,png', 'max:1024', 'dimensions:min_width=250,min_height=250'],
-        ]);
+        $this->validate((new ProfileSaveAvatarRequest)->rules());
         $model = $this->model;
         $data = [
             'avatar' => $this->avatar->store('public/profile'),
@@ -80,11 +76,7 @@ class Profile extends Component
         $this->current_password = \Crypt::decryptString($this->current_password);
         $this->password = \Crypt::decryptString($this->password);
         $this->password_confirmation = \Crypt::decryptString($this->password_confirmation);
-        $this->validate([
-            'current_password' => ['required', MatchCurrentPassword::class],
-            'password' => ['required', 'confirmed'],
-            'password_confirmation' => 'required',
-        ]);
+        $this->validate((new ProfileSavePasswordRequest)->rules());
         $model = $this->model;
         $data = [
             'password' => bcrypt($this->password),

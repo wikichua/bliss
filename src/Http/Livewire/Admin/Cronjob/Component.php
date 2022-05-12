@@ -3,6 +3,7 @@
 namespace Wikichua\Bliss\Http\Livewire\Admin\Cronjob;
 
 use Livewire\Component as LivewireComponent;
+use Wikichua\Bliss\Http\Requests\Admin\CronjobRequest;
 
 abstract class Component extends LivewireComponent
 {
@@ -56,14 +57,7 @@ abstract class Component extends LivewireComponent
 
     public function rules()
     {
-        return [
-            'name' => 'required',
-            'command' => 'required',
-            'timezone' => 'required',
-            'frequency' => 'required',
-            'status' => 'required',
-            'mode' => 'required',
-        ];
+        return (new CronjobRequest)->rules();
     }
     protected function getInfoData()
     {

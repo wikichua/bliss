@@ -3,6 +3,7 @@
 namespace Wikichua\Bliss\Http\Livewire\Admin\Role;
 
 use Livewire\Component as LivewireComponent;
+use Wikichua\Bliss\Http\Requests\Admin\RoleRequest;
 
 abstract class Component extends LivewireComponent
 {
@@ -58,10 +59,7 @@ abstract class Component extends LivewireComponent
 
     public function rules()
     {
-        return [
-            'name' => 'required',
-            'permissions' => 'required',
-        ];
+        return (new Role)->rules();
     }
 
     protected function getGroupPermissions()

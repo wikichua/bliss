@@ -14,7 +14,7 @@ trait AllModelTraits
 
     protected static function bootAllModelTraits()
     {
-        static::$opendns = '' == trim(static::$opendns) ?? opendns();
+        static::$opendns = blank(static::$opendns) ?? opendns();
         static::saved(
             function ($model) {
                 $onWhichEvent = $model->wasRecentlyCreated ? 'onCreatedEvent' : 'onUpdatedEvent';

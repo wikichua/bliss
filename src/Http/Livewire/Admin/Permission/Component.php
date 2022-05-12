@@ -3,8 +3,7 @@
 namespace Wikichua\Bliss\Http\Livewire\Admin\Permission;
 
 use Livewire\Component as LivewireComponent;
-use Wikichua\Bliss\Rules\AtLeastNotEmpty;
-use Wikichua\Bliss\Rules\AllFilledNoEmpty;
+use Wikichua\Bliss\Http\Requests\Admin\PermissionRequest;
 
 abstract class Component extends LivewireComponent
 {
@@ -56,13 +55,6 @@ abstract class Component extends LivewireComponent
 
     public function rules()
     {
-        return [
-            'name' => [
-                'required',
-                new AtLeastNotEmpty(1),
-                new AllFilledNoEmpty(),
-            ],
-            'group' => 'required',
-        ];
+        return (new PermissionRequest)->rules();
     }
 }

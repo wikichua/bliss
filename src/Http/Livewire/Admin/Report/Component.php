@@ -4,8 +4,7 @@ namespace Wikichua\Bliss\Http\Livewire\Admin\Report;
 
 use Livewire\Component as LivewireComponent;
 use Rap2hpoutre\FastExcel\SheetCollection;
-use Wikichua\Bliss\Rules\AtLeastNotEmpty;
-use Wikichua\Bliss\Rules\AllFilledNoEmpty;
+use Wikichua\Bliss\Http\Requests\Admin\ReportRequest;
 
 abstract class Component extends LivewireComponent
 {
@@ -59,14 +58,7 @@ abstract class Component extends LivewireComponent
 
     public function rules()
     {
-        return [
-            'name' => 'required',
-            'status' => 'required',
-            'queries' => [
-                new AtLeastNotEmpty(1),
-                new AllFilledNoEmpty(),
-            ],
-        ];
+        return (new ReportRequest)->rules();
     }
     protected function getInfoData()
     {
