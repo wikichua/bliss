@@ -4,6 +4,7 @@
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Cache;
+use Wikichua\Bliss\Jobs\ReportProcess;
 
 class Report extends Command
 {
@@ -41,38 +42,9 @@ class Report extends Command
 
     protected function queue($report)
     {
-        // https://laravel.com/docs/8.x/queues#supervisor-configuration
-        // art queue:work --queue=report_queue
-        dispatchToWorker(function () use ($report) {
-            cache()->remember(
-                'report-'.str_slug($report->name),
-                $report->cache_ttl,
-                function () use ($report) {
-                    $results = [];
-                    if (count($report->queries)) {
-                        foreach ($report->queries as $sql) {
-                            $results[] = array_map(function ($value) {
-                                return (array) $value;
-                            }, \DB::select($sql));
-                        }
-                    }
-
-                    return $results;
-                }
-            );
-            $report->generated_at = \Carbon\Carbon::now();
-            $report->next_generate_at = \Carbon\Carbon::now()->addSeconds($report->cache_ttl);
-            $report->saveQuietly();
-
-            sendAlertNotificationNow(
-                message: __('Report (:name) processes completed.', [
-                    'name' => 'report-'.str_slug($report->name),
-                ]),
-                sender: 1,
-                receivers: userIdsWithPermission('read-failedjobs'),
-                link: $report->readUrl,
-            );
-        }, 'report_queue');
+        // https://laravel.com/docs/9.x/queues#supervisor-configuration
+        // art bliss:work
+        ReportProcess::dispatch($report)->onQueue('report');
     }
 
     protected function sync($report)
