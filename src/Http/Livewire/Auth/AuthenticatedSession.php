@@ -3,7 +3,7 @@
 namespace Wikichua\Bliss\Http\Livewire\Auth;
 
 use Livewire\Component;
-use App\Http\Requests\Auth\LoginRequest;
+use Wikichua\Bliss\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
 

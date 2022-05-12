@@ -49,7 +49,7 @@ class QueueServiceProvider extends LaravelQueueServiceProvider
                 'batch' => explode(':', $event->job->getQueue())[0] ?? $event->job->getQueue(),
             ], [
                 'payload' => $event->job->payload(),
-                'status' => settings('queuejob_status.P'),
+                'status' => settings('queuejob_status.Processing'),
                 'started_at' => now(),
             ]);
             // logger($event->job->getQueue());
@@ -60,14 +60,14 @@ class QueueServiceProvider extends LaravelQueueServiceProvider
 
         Queue::after(function (JobProcessed $event) {
             app(config('bliss.Models.QueueJob'))->query()->where('uuid', $event->job->uuid())->update([
-                'status' => settings('queuejob_status.C'),
+                'status' => settings('queuejob_status.Completed'),
                 'ended_at' => now(),
             ]);
         });
 
         Queue::failing(function (JobFailed $event) {
             app(config('bliss.Models.QueueJob'))->query()->where('uuid', $event->job->uuid())->update([
-                'status' => settings('queuejob_status.E'),
+                'status' => settings('queuejob_status.Error'),
                 'ended_at' => now(),
             ]);
             // $event->job->fail($event->exception);
