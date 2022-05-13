@@ -14,7 +14,7 @@
             this.method = 'confirmSubmit';
 
             if (this.reauthEnabled === true) {
-                $wire.emitTo('reauth', 'lastAuth');
+                $wire.emitTo('reauth', 'checkShouldConfirmPassword');
             } else {
                 this.confirmSubmit();
             }

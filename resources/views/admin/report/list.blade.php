@@ -14,6 +14,7 @@
                         </x-slot>
                         <x-slot name="modalBody">
                             <x-bliss::search-input type="text" id="name" label="Name" wire:model.defer="filters.name" />
+                            <x-bliss::search-select id="status" label="Status" multiple wire:model.defer="filters.status" :options="settings('report_status')" />
                             <x-bliss::search-datepicker id="created_at" label="Created At" wire:model.defer="filters.created_at" datepicker="{
                                 maxDate: 'today',
                             }" />

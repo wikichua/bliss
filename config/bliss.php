@@ -68,10 +68,6 @@ return [
             'token',
         ],
     ],
-    'reauth' => [
-        'timeout' => 10, // default 10 mins
-        'reset' => true,
-    ],
     'Livewires' => [
         'Auth' => [
             \Wikichua\Bliss\Http\Livewire\Auth\AuthenticatedSession::class,

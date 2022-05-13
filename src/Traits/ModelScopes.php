@@ -17,6 +17,16 @@ trait ModelScopes
                         $scope = Str::camel('filter_'.$field);
                         if (method_exists($this, $method)) {
                             $query->{$scope}($search);
+                        } else {
+                            if (!is_array($search)) {
+                                try {
+                                    $query->filterGenericDate($field, $search);
+                                } catch (\Carbon\Exceptions\InvalidFormatException $e) {
+                                    $query->filterGenericLike($field, $search);
+                                }
+                            } else {
+                                $query->filterGenericIn($field, $search);
+                            }
                         }
                     });
                 }
@@ -95,6 +105,26 @@ trait ModelScopes
         $date = $this->getDateFilter($search);
 
         return $query->whereBetween('deleted_at', [
+            $this->inUserTimezone($date['start_at']),
+            $this->inUserTimezone($date['stop_at']),
+        ]);
+    }
+
+    public function scopeFilterGenericLike($query, $field , $search)
+    {
+        return $query->where($field, 'like', "%{$search}%");
+    }
+
+    public function scopeFilterGenericIn($query, $field , $search)
+    {
+        return $query->whereIn($field, $search);
+    }
+
+    public function scopeFilterGenericDate($query, $field,  $search)
+    {
+        $date = $this->getDateFilter($search);
+
+        return $query->whereBetween($field, [
             $this->inUserTimezone($date['start_at']),
             $this->inUserTimezone($date['stop_at']),
         ]);

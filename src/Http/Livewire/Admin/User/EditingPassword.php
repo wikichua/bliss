@@ -2,9 +2,15 @@
 
 namespace Wikichua\Bliss\Http\Livewire\Admin\User;
 
+use Wikichua\Bliss\Http\Requests\Admin\UserPasswordRequest;
+
 class EditingPassword extends Component
 {
     protected $reauthEnabled = true;
+
+    public $password;
+    public $password_confirmation;
+
     public function mount($id)
     {
         $this->castModelToProperty(app(config('bliss.Models.User'))->query()->findOrFail($id));
@@ -21,10 +27,7 @@ class EditingPassword extends Component
         $this->authorize('update-users-password');
         $this->password = \Crypt::decryptString($this->password);
         $this->password_confirmation = \Crypt::decryptString($this->password_confirmation);
-        $this->validate([
-            'password' => ['required', 'confirmed'],
-            'password_confirmation' => 'required',
-        ]);
+        $this->validate();
 
         $model = $this->model;
         $data = [
@@ -34,7 +37,7 @@ class EditingPassword extends Component
 
         $model->update($data);
         $this->alertNotify(
-            message: __('User (:name) created.', [
+            message: __('User\'s password (:name) updated.', [
                 'name' => $model->name,
             ]),
             permissionString: 'read-users',
@@ -42,5 +45,10 @@ class EditingPassword extends Component
         );
         $this->flashStatusSession('Data Updated.');
         $this->mount($model->id);
+    }
+
+    public function rules()
+    {
+        return (new UserPasswordRequest)->rules();
     }
 }

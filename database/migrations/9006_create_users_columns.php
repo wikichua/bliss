@@ -11,6 +11,7 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('avatar')->nullable();
             $table->string('timezone')->default(config('app.timezone'))->index();
+            $table->string('status', 1)->nullable()->default('I');
             $table->integer('created_by')->nullable()->default(1);
             $table->integer('updated_by')->nullable()->default(1);
         });

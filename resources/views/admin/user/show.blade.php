@@ -5,6 +5,7 @@
                 <x-bliss::form-input type="text" wire:model.defer="name" label="Full Name" disabled />
                 <x-bliss::form-input type="email" wire:model.defer="email" label="Email" disabled />
                 <x-bliss::form-select wire:model.defer="timezone" label="Timezone" :options="timezones()" disabled />
+                <x-bliss::form-select wire:model.defer="status" label="Status" :options="settings('user_status')" disabled />
                 <x-bliss::form-checkboxes wire:model.defer="roles" label="Roles" :options="$rolesOptions" disabled />
 
                 <x-slot name="buttons">

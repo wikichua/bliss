@@ -20,6 +20,9 @@ class VerifyEmail extends Component
         }
 
         if ($this->user->markEmailAsVerified()) {
+            $this->user->forceFill([
+                'status' => 'A',
+            ]);
             event(new Verified($this->user));
         }
 

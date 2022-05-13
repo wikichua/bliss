@@ -16,6 +16,7 @@
                             <x-bliss::search-input type="text" id="name" label="Name" wire:model.defer="filters.name" />
                             <x-bliss::search-input type="text" id="email" label="Email" wire:model.defer="filters.email" />
                             <x-bliss::search-select id="roles" label="Roles" wire:model.defer="filters.roles" :options="$rolesOptions" multiple />
+                            <x-bliss::search-select id="status" label="Status" multiple wire:model.defer="filters.status" :options="settings('user_status')" />
                             <x-bliss::search-datepicker id="created_at" label="Created At" wire:model.defer="filters.created_at" datepicker="{
                                 maxDate: 'today',
                             }" />

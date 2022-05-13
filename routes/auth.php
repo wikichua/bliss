@@ -1,7 +1,6 @@
 <?php
 use Wikichua\Bliss\Http\Livewire\Auth\Register;
 use Wikichua\Bliss\Http\Livewire\Auth\AuthenticatedSession;
-use Wikichua\Bliss\Http\Livewire\Auth\ReAuthenticatedSession;
 use Wikichua\Bliss\Http\Livewire\Auth\PasswordResetLink;
 use Wikichua\Bliss\Http\Livewire\Auth\NewPassword;
 use Wikichua\Bliss\Http\Livewire\Auth\LogoutSession;
@@ -23,6 +22,4 @@ Route::middleware('auth')->prefix('')->group(function () {
     Route::get('verify/email/{id}/{hash}', VerifyEmail::class)->middleware(['signed', 'throttle:6,1'])->name('verification.verify');
     Route::get('confirm-password', ConfirmablePassword::class)->name('password.confirm');
     Route::get('logout/{now?}', LogoutSession::class)->name('logout');
-
-    Route::get('reauth', ReAuthenticatedSession::class)->name('reauth');
 });

@@ -38,7 +38,7 @@ export default (reauthEnabled) => ({
         const wire = window.livewire.find(document.querySelector('#wire').getAttribute('wire:id'));
 
         if (this.reauthEnabled === true) {
-            wire.emitTo('reauth', 'lastAuth');
+            wire.emitTo('reauth', 'checkShouldConfirmPassword');
         } else {
             this.proceedEmit(...argument);
         }
@@ -58,7 +58,7 @@ export default (reauthEnabled) => ({
         const wire = window.livewire.find(document.querySelector('#wire').getAttribute('wire:id'));
 
         if (this.reauthEnabled === true) {
-            wire.emitTo('reauth', 'lastAuth');
+            wire.emitTo('reauth', 'checkShouldConfirmPassword');
         } else {
             this.proceedEmitTo(...argument);
         }
@@ -78,7 +78,7 @@ export default (reauthEnabled) => ({
         const wire = window.livewire.find(document.querySelector('#wire').getAttribute('wire:id'));
 
         if (this.reauthEnabled === true) {
-            wire.emitTo('reauth', 'lastAuth');
+            wire.emitTo('reauth', 'checkShouldConfirmPassword');
         } else {
             this.confirmToProceedEmit(...argument);
         }
@@ -98,7 +98,7 @@ export default (reauthEnabled) => ({
         const wire = window.livewire.find(document.querySelector('#wire').getAttribute('wire:id'));
 
         if (this.reauthEnabled === true) {
-            wire.emitTo('reauth', 'lastAuth');
+            wire.emitTo('reauth', 'checkShouldConfirmPassword');
         } else {
             this.confirmToProceedEmitTo(...argument);
         }

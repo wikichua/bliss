@@ -21,7 +21,6 @@
 1. https://flowbite.com/
 
 todo
-1. need user status Active, Inactive
 1. log logged-in user into local storage as persist if user login before and ask for only password
 1. individual model searchable (allow live search on listing)
 1. queuejob into mongodb and sample chartjs in dashboard
@@ -38,6 +37,7 @@ to read
 1. https://www.tutsmake.com/laravel-9-backup-store-on-google-drive-tutorial-with-example/
 1. https://github.com/cesargb/laravel-magiclink
 1. https://github.com/voku/stop-words
+1. https://codebrisk.com/blog/generate-youtube-like-ids-for-models-with-laravel-hashids
 
 setup:
 
@@ -122,3 +122,6 @@ settings('queuejob_status.Nothing', 'N') - N
 
 5.
 Searchable, Audit and Snapshot into observer, event and listener - https://www.youtube.com/watch?v=DvoaU6cQQHM
+
+6.
+Confirm Password using Laravel's feature instead of self made.

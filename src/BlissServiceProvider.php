@@ -29,7 +29,7 @@ class BlissServiceProvider extends ServiceProvider
             }
         }
 
-        // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'wikichua');
+        // $this->loadTranslationsFrom(__DIR__.'/../lang', 'bliss');
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'bliss');
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         $this->loadLivewireComponents();
@@ -88,18 +88,18 @@ class BlissServiceProvider extends ServiceProvider
 
         // Publishing the views.
         /*$this->publishes([
-            __DIR__.'/../resources/views' => base_path('resources/views/vendor/wikichua'),
+            __DIR__.'/../resources/views' => base_path('resources/views/vendor/bliss'),
         ], 'bliss.views');*/
 
         // Publishing assets.
         /*$this->publishes([
-            __DIR__.'/../resources/assets' => public_path('vendor/wikichua'),
+            __DIR__.'/../resources/assets' => public_path('vendor/bliss'),
         ], 'bliss.views');*/
 
         // Publishing the translation files.
         /*$this->publishes([
-            __DIR__.'/../resources/lang' => resource_path('lang/vendor/wikichua'),
-        ], 'bliss.views');*/
+            __DIR__.'/../lang' => resource_path('lang/vendor/bliss'),
+        ], 'bliss.lang');*/
 
         // Registering package commands.
         $this->commands([

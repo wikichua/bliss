@@ -14,6 +14,7 @@ return new class extends Migration
             'email' => 'admin@example.com',
             'password' => Hash::make('admin123'),
             'type' => 'Admin',
+            'status' => 'A'
         ]);
         $user->created_by = $user_id;
         $user->updated_by = $user_id;
@@ -32,8 +33,9 @@ return new class extends Migration
             'created_by' => $user_id,
             'updated_by' => $user_id,
             'name' => 'User',
-            'email' => 'user@email.com',
+            'email' => 'user@example.com',
             'password' => Hash::make('admin123'),
+            'status' => 'A'
         ]);
 
         $permission = app(config('bliss.Models.Permission'));
@@ -60,6 +62,7 @@ return new class extends Migration
             'value' => ['Admin Panel' => 'Admin Panel', 'Permission' => 'Permission', 'Setting' => 'Setting', 'Role' => 'Role', 'User' => 'User', 'Audit' => 'Audit', 'Failed Jobs' => 'Failed Jobs', 'Queue Jobs' => 'Queue Jobs'],
         ]);
         $setting->create(['created_by' => $user_id, 'updated_by' => $user_id, 'key' => 'locales', 'value' => ['en' => 'EN']]);
+        $setting->create(['created_by' => $user_id, 'updated_by' => $user_id, 'key' => 'user_status', 'value' => ['A' => 'Active', 'I' => 'Inactive']]);
         $setting->create(['created_by' => $user_id, 'updated_by' => $user_id, 'key' => 'report_status', 'value' => ['A' => 'Active', 'I' => 'Inactive']]);
         $setting->create(['created_by' => $user_id, 'updated_by' => $user_id, 'key' => 'cronjob_status', 'value' => ['A' => 'Active', 'I' => 'Inactive']]);
         $setting->create(['created_by' => $user_id, 'updated_by' => $user_id, 'key' => 'queuejob_status', 'value' => ['W' => 'Waiting', 'P' => 'Processing', 'C' => 'Completed', 'E' => 'Error']]);

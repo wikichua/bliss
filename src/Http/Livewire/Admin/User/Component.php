@@ -3,6 +3,7 @@
 namespace Wikichua\Bliss\Http\Livewire\Admin\User;
 
 use Livewire\Component as LivewireComponent;
+use Wikichua\Bliss\Http\Requests\Admin\UserRequest;
 
 abstract class Component extends LivewireComponent
 {
@@ -59,11 +60,7 @@ abstract class Component extends LivewireComponent
 
     public function rules()
     {
-        return [
-            'name' => 'required',
-            'email' => 'required',
-            'timezone' => 'required',
-        ];
+        return (new UserRequest)->rules();
     }
 
     public function getRolesOptions()

@@ -7,6 +7,7 @@
                 <x-bliss::form-input type="password" wire:model.defer="password" label="Password" />
                 <x-bliss::form-input type="password" wire:model.defer="password_confirmation" label="Password Confirmation" />
                 <x-bliss::form-select wire:model.defer="timezone" label="Timezone" :options="timezones()" />
+                <x-bliss::form-select wire:model.defer="status" label="Status" :options="settings('user_status')" />
                 {{-- <x-bliss::form-grouped-checkboxes wire:model.defer="roles" label="Roles" :options="$rolesOptions" /> --}}
                 <x-bliss::form-checkboxes wire:model.defer="roles" label="Roles" :options="$rolesOptions" />
 
