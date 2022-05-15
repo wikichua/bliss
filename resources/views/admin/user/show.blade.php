@@ -34,7 +34,7 @@
                     </x-bliss::form-link>
                 </x-slot>
             </x-bliss:info-form>
-        </x-bliss::info-form>
+        </x-slot>
 
         <x-slot name="right">
             <x-bliss::info-card :data="$infoData"/>

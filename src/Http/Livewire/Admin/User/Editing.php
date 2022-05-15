@@ -34,7 +34,7 @@ class Editing extends Component
         $model->update($data);
         $model->roles()->sync($roles);
         $this->alertNotify(
-            message: __('User (:name) created.', [
+            message: __('User (:name) updated.', [
                 'name' => $model->name,
             ]),
             permissionString: 'read-users',

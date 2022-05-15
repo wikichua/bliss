@@ -40,7 +40,7 @@
             </button>
 
             <div x-show="dropdownOpen" x-on:click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10" style="display: none;"></div>
-            <div x-show="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-white dark:bg-slate-900 rounded-md overflow-hidden shadow-xl z-10" style="display: none;">
+            <div x-show="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md overflow-hidden shadow-xl z-10" style="display: none;">
                 <a href="{{ route('profile') }}" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-50 hover:bg-gray-600 hover:text-white">{{ __('Profile') }}</a>
                 <hr />
                 @impersonating
