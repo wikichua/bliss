@@ -8,7 +8,7 @@ use React\EventLoop\Loop;
 
 class Work extends Command
 {
-    protected $signature = 'bliss:work {--backoff=3} {--worker=}';
+    protected $signature = 'bliss:work {--backoff=1} {--worker=} {--stop-when-empty}';
     protected $description = 'Queue Worker Asynchronous';
     protected $max_workers = null;
     public function __construct()
@@ -18,10 +18,13 @@ class Work extends Command
 
     public function handle()
     {
-        $backoff = !blank($this->option('backoff')) ? $this->option('backoff') : 3;
+        $backoff = !blank($this->option('backoff')) ? $this->option('backoff') : 1;
         $this->max_workers = !blank($this->option('worker')) ? $this->option('worker') : settings('max_workers');
         Loop::addPeriodicTimer($backoff, function () use($backoff) {
-            $this->dispatching($backoff);
+            $result = $this->dispatching($backoff);
+            if ($this->option('stop-when-empty') && !$result) {
+                Loop::stop();
+            }
         });
     }
 
@@ -55,6 +58,6 @@ class Work extends Command
                 }
             });
         }
-        return count($workers) <= 0;
+        return count($workers) > 0;
     }
 }
