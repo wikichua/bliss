@@ -156,7 +156,7 @@ return [
         'Role' => \Wikichua\Bliss\Models\Role::class,
         'Searchable' => \Wikichua\Bliss\Models\Searchable::class,
         'Setting' => \Wikichua\Bliss\Models\Setting::class,
-        'User' => \App\Models\User::class,
+        'User' => config('auth.providers.users.model', \App\Models\User::class),
         'Versionizer' => \Wikichua\Bliss\Models\Versionizer::class,
         'Worker' => \Wikichua\Bliss\Models\Worker::class,
     ], [

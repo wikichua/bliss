@@ -9,18 +9,17 @@ return new class extends Migration
     {
         $user_id = 1;
         // create default admin user
-        $user = app(config('auth.providers.users.model'))->firstOrCreate([
+        $user = app(config('bliss.Models.User'))->create([
             'name' => 'Admin',
             'email' => 'admin@example.com',
             'password' => Hash::make('admin123'),
             'type' => 'Admin',
-            'status' => 'A'
+            'status' => 'A',
+            'created_by' => $user_id,
+            'updated_by' => $user_id,
         ]);
-        $user->created_by = $user_id;
-        $user->updated_by = $user_id;
-        $user->save();
         // create default admin role
-        app(config('bliss.Models.Role'))->firstOrCreate([
+        app(config('bliss.Models.Role'))->create([
             'name' => 'Admin',
             'admin' => true,
             'created_by' => $user_id,
@@ -29,7 +28,7 @@ return new class extends Migration
         // give default admin user default admin role
         $user->roles()->attach(app(config('bliss.Models.Role'))->where('admin', true)->first()->id);
 
-        app(config('auth.providers.users.model'))->create([
+        app(config('bliss.Models.User'))->create([
             'created_by' => $user_id,
             'updated_by' => $user_id,
             'name' => 'User',
