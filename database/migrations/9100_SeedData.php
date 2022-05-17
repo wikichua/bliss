@@ -9,7 +9,7 @@ return new class extends Migration
     {
         $user_id = 1;
         // create default admin user
-        $user = app(config('auth.providers.users.model'))->create([
+        $user = app(config('auth.providers.users.model'))->firstOrCreate([
             'name' => 'Admin',
             'email' => 'admin@example.com',
             'password' => Hash::make('admin123'),
@@ -20,7 +20,7 @@ return new class extends Migration
         $user->updated_by = $user_id;
         $user->save();
         // create default admin role
-        app(config('bliss.Models.Role'))->create([
+        app(config('bliss.Models.Role'))->firstOrCreate([
             'name' => 'Admin',
             'admin' => true,
             'created_by' => $user_id,
