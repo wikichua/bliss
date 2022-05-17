@@ -3,6 +3,7 @@
  namespace Wikichua\Bliss\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Schema;
 
 class Searchable extends Command
 {
@@ -22,7 +23,15 @@ class Searchable extends Command
         app(config('bliss.Models.Searchable'))->truncate();
         $searchable = app(config('bliss.Models.Searchable'))->query();
         foreach ($models as $model) {
-            if (count(app($model)->toSearchableFieldsArray()) && $count = app($model)->count()) {
+            $hasTable = false;
+            try {
+                $table = app($model)->query()->getModel()->getTable();
+                $hasTable = Schema::hasTable($table);
+            } catch (\Illuminate\Database\QueryException $e) {
+
+            }
+
+            if ($hasTable && count(app($model)->toSearchableFieldsArray()) && $count = app($model)->count()) {
                 $this->info("\n".$model);
                 $bar = $this->output->createProgressBar($count);
                 $bar->start();
