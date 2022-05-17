@@ -8,7 +8,7 @@ trait AllModelTraits
     use \Wikichua\Bliss\Traits\Searchable;
     use \Wikichua\Bliss\Traits\DynamicFillable;
     use \Wikichua\Bliss\Traits\UserTimezone;
-    use \Jenssegers\Mongodb\Eloquent\HybridRelations;
+    use \Wikichua\Bliss\Traits\HybridRelations;
 
     protected static $opendns;
 
