@@ -14,14 +14,16 @@ return new class extends Migration
             $table->text('queue');
             $table->timestamp('created_at')->useCurrent();
         });
-        try {
-            Schema::connection('mongodb')->table('workers', function (Blueprint $table) {
-                $table->index('queue');
-                $table->index('batch');
-                $table->index('created_at');
-            });
-        } catch (\MongoDB\Driver\Exception\AuthenticationException $e) {
+        if (\File::exists(base_path('vendor/jenssegers/mongodb'))) {
+            try {
+                Schema::connection('mongodb')->table('workers', function (Blueprint $table) {
+                    $table->index('queue');
+                    $table->index('batch');
+                    $table->index('created_at');
+                });
+            } catch (\MongoDB\Driver\Exception\AuthenticationException $e) {
 
+            }
         }
     }
 

@@ -18,13 +18,15 @@ return new class extends Migration
             $table->index(['model']);
             $table->index(['model', 'model_id']);
         });
-        try {
-            Schema::connection('mongodb')->table('searchables', function (Blueprint $table) {
-                $table->index(['model']);
-                $table->index(['model', 'model_id']);
-            });
-        } catch (\MongoDB\Driver\Exception\AuthenticationException $e) {
+        if (\File::exists(base_path('vendor/jenssegers/mongodb'))) {
+            try {
+                Schema::connection('mongodb')->table('searchables', function (Blueprint $table) {
+                    $table->index(['model']);
+                    $table->index(['model', 'model_id']);
+                });
+            } catch (\MongoDB\Driver\Exception\AuthenticationException $e) {
 
+            }
         }
     }
 

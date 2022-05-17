@@ -66,7 +66,19 @@ paste this in composer.json
 composer req wikichua/bliss:@dev
 ```
 
-setup db. run art bliss:install. run art migrate
+setup db. run
+
+```
+art bliss:install
+art migrate
+```
+
+if need mongodb
+
+```
+composer req jenssegers/mongodb
+art art migrate:fresh
+```
 
 features:
 

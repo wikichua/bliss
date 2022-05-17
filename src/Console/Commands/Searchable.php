@@ -20,9 +20,16 @@ class Searchable extends Command
         $chunk = $this->argument('chunk');
         $this->info('Indexing to Searchable');
         $models = getModelsList();
+        $excludeMongoDb = false;
+        if (!\File::exists(base_path('vendor/jenssegers/mongodb'))) {
+            $excludeMongoDb = true;
+        }
         app(config('bliss.Models.Searchable'))->truncate();
         $searchable = app(config('bliss.Models.Searchable'))->query();
         foreach ($models as $model) {
+            if ($excludeMongoDb && \Str::contains($model, 'Wikichua\Bliss\Models\Mongodb')) {
+                continue;
+            }
             $hasTable = false;
             try {
                 $table = app($model)->query()->getModel()->getTable();

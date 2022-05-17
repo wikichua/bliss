@@ -24,16 +24,17 @@ return new class extends Migration
             $table->index(['model_class']);
             $table->index(['model_class', 'model_id']);
         });
+        if (\File::exists(base_path('vendor/jenssegers/mongodb'))) {
+            try {
+                Schema::connection('mongodb')->table('versionizers', function (Blueprint $table) {
+                    $table->index(['mode']);
+                    $table->index(['model_id']);
+                    $table->index(['model_class']);
+                    $table->index(['model_class', 'model_id']);
+                });
+            } catch (\MongoDB\Driver\Exception\AuthenticationException $e) {
 
-        try {
-            Schema::connection('mongodb')->table('versionizers', function (Blueprint $table) {
-                $table->index(['mode']);
-                $table->index(['model_id']);
-                $table->index(['model_class']);
-                $table->index(['model_class', 'model_id']);
-            });
-        } catch (\MongoDB\Driver\Exception\AuthenticationException $e) {
-
+            }
         }
     }
 

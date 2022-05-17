@@ -28,19 +28,20 @@ return new class extends Migration
             $table->index(['model_id', 'model_class']);
             $table->index(['user_id', 'model_id', 'model_class']);
         });
+        if (\File::exists(base_path('vendor/jenssegers/mongodb'))) {
+            try {
+                Schema::connection('mongodb')->table('audits', function (Blueprint $table) {
+                    $table->index('user_id');
+                    $table->index('model_id');
+                    $table->index('model_class');
+                    $table->index('opendns');
+                    $table->index('created_at');
+                    $table->index(['model_id', 'model_class']);
+                    $table->index(['user_id', 'model_id', 'model_class']);
+                });
+            } catch (\MongoDB\Driver\Exception\AuthenticationException $e) {
 
-        try {
-            Schema::connection('mongodb')->table('audits', function (Blueprint $table) {
-                $table->index('user_id');
-                $table->index('model_id');
-                $table->index('model_class');
-                $table->index('opendns');
-                $table->index('created_at');
-                $table->index(['model_id', 'model_class']);
-                $table->index(['user_id', 'model_id', 'model_class']);
-            });
-        } catch (\MongoDB\Driver\Exception\AuthenticationException $e) {
-
+            }
         }
     }
 

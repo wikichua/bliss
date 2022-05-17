@@ -23,16 +23,17 @@ return new class extends Migration
             $table->index('receiver_id');
             $table->index(['sender_id', 'receiver_id']);
         });
+        if (\File::exists(base_path('vendor/jenssegers/mongodb'))) {
+            try {
+                Schema::connection('mongodb')->table('alerts', function (Blueprint $table) {
+                    $table->index('status');
+                    $table->index('sender_id');
+                    $table->index('receiver_id');
+                    $table->index(['sender_id', 'receiver_id']);
+                });
+            } catch (\MongoDB\Driver\Exception\AuthenticationException $e) {
 
-        try {
-            Schema::connection('mongodb')->table('alerts', function (Blueprint $table) {
-                $table->index('status');
-                $table->index('sender_id');
-                $table->index('receiver_id');
-                $table->index(['sender_id', 'receiver_id']);
-            });
-        } catch (\MongoDB\Driver\Exception\AuthenticationException $e) {
-
+            }
         }
     }
 
