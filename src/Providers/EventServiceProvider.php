@@ -2,17 +2,18 @@
 
 namespace Wikichua\Bliss\Providers;
 
-use Wikichua\Bliss\Observers\SearchableObserver;
-use Wikichua\Bliss\Events\SearchableEvent;
-use Wikichua\Bliss\Listeners\SearchableListener;
-use Wikichua\Bliss\Observers\SnapshotObserver;
-use Wikichua\Bliss\Events\SnapshotEvent;
-use Wikichua\Bliss\Listeners\SnapshotListener;
-use Wikichua\Bliss\Observers\AuditObserver;
-use Wikichua\Bliss\Events\AuditEvent;
-use Wikichua\Bliss\Listeners\AuditListener;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Str;
+use Wikichua\Bliss\Events\AuditEvent;
+use Wikichua\Bliss\Events\SearchableEvent;
+use Wikichua\Bliss\Events\SnapshotEvent;
+use Wikichua\Bliss\Listeners\AuditListener;
+use Wikichua\Bliss\Listeners\SearchableListener;
+use Wikichua\Bliss\Listeners\SnapshotListener;
+use Wikichua\Bliss\Observers\AuditObserver;
+use Wikichua\Bliss\Observers\SearchableObserver;
+use Wikichua\Bliss\Observers\SnapshotObserver;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -40,9 +41,18 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        app(\Wikichua\Bliss\Exp\Models\ExperimentKeywordsModel::class)->observe(AuditObserver::class);
-        app(\Wikichua\Bliss\Exp\Models\ExperimentKeywordsModel::class)->observe(SnapshotObserver::class);
-        app(\Wikichua\Bliss\Exp\Models\ExperimentKeywordsModel::class)->observe(SearchableObserver::class);
+
+        $vendorPath = base_path('vendor/wikichua/bliss');
+        if (is_dir(base_path('packages/Wikichua/Bliss'))) {
+            $vendorPath = base_path('packages/Wikichua/Bliss');
+        } elseif (is_dir(base_path('packages/wikichua/bliss'))) {
+            $vendorPath = base_path('packages/wikichua/bliss');
+        }
+        if (Str::contains($vendorPath, 'packages')) {
+            app(\Wikichua\Bliss\Exp\Models\ExperimentKeywordsModel::class)->observe(AuditObserver::class);
+            app(\Wikichua\Bliss\Exp\Models\ExperimentKeywordsModel::class)->observe(SnapshotObserver::class);
+            app(\Wikichua\Bliss\Exp\Models\ExperimentKeywordsModel::class)->observe(SearchableObserver::class);
+        }
 
         $modelClassRegisteredUnderBlissConfig = config('bliss.Models');
         foreach ($modelClassRegisteredUnderBlissConfig as $modelClass) {
