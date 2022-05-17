@@ -15,6 +15,16 @@ class AuthenticatedSession extends Component
 
     public function render()
     {
+        $relogin = request()->cookie('relogined') ?? null;
+        if (!blank($relogin)) {
+            [$email, $name, $avatar] = json_decode($relogin, 1);
+            $this->email = $email;
+            return view('bliss::auth.relogin', [
+                'email' => $email,
+                'name' => $name,
+                'avatar' => $avatar,
+            ])->layout('bliss::layouts.guest');
+        }
         return view('bliss::auth.login')->layout('bliss::layouts.guest');
     }
 
@@ -33,6 +43,14 @@ class AuthenticatedSession extends Component
 
         session()->regenerate();
 
+        cookie()->queue('relogined', json_encode([auth()->user()->email, auth()->user()->name, auth()->user()->avatar]), 60 * 24);
+
+        return redirect()->intended(RouteServiceProvider::HOME);
+    }
+
+    public function itsNotMe()
+    {
+        cookie()->expire('relogined');
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 }

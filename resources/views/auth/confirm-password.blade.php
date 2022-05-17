@@ -1,4 +1,4 @@
-<x-div>
+<div>
     <x-bliss::auth-card>
         <div class="mb-4 text-sm text-gray-600">
             {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
@@ -25,4 +25,4 @@
             </div>
         </form>
     </x-bliss::auth-card>
-</x-div>
+</div>

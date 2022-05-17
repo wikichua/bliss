@@ -18,6 +18,8 @@ class BlissServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Schema::defaultStringLength(191);
+
         try {
             // if db is not setup. don continue
             $table = app(config('bliss.Models.User'))->query()->getModel()->getTable();
