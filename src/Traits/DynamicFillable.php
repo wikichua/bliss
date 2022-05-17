@@ -10,12 +10,7 @@ trait DynamicFillable
     // set fillable using db table columns
     public function getFillable()
     {
-        if (
-            $this::class != config('bliss.Models.User')
-            && isset($this->fillable)
-            && is_array($this->fillable)
-            && count($this->fillable)
-        ) {
+        if (!blank($this->fillable ?? [])) {
             return $this->fillable;
         }
 

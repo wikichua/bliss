@@ -12,6 +12,13 @@ class Role extends Model
 
     protected $appends = ['isAdmin'];
 
+    protected $fillable = [
+        'created_by',
+        'updated_by',
+        'name',
+        'admin',
+    ];
+
     protected $auditable = true;
     protected $snapshot = true;
 

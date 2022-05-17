@@ -187,6 +187,28 @@ class Installation extends Command
                 $this->newLine();
             }
         }
+        $file = app_path('Models/User.php');
+        $content = @File::get($file);
+        if (!str_contains($content, '\'created_by\'') && !str_contains($content, '\'updated_by\'')) {
+            $lookFor = <<<EOL
+                    'name',
+                    'email',
+                    'password',
+            EOL;
+            $replaceStr = <<<EOL
+                    'name',
+                    'email',
+                    'password',
+                    'avatar',
+                    'timezone',
+                    'status',
+                    'created_by',
+                    'updated_by',
+            EOL;
+            $lines = explode(PHP_EOL, $content);
+            $content = str_replace($lookFor, $replaceStr, $content);
+            @File::replace($file, $content);
+        }
     }
 
     protected function injectMongoConfigIntoDatabaseConfigFile()
