@@ -38,6 +38,7 @@ to read
 1. https://github.com/cesargb/laravel-magiclink
 1. https://github.com/voku/stop-words
 1. https://codebrisk.com/blog/generate-youtube-like-ids-for-models-with-laravel-hashids
+1. https://github.com/LaravelDaily/laravel-tips
 
 setup:
 

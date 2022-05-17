@@ -43,7 +43,7 @@ class Report extends Model
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-        $this->connection = 'mysql';
+        // $this->connection = 'mysql';
     }
 
     public function getStatusNameAttribute($value)

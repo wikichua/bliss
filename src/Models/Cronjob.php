@@ -44,7 +44,7 @@ class Cronjob extends Eloquent
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-        $this->connection = 'mysql';
+        // $this->connection = 'mysql';
     }
 
     public function scopeFilterName($query, $search)
