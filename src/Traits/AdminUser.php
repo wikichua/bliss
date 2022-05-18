@@ -62,4 +62,9 @@ trait AdminUser
 
         return $permissions;
     }
+
+    public function getIsAdminAttribute($value)
+    {
+        return $this->roles->contains('admin', true);
+    }
 }

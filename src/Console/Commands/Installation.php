@@ -78,6 +78,7 @@ class Installation extends Command
         $this->injectDisableCommandsCallConsoleKernel();
         $this->injectMixAppKeyInEnvFile();
         $this->injectMongoConfigIntoDatabaseConfigFile();
+        $this->injectDbLoggerConfigIntoLoggingConfigFile();
         $this->removeDefaultWebRoute();
         $this->publishLaravelStubsAndReplaceSomething();
         $this->injectPublishLivewireAssetsIntoComposerJson();
@@ -208,6 +209,34 @@ class Installation extends Command
             $lines = explode(PHP_EOL, $content);
             $content = str_replace($lookFor, $replaceStr, $content);
             @File::replace($file, $content);
+        }
+    }
+
+    protected function injectDbLoggerConfigIntoLoggingConfigFile()
+    {
+        $configStr = <<<EOL
+                'db' => [
+                    'driver' => 'custom',
+                    'via' => \Wikichua\Bliss\Logging\DbLogger::class,
+                ],
+
+
+        EOL;
+        $file = base_path('config/logging.php');
+        $content = @File::get($file);
+        if (!str_contains($content, '\Wikichua\Bliss\Logging\DbLogger::class')) {
+            $lines = explode(PHP_EOL, $content);
+            foreach ($lines as $key => $line) {
+                if (str_contains($line, '\'stack\' => [')) {
+                    $from = $line;
+                    $to = $lines[$key] = $configStr.$line;
+                }
+            }
+            if (isset($from)) {
+                @File::replace($file, implode(PHP_EOL, $lines));
+                $this->info('Replace '.trim($from).' to '. trim($to) . ' in ' . $file);
+                $this->newLine();
+            }
         }
     }
 

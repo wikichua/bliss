@@ -11,7 +11,7 @@ use Illuminate\Queue\Events\QueueBusy;
 use Illuminate\Queue\QueueServiceProvider as LaravelQueueServiceProvider;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Queue;
-use Wikichua\Bliss\DatabaseUuidFailedJobProvider;
+use Wikichua\Bliss\Providers\DatabaseUuidFailedJobProvider;
 use Wikichua\Bliss\Models\QueueJob;
 
 class QueueServiceProvider extends LaravelQueueServiceProvider

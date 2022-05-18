@@ -19,6 +19,7 @@
 1. https://tailwindcomponents.com
 1. https://tailwind-elements.com
 1. https://flowbite.com/
+1. https://cylab.be/blog/144/laravel-custom-logging
 
 todo
 1. individual model searchable (allow live search on listing)
@@ -137,3 +138,14 @@ Searchable, Audit and Snapshot into observer, event and listener - https://www.y
 
 6.
 Confirm Password using Laravel's feature instead of self made.
+
+7.
+DB logging and debug...
+
+enable with
+
+```
+LOG_CHANNEL=db
+```
+
+LOG_CHANNEL=stack to disabled this feature

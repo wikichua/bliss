@@ -30,12 +30,14 @@ return [
             'Wikichua\Bliss\Models\Searchable',
             'Wikichua\Bliss\Models\Versionizer',
             'Wikichua\Bliss\Models\Worker',
+            'Wikichua\Bliss\Models\Job',
 
             'Wikichua\Bliss\Models\Mongodb\Alert',
             'Wikichua\Bliss\Models\Mongodb\Audit',
             'Wikichua\Bliss\Models\Mongodb\Searchable',
             'Wikichua\Bliss\Models\Mongodb\Versionizer',
             'Wikichua\Bliss\Models\Mongodb\Worker',
+            'Wikichua\Bliss\Models\Mongodb\Job',
         ],
     ],
     'audit' => [
@@ -47,12 +49,14 @@ return [
             'Wikichua\Bliss\Models\Searchable',
             'Wikichua\Bliss\Models\Versionizer',
             'Wikichua\Bliss\Models\Worker',
+            'Wikichua\Bliss\Models\Job',
 
             'Wikichua\Bliss\Models\Mongodb\Alert',
             'Wikichua\Bliss\Models\Mongodb\Audit',
             'Wikichua\Bliss\Models\Mongodb\Searchable',
             'Wikichua\Bliss\Models\Mongodb\Versionizer',
             'Wikichua\Bliss\Models\Mongodb\Worker',
+            'Wikichua\Bliss\Models\Mongodb\Job',
         ],
         'must_include_fields' => [
             'id',
@@ -88,6 +92,10 @@ return [
         'Audit' => [
             \Wikichua\Bliss\Http\Livewire\Admin\Audit\Listing::class,
             \Wikichua\Bliss\Http\Livewire\Admin\Audit\Showing::class,
+        ],
+        'Log' => [
+            \Wikichua\Bliss\Http\Livewire\Admin\Log\Listing::class,
+            \Wikichua\Bliss\Http\Livewire\Admin\Log\Showing::class,
         ],
         'Versionizer' => [
             \Wikichua\Bliss\Http\Livewire\Admin\Versionizer\Listing::class,
@@ -149,6 +157,7 @@ return [
         'Audit' => \Wikichua\Bliss\Models\Audit::class,
         'Cronjob' => \Wikichua\Bliss\Models\Cronjob::class,
         'FailedJob' => \Wikichua\Bliss\Models\FailedJob::class,
+        'Log' => \Wikichua\Bliss\Models\Log::class,
         'Permission' => \Wikichua\Bliss\Models\Permission::class,
         'PersonalAccessToken' => \Laravel\Sanctum\Sanctum::$personalAccessTokenModel,
         'QueueJob' => \Wikichua\Bliss\Models\QueueJob::class,
@@ -160,10 +169,11 @@ return [
         'Versionizer' => \Wikichua\Bliss\Models\Versionizer::class,
         'Worker' => \Wikichua\Bliss\Models\Worker::class,
     ], [
-        // in case wish to use Mongodb for specific model can uncomment this to overwrite the original mysql connections
+        // in case wish to use Mongodb for specific model can uncomment all of these to overwrite the original mysql connections
 
         // 'Alert' => \Wikichua\Bliss\Models\Mongodb\Alert::class,
         // 'Audit' => \Wikichua\Bliss\Models\Mongodb\Audit::class,
+        // 'Log' => \Wikichua\Bliss\Models\Mongodb\Log::class,
         // 'Searchable' => \Wikichua\Bliss\Models\Mongodb\Searchable::class,
         // 'Versionizer' => \Wikichua\Bliss\Models\Mongodb\Versionizer::class,
         // 'Worker' => \Wikichua\Bliss\Models\Mongodb\Worker::class,

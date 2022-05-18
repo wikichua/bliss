@@ -24,6 +24,7 @@
                 'versionizer.*',
                 'queuejob.*',
                 'failedjob.*',
+                'log.*',
             ])"
             :can="[
                 'read-permissions',
@@ -33,6 +34,7 @@
                 'read-versionizers',
                 'read-queuejobs',
                 'read-failedjobs',
+                'read-logs',
             ]">
             <x-slot name="trigger">
                 {{ __('System') }}
@@ -59,6 +61,11 @@
                 <x-bliss::dropdown-link :href="route('failedjob.list')" :active="request()->routeIs('failedjob.*')" can="read-failedjobs">
                     {{ __('Failed Job') }}
                 </x-bliss::dropdown-link>
+                @if (config('logging.default', 'db') == 'db' || auth()->user()->isAdmin)
+                <x-bliss::dropdown-link :href="route('log.list')" :active="request()->routeIs('log.*')" can="read-logs">
+                    {{ __('System Logs') }}
+                </x-bliss::dropdown-link>
+                @endif
             </x-slot>
         </x-bliss::nav-dropdown>
 
