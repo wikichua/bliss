@@ -29,6 +29,6 @@ class ExperimentFailedJob extends Command
     public function handle()
     {
         // ExperimentFailedJobProcess::dispatch()->onQueue('experiment');
-        dispatchToWorker(new ExperimentFailedJobProcess(), onQueue: 'experiment');
+        dispatchToWorker([new ExperimentFailedJobProcess(), new ExperimentFailedJobProcess()], onQueue: 'experiment');
     }
 }

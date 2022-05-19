@@ -290,10 +290,6 @@ class Bliss
                 } else {
                     dispatch($toInvoke)->onQueue($onQueueName);
                 }
-                app(config('bliss.Models.Worker'))->query()->create([
-                    'batch' => $batch,
-                    'queue' => $onQueueName,
-                ]);
             }
         }
     }
