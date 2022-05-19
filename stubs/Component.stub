@@ -1,0 +1,62 @@
+<?php
+
+namespace [namespace];
+
+use Livewire\Component as LivewireComponent;
+use Wikichua\Bliss\Traits\ComponentTraits;
+use [requestNamepace]\[moduleRequest];
+use [modelNamespace]\[model];
+
+abstract class Component extends LivewireComponent
+{
+    use ComponentTraits;
+
+    public $headerTitle = '[headerTitle]';
+    protected $queryString = [];
+    protected $listeners = [];
+
+    public function booted()
+    {
+    }
+
+    public function onBatchDelete(array $ids = [])
+    {
+        $this->authorize('delete-[lower-plural]');
+        $models = [model]::query()->whereIn('id', $ids)->get();
+
+        foreach ($models as $model) {
+            $this->alertNotify(
+                message: __('[singular] deleted.'),
+                permissionString: 'read-[lower-plural]',
+                link: route('[lower-singular].list'),
+            );
+            $model->delete();
+        }
+
+        $this->flashStatusSession('Data Deleted.');
+    }
+
+    public function onDelete($id, $redirect = '')
+    {
+        $this->authorize('delete-[lower-plural]');
+        $model = [model]::query()->findOrFail($id);
+        [model]::query()->where('group', $model->group)->delete();
+
+        $this->alertNotify(
+            message: __('[singular] deleted.'),
+            permissionString: 'read-[lower-plural]',
+            link: route('[lower-singular].list'),
+        );
+
+        if ($redirect) {
+            return $this->flashStatusSession('Data Deleted.', $redirect);
+        } else {
+            $this->flashStatusSession('Data Deleted.');
+        }
+    }
+
+    public function rules()
+    {
+        return (new [moduleRequest])->rules();
+    }
+}

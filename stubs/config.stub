@@ -1,0 +1,22 @@
+<?php
+
+return [
+    'ready' => false, // set true when you are ready to generate CRUD
+    'migration' => [migration],
+    'tableName' => '[tableName]', // leave empty to use model's naming convention
+    'form' => [
+        'field_name' => [
+            'label' => 'Label String',
+            'component' => '', // text, password, email, textarea, datepicker, multiple-input, editor, checkboxes, select, multiple-select, file, filepond
+            'sortable' => true,
+            'searchable' => true,
+            'migration' => [
+                'column' => '', // https://laravel.com/docs/9.x/migrations#columns
+                'nullable' => true,
+                'index' => false,
+                'default' => '',
+                'useCurrent' => false, // only if column is date, dateTime, dateTimeTz, time, timeTz
+            ],
+        ]
+    ],
+];

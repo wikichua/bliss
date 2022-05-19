@@ -1,0 +1,8 @@
+Route::middleware(['can:read-[lower-plural]'])->prefix('[lower-singular]')->name('[lower-singular].')->group(function () {
+    Route::get('/', \[namespace]\Listing::class)->name('list');
+    Route::get('/{id}/show', \[namespace]\Showing::class)->name('show');
+    Route::get('/create', \[namespace]\Creating::class)->name('create')
+        ->middleware(['can:create-[lower-plural]']);
+    Route::get('/{id}/edit', \[namespace]\Editing::class)->name('edit')
+        ->middleware(['can:update-[lower-plural]']);
+    });

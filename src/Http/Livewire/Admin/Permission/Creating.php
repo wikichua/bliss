@@ -11,12 +11,12 @@ class Creating extends Component
     }
     public function render()
     {
-        $this->authorize('create-permission');
+        $this->authorize('create-permissions');
         return view('bliss::admin.permission.create')->layout('bliss::layouts.app');
     }
     public function onSubmit()
     {
-        $this->authorize('create-permission');
+        $this->authorize('create-permissions');
         $this->validate();
 
         $data = [];

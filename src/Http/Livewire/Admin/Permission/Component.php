@@ -19,7 +19,7 @@ abstract class Component extends LivewireComponent
 
     public function onBatchDelete(array $ids = [])
     {
-        $this->authorize('delete-permission');
+        $this->authorize('delete-permissions');
         $models = app(config('bliss.Models.Permission'))->query()->whereIn('id', $ids)->get();
 
         foreach ($models as $model) {
@@ -36,7 +36,7 @@ abstract class Component extends LivewireComponent
 
     public function onDelete($id, $redirect = '')
     {
-        $this->authorize('delete-permission');
+        $this->authorize('delete-permissions');
         $model = app(config('bliss.Models.Permission'))->query()->findOrFail($id);
         app(config('bliss.Models.Permission'))->where('group', $model->group)->delete();
 

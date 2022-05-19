@@ -107,6 +107,7 @@ class BlissServiceProvider extends ServiceProvider
         $this->commands([
             Console\Commands\Installation::class,
             Console\Commands\Searchable::class,
+            Console\Commands\Resource::class,
         ]);
     }
 

@@ -1,0 +1,33 @@
+<?php
+
+namespace [namespace];
+
+use [modelNamespace]\[model];
+
+class Listing extends Component
+{
+    protected $listeners = [];
+    protected $bulkActionEnabled = true;
+    protected $reauthEnabled = true;
+
+    public function mount()
+    {
+        $this->cols = [
+            [listingStr],
+            ['title' => '', 'data' => 'actionsView'],
+        ];
+    }
+    public function render()
+    {
+        $this->authorize('read-[lower-plural]');
+        $rows = [model]::query()
+            ->filter($this->filters)
+            ->sorting($this->sorts)
+            ->paginate($this->take)
+        ;
+        foreach ($rows as $model) {
+            $model->actionsView = view('livewire.admin.[lower].actions', compact('model'))->render();
+        }
+        return view('livewire.admin.[lower].list', compact('rows'))->layout('bliss::layouts.app');
+    }
+}

@@ -71,6 +71,7 @@ class Installation extends Command
         }
 
         $this->checkCacheDriver();
+        $this->removeDefaultWebRoute();
         $this->replaceRouteServiceProviderHomeConst();
         $this->replaceUserModelExtends();
         $this->injectRunCronjobsCallIntoConsoleKernel();
@@ -79,7 +80,6 @@ class Installation extends Command
         $this->injectMixAppKeyInEnvFile();
         $this->injectMongoConfigIntoDatabaseConfigFile();
         $this->injectDbLoggerConfigIntoLoggingConfigFile();
-        $this->removeDefaultWebRoute();
         $this->publishLaravelStubsAndReplaceSomething();
         $this->injectPublishLivewireAssetsIntoComposerJson();
         if ($this->option('no-compiled') != true) {
@@ -167,6 +167,22 @@ class Installation extends Command
             @File::replace($file, implode(PHP_EOL, $lines));
             $this->info('Replace '.trim($from).' to '. trim($to) . ' in ' . $file);
             $this->newLine();
+        }
+
+        $file = app_path('Providers/RouteServiceProvider.php');
+        $content = File::get($file);
+        if (!str_contains($content, '->group(base_path(\'routes/bliss.php\'));')) {
+            $lookFor = <<<EOL
+            ->group(base_path('routes/web.php'));
+            EOL;
+            $replace = <<<EOL
+            ->group(base_path('routes/web.php'));
+
+                        Route::middleware('web')
+                            ->group(base_path('routes/bliss.php'));
+            EOL;
+            @File::replace($file, str_replace($lookFor, $replace, $content));
+            $this->info('Replace '.trim($lookFor).' to '. trim($replace) . ' in ' . $file);
         }
     }
 
@@ -374,6 +390,20 @@ class Installation extends Command
             $this->info('Removed '.$string);
             $this->newLine();
         }
+
+        $file = base_path('routes/bliss.php');
+        if (!File::exists($file)) {
+            $content = <<<EOL
+            <?php
+
+            use Illuminate\Support\Facades\Route;
+
+            Route::middleware(['auth','can:access-admin-panel'])->group(function () {
+                /*KeepMeHerePlease*/
+            });
+            EOL;
+            File::put($file, $content);
+        }
     }
     protected function injectPublishLivewireAssetsIntoComposerJson()
     {
@@ -409,7 +439,7 @@ class Installation extends Command
         }
         if (!Str::contains($livewireStubContent, 'use ComponentTraits;')) {
             $livewireStubContent = str_replace('public function render()',
-                "\t".'use ComponentTraits;'.PHP_EOL.PHP_EOL."\t".'public function render()', $livewireStubContent);
+                'use ComponentTraits;'.PHP_EOL.PHP_EOL."\t".'public function render()', $livewireStubContent);
             @File::replace(base_path('stubs/livewire.stub'), $livewireStubContent);
         }
 

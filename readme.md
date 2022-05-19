@@ -1,12 +1,8 @@
 1. https://github.com/Jeroen-G/laravel-packager
-1. https://github.com/allysonsilva/laravel-multienv
-1. https://kinsta.com/blog/laravel-tutorial/
-1. https://github.com/rappasoft/laravel-livewire-tables
 1. https://alpinetoolbox.com
 1. https://www.brandcrowd.com
 1. https://tailwindcomponents.com/u/khatabwedaa
 1. https://www.tailwindtoolbox.com/
-1. https://laravel-news.com/tailwindo -- convert bootstrap to tailwind
 1. https://github.com/404labfr/laravel-impersonate
 1. https://codepen.io/mithicher/pen/jOVEVNW -- codemirror sample
 1. https://pqina.nl/filepond/
@@ -17,16 +13,16 @@
 1. https://github.com/jenssegers/laravel-mongodb
 1. https://leqc.renoki.org/cache-tags/query-caching
 1. https://tailwindcomponents.com
-1. https://tailwind-elements.com
 1. https://flowbite.com/
 1. https://cylab.be/blog/144/laravel-custom-logging
+1. https://github.com/michael-rubel/livewire-best-practices
 
 todo
+1. crud generator
 1. individual model searchable (allow live search on listing)
 1. login rate limit https://laravel.com/docs/9.x/rate-limiting (securing passwordless login too)
 1. passwordless login - https://github.com/grosv/laravel-passwordless-login
 1. chat message in admin panel - https://www.youtube.com/watch?v=jox1hx2i1Aw
-1. crud stubs
 1. test dropbox https://spatie.be/open-source?search=drop&sort=-downloads
 1. queuejob into mongodb and sample chartjs in dashboard
 1. failjob using mongodb?

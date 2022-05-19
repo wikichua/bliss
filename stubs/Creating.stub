@@ -1,0 +1,35 @@
+<?php
+
+namespace [namespace];
+
+use [modelNamespace]\[model];
+
+class Creating extends Component
+{
+    public function mount()
+    {
+        $this->castModelToProperty([model]::query());
+    }
+    public function render()
+    {
+        $this->authorize('create-[lower-plural]');
+        return view('livewire.admin.[lower].create')->layout('bliss::layouts.app');
+    }
+    public function onSubmit()
+    {
+        $this->authorize('create-[lower-plural]');
+        $this->validate();
+
+        $data = [];
+
+        $model = [model]::create($data);
+
+        $this->alertNotify(
+            message: __('[singular] created.'),
+            permissionString: 'read-[lower-plural]',
+            link: $model->readUrl,
+        );
+
+        return $this->flashStatusSession('Data created.', route('[lower-singular].list'));
+    }
+}

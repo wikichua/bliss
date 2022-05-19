@@ -1,0 +1,19 @@
+<?php
+
+namespace [namespace];
+
+use [modelNamespace]\[model];
+
+class Showing extends Component
+{
+
+    public function mount($id)
+    {
+        $this->castModelToProperty([model]::query()->findOrFail($id));
+    }
+    public function render()
+    {
+        $this->authorize('read-[lower-plural]');
+        return view('livewire.admin.[lower].show')->layout('bliss::layouts.app');
+    }
+}

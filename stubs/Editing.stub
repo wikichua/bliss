@@ -1,0 +1,39 @@
+<?php
+
+namespace [namespace];
+
+use [modelNamespace]\[model];
+
+class Editing extends Component
+{
+    public $afterActionRedirectTo = '';
+
+    public function mount($id)
+    {
+        $this->castModelToProperty([model]::query()->findOrFail($id));
+    }
+    public function render()
+    {
+        $this->authorize('update-[lower-plural]');
+        return view('livewire.admin.[lower].edit')->layout('bliss::layouts.app');
+    }
+    public function onSubmit()
+    {
+        $this->authorize('update-[lower-plural]');
+        $this->validate();
+
+        $model = $this->model;
+
+        $data = [];
+
+        $model->update($data);
+
+        $this->alertNotify(
+            message: __('[singular]  updated.'),
+            permissionString: 'read-[lower-plural]',
+            link: $model->readUrl,
+        );
+
+        $this->flashStatusSession('Data Updated.', $this->afterActionRedirectTo);
+    }
+}

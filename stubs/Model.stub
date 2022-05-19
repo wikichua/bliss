@@ -1,0 +1,39 @@
+<?php
+
+namespace [modelNamespace];
+
+use Illuminate\Database\Eloquent\Model as Eloquent;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Wikichua\Bliss\Casts\UserTimezone;
+use Wikichua\Bliss\Traits\AllModelTraits;
+
+class [model] extends Eloquent
+{
+    use AllModelTraits;
+
+    protected $auditable = true;
+    protected $snapshot = true;
+
+    protected $dates = ['deleted_at'];
+    [fillable]
+
+    protected $appends = [];
+
+    [searchableFields]
+
+    protected $casts = [
+        'created_at' => UserTimezone::class,
+        'updated_at' => UserTimezone::class,
+        'deleted_at' => UserTimezone::class,
+    ];
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+    }
+
+    public function getReadUrlAttribute($value)
+    {
+        return $this->readUrl = isset($this->id)? route('[lower-singular].show', $this->id):null;
+    }
+}
