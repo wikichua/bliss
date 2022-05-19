@@ -17,11 +17,11 @@
 
             <div class="flex flex-col items-center pb-10">
                 @if (!blank($avatar))
-                <img class="mb-3 w-24 h-24 rounded-full shadow-lg" src="{{ url($avatar) }}" alt="Bonnie image"/>
+                <img class="mb-3 w-24 h-24 rounded-full shadow-lg object-cover" src="{{ url($avatar) }}" alt="Bonnie image"/>
                 @else
-                <img class="mb-3 w-24 h-24 rounded-full shadow-lg" src="https://ui-avatars.com/api/?name={{ $name }}" alt="Bonnie image"/>
+                <img class="mb-3 w-24 h-24 rounded-full shadow-lg object-cover" src="https://ui-avatars.com/api/?name={{ $name }}" alt="Bonnie image"/>
                 @endif
-                <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ $name }}</h5>
+                <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ __('Welcome back :name', ['name' => $name]) }}</h5>
             </div>
 
             <!-- Password -->

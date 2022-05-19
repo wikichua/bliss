@@ -17,8 +17,9 @@ class AuthenticatedSession extends Component
     {
         $relogin = request()->cookie('relogined') ?? null;
         if (!blank($relogin)) {
-            [$email, $name, $avatar] = json_decode($relogin, 1);
+            [$email, $name] = json_decode($relogin, 1);
             $this->email = $email;
+            $avatar = app(config('bliss.Models.User'))->query()->where('email', $email)->first()?->avatar ?? null;
             return view('bliss::auth.relogin', [
                 'email' => $email,
                 'name' => $name,
@@ -43,7 +44,7 @@ class AuthenticatedSession extends Component
 
         session()->regenerate();
 
-        cookie()->queue('relogined', json_encode([auth()->user()->email, auth()->user()->name, auth()->user()->avatar]), 60 * 24);
+        cookie()->queue('relogined', json_encode([auth()->user()->email, auth()->user()->name]), 60 * 24);
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }
