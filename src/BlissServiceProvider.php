@@ -19,6 +19,9 @@ class BlissServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Schema::defaultStringLength(191);
+        if(app()->isProduction()) {
+            \URL::forceScheme('https');
+        }
 
         try {
             // if db is not setup. don continue
