@@ -2,12 +2,14 @@
 
 namespace Wikichua\Bliss;
 
+use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Livewire\Livewire;
+use Wikichua\Bliss\Http\Middleware\HttpsProtocol;
 
 class BlissServiceProvider extends ServiceProvider
 {
@@ -16,12 +18,11 @@ class BlissServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(): void
+    public function boot(Kernel $kernel): void
     {
+        $kernel->pushMiddleware(HttpsProtocol::class);
+
         Schema::defaultStringLength(191);
-        if(app()->isProduction()) {
-            \URL::forceScheme('https');
-        }
 
         try {
             // if db is not setup. don continue
