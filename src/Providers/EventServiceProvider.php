@@ -41,7 +41,6 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
         $vendorPath = base_path('vendor/wikichua/bliss');
         if (is_dir(base_path('packages/Wikichua/Bliss'))) {
             $vendorPath = base_path('packages/Wikichua/Bliss');
@@ -54,8 +53,12 @@ class EventServiceProvider extends ServiceProvider
             app(\Wikichua\Bliss\Exp\Models\ExperimentKeywordsModel::class)->observe(SearchableObserver::class);
         }
 
-        $modelClassRegisteredUnderBlissConfig = config('bliss.Models');
-        foreach ($modelClassRegisteredUnderBlissConfig as $modelClass) {
+        $modelsList = getModelsList();
+        foreach ($modelsList as $modelClass) {
+            // exclude experiments
+            if (Str::contains($modelClass, 'Wikichua\Bliss\Exp\Models')) {
+                continue;
+            }
             if (!in_array($modelClass, config('bliss.audit.exceptions'))) {
                 app($modelClass)->observe(AuditObserver::class);
             }

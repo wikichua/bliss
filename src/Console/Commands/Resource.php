@@ -16,11 +16,13 @@ class Resource extends Command
         'migration' => true,
         'tableName' => '',
     ];
-    protected $resourceConfig = [];
-    protected $module;
-    protected $configPath;
-    protected $stubsPath;
     protected $componentPath;
+    protected $configPath;
+    protected $modelPath;
+    protected $module;
+    protected $requestPath;
+    protected $resourceConfig = [];
+    protected $stubsPath;
     protected $viewPath;
 
     public function __construct()
@@ -68,6 +70,10 @@ class Resource extends Command
     protected function makeResource()
     {
         $configFile = Str::of('?/?.php')->replaceArray('?', [$this->configPath, $this->module]);
+        if (!File::exists($configFile)) {
+            $this->error($configFile . ' not found!');
+            return;
+        }
         $this->resourceConfig = collect(require($configFile));
 
         $this->placeholders['lower'] = Str::lower($this->module);
@@ -78,7 +84,7 @@ class Resource extends Command
         $this->placeholders['model'] = $this->module;
         $this->placeholders['headerTitle'] = implode(' ', Str::ucsplit($this->module . 'Management'));
         $this->placeholders['namespace'] = Str::of('?Http\Livewire\Admin\?')->replaceArray('?', [app()->getNamespace(), $this->module]);
-        $this->placeholders['requestNamepace'] = Str::of('?Http\Request\Admin\?')->replaceArray('?', [app()->getNamespace(), $this->module]);
+        $this->placeholders['requestNamepace'] = Str::of('?Http\Request\Admin')->replaceArray('?', [app()->getNamespace()]);
         $this->placeholders['moduleRequest'] = Str::of('?Request')->replaceArray('?', [$this->module]);
         $this->placeholders['modelNamespace'] = Str::of('?Models\Admin')->replaceArray('?', [app()->getNamespace()]);
 
@@ -87,6 +93,7 @@ class Resource extends Command
         foreach ($form as $fieldName => $data) {
             $component = trim($data['component']);
             $searchable = trim($data['searchable']);
+            $required = trim($data['required']);
             $fieldName = trim($fieldName);
 
             // migration
@@ -103,10 +110,13 @@ class Resource extends Command
             \$table->$column('$fieldName')$default$nullable$index$useCurrent;
             EOL;
 
-            // Model
+            // Model & Request
             $fillablesStr[] = Str::of('\'?\'')->replaceArray('?', [$fieldName]);
             if ($searchable) {
                 $searchablesStr[] = Str::of('\'?\'')->replaceArray('?', [$fieldName]);
+            }
+            if ($required) {
+                $requiredsStr[] = Str::of('\'?\' => \'required\'')->replaceArray('?', [$fieldName]);
             }
 
             // Listing
@@ -141,7 +151,7 @@ class Resource extends Command
         }
 
         // migration
-        $this->placeholders['tableSetup'] = implode(PHP_EOL, $tableSetup);
+        $this->placeholders['tableSetup'] = implode(PHP_EOL.Str::repeat("\t", 3), $tableSetup);
 
         // Listing
         $this->placeholders['listingStr'] = implode(','.PHP_EOL.Str::repeat("\t", 3), $listingStr);
@@ -164,12 +174,20 @@ class Resource extends Command
                 $searchableStr
             ];
         EOL;
+        $requiredStr = implode(','.PHP_EOL.Str::repeat("\t", 3), $requiredsStr);
+        $this->placeholders['requiredStr'] = <<<EOL
+        return [
+                    $requiredStr
+                ];
+        EOL;
 
-        $this->makeMigration();
         $this->componentPath = app_path('Http/Livewire/Admin/'.$this->module);
         File::ensureDirectoryExists($this->componentPath);
         $this->viewPath = resource_path('views/livewire/admin/'.$this->placeholders['lower']);
         File::ensureDirectoryExists($this->viewPath);
+
+        $this->makeMigration();
+
         $this->makeComponent('Component');
         $this->makeComponent('Creating');
         $this->makeComponent('Editing');
@@ -186,7 +204,68 @@ class Resource extends Command
         File::ensureDirectoryExists($this->modelPath);
         $this->makeModel();
 
+        $this->requestPath = app_path('Http/Requests/Admin');
+        File::ensureDirectoryExists($this->requestPath);
+        $this->makeRequest();
+
         $this->makeRoute();
+        $this->makeNavigation();
+    }
+
+    protected function makeNavigation()
+    {
+        $file = Str::of(resource_path('views/vendor/bliss/layouts/?.blade.php'))->replaceArray('?', ['resource_nav']);
+        $fileContent = File::get($file);
+        $singular = $this->placeholders['singular'];
+        $lowerSingular = $this->placeholders['lower-singular'];
+        $lowerPlural = $this->placeholders['lower-plural'];
+        $activeStrCheck = <<<EOL
+        '$lowerSingular.*',
+        EOL;
+        $activeStr = <<<EOL
+        '$lowerSingular.*',
+                {{--KeepMeHerePlease activeStr--}}
+        EOL;
+        $canStrCheck = <<<EOL
+        'read-$lowerPlural',
+        EOL;
+        $canStr = <<<EOL
+        'read-$lowerPlural',
+                {{--KeepMeHerePlease canStr--}}
+        EOL;
+        $linkStrCheck = <<<EOL
+        <x-bliss::dropdown-link :href="route('$lowerSingular.list')" :active="request()->routeIs('$lowerSingular.*')" can="read-$lowerPlural">
+        EOL;
+        $linkStr = <<<EOL
+        <x-bliss::dropdown-link :href="route('$lowerSingular.list')" :active="request()->routeIs('$lowerSingular.*')" can="read-$lowerPlural">
+                    {{ __('$singular') }}
+                </x-bliss::dropdown-link>
+                {{--KeepMeHerePlease linkStr--}}
+        EOL;
+
+        if (!Str::contains($fileContent, $activeStrCheck)) {
+            $fileContent = str_replace('{{--KeepMeHerePlease activeStr--}}', $activeStr, $fileContent);
+        }
+        if (!Str::contains($fileContent, $canStrCheck)) {
+            $fileContent = str_replace('{{--KeepMeHerePlease canStr--}}', $canStr, $fileContent);
+        }
+        if (!Str::contains($fileContent, $linkStrCheck)) {
+            $fileContent = str_replace('{{--KeepMeHerePlease linkStr--}}', $linkStr, $fileContent);
+        }
+
+        File::put($file, $fileContent);
+        $this->line('resource_nav file updated: <info>'.$file.'</info>');
+    }
+
+    protected function makeRequest()
+    {
+        $stub = Str::of('?/Request.stub')->replaceArray('?', [$this->stubsPath]);
+        $file = Str::of($this->requestPath.'/?.php')->replaceArray('?', [$this->module]);
+
+        $stubContent = File::get($stub);
+        $stubContent = $this->getReplacers($stubContent);
+        File::put($file, $stubContent);
+        $this->line($this->module.' file created: <info>'.$file.'</info>');
     }
 
     protected function makeModel()
@@ -222,13 +301,13 @@ class Resource extends Command
         $stubContent
             /*KeepMeHerePlease*/
         EOL;
-        if (!Str::contains($fileContent, $str)) {
+        if (!Str::contains($fileContent, $stubContent)) {
             $fileContent = str_replace('/*KeepMeHerePlease*/', $str, $fileContent);
             File::put($file, $fileContent);
-            $this->line('bliss.php file updated: <info>'.$file.'</info>');
+            $this->line('bliss file updated: <info>'.$file.'</info>');
         } else {
             $str = $stubContent;
-            $this->error('bliss.php file not updated: <info>'.$file.'</info>');
+            $this->error('bliss file not updated: <info>'.$file.'</info>');
             $this->line('please manually remove this string >>> ' . $str);
         }
     }
@@ -248,7 +327,14 @@ class Resource extends Command
     {
         if ($this->resourceConfig->get('migration', false)) {
             $stub = Str::of('?/migration.stub')->replaceArray('?', [$this->stubsPath]);
-            $file = Str::of('database/migrations/?_create_?_table.php')->replaceArray('?', [date('Y_m_d_000000'), $this->placeholders['tableName']]);
+            $postfixFileName = Str::of('_create_?_table.php')->replaceArray('?', [$this->placeholders['tableName']]);
+            $migrationsFiles = File::files(base_path('database/migrations'));
+            $file = Str::of(base_path('database/migrations/?_create_?_table.php'))->replaceArray('?', [date('Y_m_d_000000'), $this->placeholders['tableName']]);
+            foreach ($migrationsFiles as $migrationsFile) {
+                if (Str::endsWith($migrationsFile->getBasename(), $postfixFileName)) {
+                    $file = $migrationsFile->getPathname();
+                }
+            }
             $stubContent = File::get($stub);
             $stubContent = $this->getReplacers($stubContent);
             File::put($file, $stubContent);

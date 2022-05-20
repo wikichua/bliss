@@ -4,6 +4,7 @@
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 
 class Searchable extends Command
 {
@@ -27,7 +28,7 @@ class Searchable extends Command
         app(config('bliss.Models.Searchable'))->truncate();
         $searchable = app(config('bliss.Models.Searchable'))->query();
         foreach ($models as $model) {
-            if ($excludeMongoDb && \Str::contains($model, 'Wikichua\Bliss\Models\Mongodb')) {
+            if ($excludeMongoDb && Str::contains($model, 'Wikichua\Bliss\Models\Mongodb') || in_array($model, config('bliss.searchable.exceptions'))) {
                 continue;
             }
             $hasTable = false;
@@ -38,7 +39,7 @@ class Searchable extends Command
 
             }
 
-            if ($hasTable && count(app($model)->toSearchableFieldsArray()) && $count = app($model)->count()) {
+            if ($hasTable && count(app($model)->toSearchableFieldsArray()) && $count = app($model)->query()->count()) {
                 $this->info("\n".$model);
                 $bar = $this->output->createProgressBar($count);
                 $bar->start();

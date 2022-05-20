@@ -32,5 +32,8 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('[tableName]');
+        app(config('bliss.Models.Permission'))->whereIn('group', [
+            '[singular]',
+        ])->delete();
     }
 };

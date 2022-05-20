@@ -13,6 +13,7 @@ return [
             'Wikichua\Bliss\Models\Searchable',
             'Wikichua\Bliss\Models\Versionizer',
             'Wikichua\Bliss\Models\Worker',
+            'Laravel\Sanctum\PersonalAccessToken',
 
             'Wikichua\Bliss\Models\Mongodb\Alert',
             'Wikichua\Bliss\Models\Mongodb\Audit',
@@ -31,6 +32,7 @@ return [
             'Wikichua\Bliss\Models\Versionizer',
             'Wikichua\Bliss\Models\Worker',
             'Wikichua\Bliss\Models\Job',
+            'Laravel\Sanctum\PersonalAccessToken',
 
             'Wikichua\Bliss\Models\Mongodb\Alert',
             'Wikichua\Bliss\Models\Mongodb\Audit',
@@ -50,6 +52,7 @@ return [
             'Wikichua\Bliss\Models\Versionizer',
             'Wikichua\Bliss\Models\Worker',
             'Wikichua\Bliss\Models\Job',
+            'Laravel\Sanctum\PersonalAccessToken',
 
             'Wikichua\Bliss\Models\Mongodb\Alert',
             'Wikichua\Bliss\Models\Mongodb\Audit',
@@ -159,7 +162,7 @@ return [
         'FailedJob' => \Wikichua\Bliss\Models\FailedJob::class,
         'Log' => \Wikichua\Bliss\Models\Log::class,
         'Permission' => \Wikichua\Bliss\Models\Permission::class,
-        'PersonalAccessToken' => \Laravel\Sanctum\Sanctum::$personalAccessTokenModel,
+        'PersonalAccessToken' => \Laravel\Sanctum\PersonalAccessToken::class,
         'QueueJob' => \Wikichua\Bliss\Models\QueueJob::class,
         'Report' => \Wikichua\Bliss\Models\Report::class,
         'Role' => \Wikichua\Bliss\Models\Role::class,

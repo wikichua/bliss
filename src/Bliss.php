@@ -45,9 +45,9 @@ class Bliss
     public function getModels()
     {
         $autoload = array_keys(include base_path('/vendor/composer/autoload_classmap.php'));
-        $models = [];
+        $models = collect(config('bliss.Models'))->values()->toArray();
         foreach ($autoload as $namespace) {
-            if (Str::contains($namespace, ['Wikichua','App']) && !in_array($namespace, ['Wikichua\Bliss\Models\User','Wikichua\Bliss\Models\Searchable'])) {
+            if (Str::contains($namespace, [app()->getNamespace(), 'Wikichua\Bliss\Exp\Models']) && !Str::endsWith($namespace, 'Models\User')) {
                 if (Str::contains($namespace, 'Models')) {
                     $models[] = $namespace;
                 }

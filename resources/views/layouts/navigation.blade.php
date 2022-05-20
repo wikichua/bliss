@@ -71,10 +71,10 @@
 
         <x-bliss::nav-dropdown
             :active="request()->routeIs([
-            'report.*',
-            'role.*',
-            'user.*',
-            'user.personal-access-token.*',
+                'report.*',
+                'role.*',
+                'user.*',
+                'user.personal-access-token.*',
             ])"
             :can="[
                 'read-roles',
@@ -100,5 +100,8 @@
                 </x-bliss::dropdown-link>
             </x-slot>
         </x-bliss::nav-dropdown>
+
+        {{-- resources navigation --}}
+        @include('bliss::layouts.resource_nav')
     </nav>
 </div>

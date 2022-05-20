@@ -70,6 +70,10 @@ class Installation extends Command
             ], false);
         }
 
+        $this->copiesFileOrDirectory([
+            $vendorPath.'/resources/views/layouts/resource_nav.blade.php' => resource_path('views/vendor/bliss/layouts/resource_nav.blade.php'),
+        ], false);
+
         $this->checkCacheDriver();
         $this->removeDefaultWebRoute();
         $this->replaceRouteServiceProviderHomeConst();

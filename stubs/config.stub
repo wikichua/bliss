@@ -10,6 +10,7 @@ return [
             'component' => '', // text, password, email, textarea, datepicker, multiple-input, editor, checkboxes, select, multiple-select, file, filepond
             'sortable' => true,
             'searchable' => true,
+            'required' => true,
             'migration' => [
                 'column' => '', // https://laravel.com/docs/9.x/migrations#columns
                 'nullable' => true,
