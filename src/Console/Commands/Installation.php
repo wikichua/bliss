@@ -65,6 +65,7 @@ class Installation extends Command
             ];
             $this->copiesFileOrDirectory($files);
             $this->copiesFileOrDirectory([
+                $vendorPath.'/resources/views/layouts/default.blade.php' => resource_path('views/vendor/bliss/layouts/default.blade.php'),
                 $vendorPath.'/resources/views/layouts/header.blade.php' => resource_path('views/vendor/bliss/layouts/header.blade.php'),
                 $vendorPath.'/resources/views/layouts/navigation.blade.php' => resource_path('views/vendor/bliss/layouts/navigation.blade.php'),
             ], false);
@@ -436,9 +437,9 @@ class Installation extends Command
         }
 
         $livewireStubContent = @File::get(base_path('stubs/livewire.stub'));
-        if (!Str::contains($livewireStubContent, 'use \Wikichua\Bliss\Traits\ComponentTraits;')) {
+        if (!Str::contains($livewireStubContent, 'use Wikichua\Bliss\Traits\ComponentTraits;')) {
             $livewireStubContent = str_replace('use Livewire\Component;',
-                'use Livewire\Component;'.PHP_EOL.'use \Wikichua\Bliss\Traits\ComponentTraits;', $livewireStubContent);
+                'use Livewire\Component;'.PHP_EOL.'use Wikichua\Bliss\Traits\ComponentTraits;', $livewireStubContent);
             @File::replace(base_path('stubs/livewire.stub'), $livewireStubContent);
         }
         if (!Str::contains($livewireStubContent, 'use ComponentTraits;')) {

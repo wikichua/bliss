@@ -16,6 +16,7 @@
 1. https://flowbite.com/
 1. https://cylab.be/blog/144/laravel-custom-logging
 1. https://github.com/michael-rubel/livewire-best-practices
+1. https://laravelprotips.com/
 
 todo
 1. crud generator -

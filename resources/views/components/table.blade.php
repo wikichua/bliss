@@ -85,7 +85,9 @@
                     </table>
                 </div>
                 <div class="py-2 my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+                    @if (!is_array($rows) && method_exists($rows, 'links'))
                     {{ $rows->links() }}
+                    @endif
                 </div>
             </div>
         </div>

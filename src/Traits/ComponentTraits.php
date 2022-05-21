@@ -47,7 +47,7 @@ trait ComponentTraits
 
     public function viewShare()
     {
-        view()->share('headerTitle', $this->headerTitle);
+        view()->share('headerTitle', $this->headerTitle ?? null);
         view()->share('reauthEnabled', $this->reauthEnabled);
         view()->share('bulkActionEnabled', $this->bulkActionEnabled);
         view()->share('bulkActionKey', $this->bulkActionKey);
