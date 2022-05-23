@@ -7,7 +7,7 @@ use Wikichua\Bliss\Casts\UserTimezone;
 
 class Worker extends Model
 {
-    use \Wikichua\Bliss\Traits\AllModelTraits;
+    use \Wikichua\Bliss\Concerns\AllModelTraits;
     public $searchableFields = [];
     protected $auditable = false;
     protected $snapshot = false;

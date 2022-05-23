@@ -8,7 +8,7 @@ use Wikichua\Bliss\Casts\UserTimezone;
 
 class Setting extends Model
 {
-    use \Wikichua\Bliss\Traits\AllModelTraits;
+    use \Wikichua\Bliss\Concerns\AllModelTraits;
     public $searchableFields = ['key'];
 
     protected $auditable = true;

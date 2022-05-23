@@ -4,10 +4,11 @@ namespace Wikichua\Bliss\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Wikichua\Bliss\Casts\UserTimezone;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Audit extends Model
 {
-    use \Wikichua\Bliss\Traits\AllModelTraits;
+    use \Wikichua\Bliss\Concerns\AllModelTraits;
 
     const UPDATED_AT = null;
     public $searchableFields = [];
@@ -53,16 +54,20 @@ class Audit extends Model
         return $this->model_class ? app($this->model_class)->find($this->model_id) : null;
     }
 
-    public function getDataAttribute($data)
+    protected function data(): Attribute
     {
-        $data = json_decode($data, 1);
-        $masks = config('bliss.audit.masks', $this->masks);
-        foreach ($masks as $key) {
-            if (isset($data[$key])) {
-                $data[$key] = '***censored***';
-            }
-        }
+        return Attribute::make(
+            get: function ($data) {
+                $data = json_decode($data, 1);
+                $masks = config('bliss.audit.masks', $this->masks);
+                foreach ($masks as $key) {
+                    if (isset($data[$key])) {
+                        $data[$key] = '***censored***';
+                    }
+                }
 
-        return $data;
+                return $data;
+            },
+        );
     }
 }

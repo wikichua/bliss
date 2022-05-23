@@ -7,7 +7,7 @@ use Wikichua\Bliss\Http\Requests\Admin\UserRequest;
 
 abstract class Component extends LivewireComponent
 {
-    use \Wikichua\Bliss\Traits\ComponentTraits;
+    use \Wikichua\Bliss\Concerns\ComponentTraits;
 
     public $headerTitle = 'User Management';
     protected $queryString = [];

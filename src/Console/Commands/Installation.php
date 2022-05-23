@@ -321,12 +321,12 @@ class Installation extends Command
     {
         $file = app_path('Console/Kernel.php');
         $content = @File::get($file);
-        if (!str_contains($content, 'use \Wikichua\Bliss\Traits\ArtisanTrait;')) {
+        if (!str_contains($content, 'use \Wikichua\Bliss\Concerns\ArtisanTrait;')) {
             $lines = explode(PHP_EOL, $content);
             foreach ($lines as $key => $line) {
                 if (str_contains($line, 'protected function schedule(Schedule $schedule)')) {
                     $from = $line;
-                    $to = $lines[$key] = str_repeat("\t", 1).'use \Wikichua\Bliss\Traits\ArtisanTrait;'.PHP_EOL.str_repeat("\t", 1).'protected $commands_disabled = [
+                    $to = $lines[$key] = str_repeat("\t", 1).'use \Wikichua\Bliss\Concerns\ArtisanTrait;'.PHP_EOL.str_repeat("\t", 1).'protected $commands_disabled = [
         \'production\' => [\'migrate:fresh\',\'migrate:refresh\',\'migrate:reset\',\'bliss:install\'],
     ];'.PHP_EOL.$line;
                 }
@@ -430,16 +430,16 @@ class Installation extends Command
         $this->call('livewire:stubs');
         foreach (File::files(base_path('stubs')) as $file) {
             $content = @File::get($file->getPathname());
-            if (Str::contains($content, 'use Illuminate\Bus\Queueable;') && !Str::contains($content, 'use Wikichua\Bliss\Traits\Queueable;')) {
-                $content = str_replace('use Illuminate\Bus\Queueable;', 'use Wikichua\Bliss\Traits\Queueable;', $content);
+            if (Str::contains($content, 'use Illuminate\Bus\Queueable;') && !Str::contains($content, 'use Wikichua\Bliss\Concerns\Queueable;')) {
+                $content = str_replace('use Illuminate\Bus\Queueable;', 'use Wikichua\Bliss\Concerns\Queueable;', $content);
                 @File::replace($file, $content);
             }
         }
 
         $livewireStubContent = @File::get(base_path('stubs/livewire.stub'));
-        if (!Str::contains($livewireStubContent, 'use Wikichua\Bliss\Traits\ComponentTraits;')) {
+        if (!Str::contains($livewireStubContent, 'use Wikichua\Bliss\Concerns\ComponentTraits;')) {
             $livewireStubContent = str_replace('use Livewire\Component;',
-                'use Livewire\Component;'.PHP_EOL.'use Wikichua\Bliss\Traits\ComponentTraits;', $livewireStubContent);
+                'use Livewire\Component;'.PHP_EOL.'use Wikichua\Bliss\Concerns\ComponentTraits;', $livewireStubContent);
             @File::replace(base_path('stubs/livewire.stub'), $livewireStubContent);
         }
         if (!Str::contains($livewireStubContent, 'use ComponentTraits;')) {
@@ -454,9 +454,9 @@ class Installation extends Command
                 'use Illuminate\Database\Eloquent\Model;'.PHP_EOL.'use Wikichua\Bliss\Casts\UserTimezone;', $modelStubContent);
             @File::replace(base_path('stubs/model.stub'), $modelStubContent);
         }
-        if (!Str::contains($modelStubContent, 'use Wikichua\Bliss\Traits\AllModelTraits;')) {
+        if (!Str::contains($modelStubContent, 'use Wikichua\Bliss\Concerns\AllModelTraits;')) {
             $modelStubContent = str_replace('use Illuminate\Database\Eloquent\Model;',
-                'use Illuminate\Database\Eloquent\Model;'.PHP_EOL.'use Wikichua\Bliss\Traits\AllModelTraits;', $modelStubContent);
+                'use Illuminate\Database\Eloquent\Model;'.PHP_EOL.'use Wikichua\Bliss\Concerns\AllModelTraits;', $modelStubContent);
             @File::replace(base_path('stubs/model.stub'), $modelStubContent);
         }
         $eol = <<<EOL

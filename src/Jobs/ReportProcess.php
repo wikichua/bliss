@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Wikichua\Bliss\Traits\Queueable;
+use Wikichua\Bliss\Concerns\Queueable;
 use Illuminate\Database\Eloquent\Model;
 
 class ReportProcess implements ShouldQueue

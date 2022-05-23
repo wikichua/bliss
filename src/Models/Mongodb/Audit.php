@@ -7,7 +7,7 @@ use Wikichua\Bliss\Casts\MongoDbBsonUtcDateTime as UserTimezone;
 
 class Audit extends Model
 {
-    use \Wikichua\Bliss\Traits\AllModelTraits;
+    use \Wikichua\Bliss\Concerns\AllModelTraits;
 
     const UPDATED_AT = null;
     public $searchableFields = [];

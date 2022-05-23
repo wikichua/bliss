@@ -19,6 +19,7 @@
 1. https://laravelprotips.com/
 
 todo
+1. revisit model mutator syntax
 1. crud generator -
     - views - done
     - navigation - done
@@ -100,7 +101,7 @@ features:
 
 1.
     a. helper dispatchToWorker - use this to keep track work record and dynamically create worker in ASYNC using artisan bliss:work
-    b. or adding use Wikichua\Bliss\Traits\Queueable into job class, then you can use onQueue to create worker in ASYNC using artisan bliss:work
+    b. or adding use Wikichua\Bliss\Concerns\Queueable into job class, then you can use onQueue to create worker in ASYNC using artisan bliss:work
 
 ```
 [program:bliss-worker]
@@ -120,7 +121,7 @@ stopwaitsecs=3600
 2.
 searchable
 define model with
-use \Wikichua\Bliss\Traits\AllModelTraits;
+use \Wikichua\Bliss\Concerns\AllModelTraits;
 public $searchableFields = ['name', 'group'];
 
 then in controller or livewire component

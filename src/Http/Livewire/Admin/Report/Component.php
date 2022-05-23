@@ -8,7 +8,7 @@ use Wikichua\Bliss\Http\Requests\Admin\ReportRequest;
 
 abstract class Component extends LivewireComponent
 {
-    use \Wikichua\Bliss\Traits\ComponentTraits;
+    use \Wikichua\Bliss\Concerns\ComponentTraits;
 
     public $headerTitle = 'Report Management';
     protected $queryString = [];

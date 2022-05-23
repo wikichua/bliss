@@ -7,7 +7,7 @@ use Wikichua\Bliss\Casts\UserTimezone;
 
 class QueueJob extends Model
 {
-    use \Wikichua\Bliss\Traits\AllModelTraits;
+    use \Wikichua\Bliss\Concerns\AllModelTraits;
 
     // public $timestamps = false;
     const UPDATED_AT = null;

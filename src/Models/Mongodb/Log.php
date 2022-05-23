@@ -8,7 +8,7 @@ use Wikichua\Bliss\Casts\MongoDbBsonUtcDateTime as UserTimezone;
 
 class Log extends Model
 {
-    use \Wikichua\Bliss\Traits\AllModelTraits;
+    use \Wikichua\Bliss\Concerns\AllModelTraits;
     public $searchableFields = [
         'level',
         'iteration',

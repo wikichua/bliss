@@ -4,11 +4,12 @@ namespace Wikichua\Bliss\Models;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 use Wikichua\Bliss\Casts\UserTimezone;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Cronjob extends Eloquent
 {
     use \Illuminate\Database\Eloquent\SoftDeletes;
-    use \Wikichua\Bliss\Traits\AllModelTraits;
+    use \Wikichua\Bliss\Concerns\AllModelTraits;
 
     protected $auditable = true;
     protected $snapshot = false;
@@ -57,19 +58,25 @@ class Cronjob extends Eloquent
         return $query->whereIn('status', $search);
     }
 
-    public function getStatusNameAttribute($value)
+    public function statusName(): Attribute
     {
-        return settings('cronjob_status')[$this->attributes['status']] ?? 'P';
+        return Attribute::make(
+            get: fn ($value) => settings('cronjob_status')[$this->attributes['status']] ?? 'P'
+        );
     }
 
-    public function getOutputAttribute($value)
+    public function output(): Attribute
     {
-        return is_array($value)? $value:[];
+        return Attribute::make(
+            get: fn ($value) => is_array($value)? $value:[]
+        );
     }
 
-    public function getReadUrlAttribute($value)
+    public function readUrl(): Attribute
     {
-        return $this->readUrl = isset($this->id)? route('cronjob.show', $this->id):null;
+        return Attribute::make(
+            get: fn ($value) => $this->readUrl = isset($this->id)? route('cronjob.show', $this->id):null
+        );
     }
 
     public function onCachedEvent()

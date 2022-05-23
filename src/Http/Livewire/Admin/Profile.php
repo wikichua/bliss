@@ -9,7 +9,7 @@ use Wikichua\Bliss\Http\Requests\Admin\ProfileSaveAvatarRequest;
 
 class Profile extends Component
 {
-    use \Wikichua\Bliss\Traits\ComponentTraits;
+    use \Wikichua\Bliss\Concerns\ComponentTraits;
 
     public $headerTitle = 'My Profile';
     protected $queryString = [];

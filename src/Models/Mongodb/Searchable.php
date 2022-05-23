@@ -7,7 +7,7 @@ use Wikichua\Bliss\Casts\MongoDbBsonUtcDateTime as UserTimezone;
 
 class Searchable extends Model
 {
-    use \Wikichua\Bliss\Traits\AllModelTraits;
+    use \Wikichua\Bliss\Concerns\AllModelTraits;
 
     protected $dates = [];
     protected $fillable = [

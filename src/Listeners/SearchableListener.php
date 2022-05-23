@@ -5,7 +5,7 @@ namespace Wikichua\Bliss\Listeners;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Wikichua\Bliss\Events\SearchableEvent;
-use Wikichua\Bliss\Traits\Searchable;
+use Wikichua\Bliss\Concerns\Searchable;
 
 class SearchableListener
 {

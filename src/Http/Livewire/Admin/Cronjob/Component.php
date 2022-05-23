@@ -7,7 +7,7 @@ use Wikichua\Bliss\Http\Requests\Admin\CronjobRequest;
 
 abstract class Component extends LivewireComponent
 {
-    use \Wikichua\Bliss\Traits\ComponentTraits;
+    use \Wikichua\Bliss\Concerns\ComponentTraits;
 
     public $headerTitle = 'Cronjob Management';
     protected $queryString = [];

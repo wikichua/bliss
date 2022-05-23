@@ -6,7 +6,7 @@ use Livewire\Component as LivewireComponent;
 
 abstract class Component extends LivewireComponent
 {
-    use \Wikichua\Bliss\Traits\ComponentTraits;
+    use \Wikichua\Bliss\Concerns\ComponentTraits;
 
     public $headerTitle = 'Versionizer';
     protected $queryString = [];

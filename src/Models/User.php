@@ -7,8 +7,8 @@ use Illuminate\Support\Carbon;
 use Wikichua\Bliss\Casts\UserTimezone;
 use \Lab404\Impersonate\Models\Impersonate;
 use \Laravel\Sanctum\HasApiTokens;
-use \Wikichua\Bliss\Traits\AdminUser;
-use \Wikichua\Bliss\Traits\AllModelTraits;
+use \Wikichua\Bliss\Concerns\AdminUser;
+use \Wikichua\Bliss\Concerns\AllModelTraits;
 
 abstract class User extends Authenticatable
 {

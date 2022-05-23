@@ -8,7 +8,7 @@ use Wikichua\Bliss\Casts\UserTimezone;
 class Report extends Model
 {
     use \Illuminate\Database\Eloquent\SoftDeletes;
-    use \Wikichua\Bliss\Traits\AllModelTraits;
+    use \Wikichua\Bliss\Concerns\AllModelTraits;
 
     protected $auditable = true;
     protected $snapshot = true;

@@ -7,7 +7,7 @@ use Wikichua\Bliss\Casts\UserTimezone;
 
 class Permission extends Model
 {
-    use \Wikichua\Bliss\Traits\AllModelTraits;
+    use \Wikichua\Bliss\Concerns\AllModelTraits;
     public $searchableFields = ['name', 'group'];
     protected $fillable = [
         'group',

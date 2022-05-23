@@ -3,7 +3,7 @@
 namespace [namespace];
 
 use Livewire\Component as LivewireComponent;
-use Wikichua\Bliss\Traits\ComponentTraits;
+use Wikichua\Bliss\Concerns\ComponentTraits;
 use [requestNamepace]\[moduleRequest];
 use [modelNamespace]\[model];
 

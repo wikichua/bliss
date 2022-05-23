@@ -7,7 +7,7 @@ use Wikichua\Bliss\Casts\UserTimezone;
 
 class ExperimentKeywordsModel extends Model
 {
-    use \Wikichua\Bliss\Traits\AllModelTraits;
+    use \Wikichua\Bliss\Concerns\AllModelTraits;
     public $table = 'experiment_keywords_queue';
 
     protected $fillable = [

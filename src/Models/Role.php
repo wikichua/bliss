@@ -7,7 +7,7 @@ use Wikichua\Bliss\Casts\UserTimezone;
 
 class Role extends Model
 {
-    use \Wikichua\Bliss\Traits\AllModelTraits;
+    use \Wikichua\Bliss\Concerns\AllModelTraits;
     public $searchableFields = ['name'];
 
     protected $appends = ['isAdmin'];
