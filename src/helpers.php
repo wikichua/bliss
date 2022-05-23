@@ -112,3 +112,9 @@ if (!function_exists('dispatchToWorker')) {
         return Bliss::dispatchToWorker(...$arguments);
     }
 }
+if (!function_exists('is_collections')) {
+    function is_collections($collection): bool
+    {
+        return $collection instanceOf \Illuminate\Support\Collection;
+    }
+}

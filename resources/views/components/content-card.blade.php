@@ -38,5 +38,4 @@
             </div>
         </div>
     </div>
-    <livewire:reauth />
 </div>

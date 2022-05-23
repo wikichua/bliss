@@ -23,4 +23,5 @@
             </main>
         </div>
     </div>
+    <livewire:reauth />
 </x-bliss::html>
