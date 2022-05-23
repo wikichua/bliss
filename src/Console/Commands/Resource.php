@@ -84,7 +84,7 @@ class Resource extends Command
         $this->placeholders['model'] = $this->module;
         $this->placeholders['headerTitle'] = implode(' ', Str::ucsplit($this->module . 'Management'));
         $this->placeholders['namespace'] = Str::of('?Http\Livewire\Admin\?')->replaceArray('?', [app()->getNamespace(), $this->module]);
-        $this->placeholders['requestNamepace'] = Str::of('?Http\Request\Admin')->replaceArray('?', [app()->getNamespace()]);
+        $this->placeholders['requestNamepace'] = Str::of('?Http\Requests\Admin')->replaceArray('?', [app()->getNamespace()]);
         $this->placeholders['moduleRequest'] = Str::of('?Request')->replaceArray('?', [$this->module]);
         $this->placeholders['modelNamespace'] = Str::of('?Models\Admin')->replaceArray('?', [app()->getNamespace()]);
 
@@ -260,7 +260,7 @@ class Resource extends Command
     protected function makeRequest()
     {
         $stub = Str::of('?/Request.stub')->replaceArray('?', [$this->stubsPath]);
-        $file = Str::of($this->requestPath.'/?.php')->replaceArray('?', [$this->module]);
+        $file = Str::of($this->requestPath.'/?Request.php')->replaceArray('?', [$this->module]);
 
         $stubContent = File::get($stub);
         $stubContent = $this->getReplacers($stubContent);
