@@ -19,7 +19,6 @@
 1. https://laravelprotips.com/
 
 todo
-1. revisit model mutator syntax
 1. crud generator -
     - views - done
     - navigation - done
@@ -47,6 +46,7 @@ todo
 1. test dropbox https://spatie.be/open-source?search=drop&sort=-downloads
 1. queuejob into mongodb and sample chartjs in dashboard
 1. failjob using mongodb?
+1. revisit model mutator syntax - (if using appends need to be snake_case)
 
 to read
 1. https://github.com/mithicher/file-attachment/blob/master/resources/views/components/file-attachment.blade.php

@@ -20,3 +20,6 @@ window.FilePond = FilePond;
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 import FilePondPluginFilePoster from 'filepond-plugin-file-poster';
 FilePond.registerPlugin(FilePondPluginImagePreview, FilePondPluginFilePoster);
+
+import Chart from 'chart.js/auto';
+window.Chart = Chart;
