@@ -23,3 +23,6 @@ FilePond.registerPlugin(FilePondPluginImagePreview, FilePondPluginFilePoster);
 
 import Chart from 'chart.js/auto';
 window.Chart = Chart;
+
+import tippy from 'tippy.js';
+window.tippy = tippy;

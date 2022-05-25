@@ -14,6 +14,7 @@
 @import 'filepond/dist/filepond';
 @import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview';
 @import 'filepond-plugin-file-poster/dist/filepond-plugin-file-poster';
+@import 'tippy.js/dist/tippy';
 
 [x-cloak] {
     display: none;
