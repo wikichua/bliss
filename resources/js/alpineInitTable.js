@@ -3,8 +3,8 @@ export default () => ({
     checkedKeys: [],
     init() {
         const wire = this.$wire;
-        let rowCheckboxes = document.querySelectorAll('.rowCheckboxes');
         this.$watch('checkedAll', (checkedAll) => {
+            let rowCheckboxes = document.querySelectorAll('.rowCheckboxes');
             this.checkedKeys = [];
             _.forEach(rowCheckboxes, (checkbox) => {
                 checkbox.checked = checkedAll;
