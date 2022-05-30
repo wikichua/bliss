@@ -43,6 +43,7 @@ todo
 1. individual model searchable (allow live search on listing)
 1. login rate limit https://laravel.com/docs/9.x/rate-limiting (securing passwordless login too)
 1. passwordless login - https://github.com/grosv/laravel-passwordless-login
+1. laravel websocket - https://www.youtube.com/watch?v=ML-XlVSxYU4&list=PLfdtiltiRHWGoBloQG32kmesr0EUGoYpn
 1. chat message in admin panel - https://www.youtube.com/watch?v=jox1hx2i1Aw
 1. test dropbox https://spatie.be/open-source?search=drop&sort=-downloads
 1. queuejob into mongodb and sample chartjs in dashboard

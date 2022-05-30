@@ -55,7 +55,7 @@ trait ArtisanTrait
 
     public function runCronjobs($schedule)
     {
-        $cronjobs = cache()->tags('cronjob')->rememberForever('cronjobs', function () {
+        $cronjobs = cache()->rememberForever('cronjobs', function () {
             return app(config('bliss.Models.Cronjob'))->query()->where('status', 'A')->get();
         });
 

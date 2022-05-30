@@ -16,11 +16,11 @@ class ExperimentFilepond extends Component
 
     public function render()
     {
-        if (cache()->tags(['experiment'])->has('experiment.file')) {
-            $this->expFile = \Storage::url(cache()->tags(['experiment'])->get('experiment.file'));
+        if (cache()->has('experiment.file')) {
+            $this->expFile = \Storage::url(cache()->get('experiment.file'));
         }
-        if (cache()->tags(['experiment'])->has('experiment.files')) {
-            foreach (cache()->tags(['experiment'])->get('experiment.files') as $file) {
+        if (cache()->has('experiment.files')) {
+            foreach (cache()->get('experiment.files') as $file) {
                 $this->expFiles[] = \Storage::url($file);
             }
         }
@@ -31,26 +31,26 @@ class ExperimentFilepond extends Component
     {
         if ($this->expFile && $this->expFile instanceOf \Livewire\TemporaryUploadedFile) {
             $expFile = $this->expFile->store('public/exp');
-            cache()->tags(['experiment'])->forever('experiment.file', $expFile);
+            cache()->forever('experiment.file', $expFile);
         }
         if ($this->expFiles) {
             $expFiles = [];
-            if (cache()->tags(['experiment'])->has('experiment.files')) {
-                $expFiles = cache()->tags(['experiment'])->get('experiment.files');
+            if (cache()->has('experiment.files')) {
+                $expFiles = cache()->get('experiment.files');
             }
             foreach ($this->expFiles as $expFile) {
                 if ($expFile instanceOf \Livewire\TemporaryUploadedFile) {
                     $expFiles[] = $expFile->store('public/exp');
                 }
             }
-            cache()->tags(['experiment'])->forever('experiment.files', $expFiles);
+            cache()->forever('experiment.files', $expFiles);
         }
         $this->dispatchBrowserEvent('flash-status', ['status' => 'Done']);
     }
 
     public function onFlush()
     {
-        cache()->tags(['experiment'])->flush();
+        cache()->forget('experiment.files');
         $this->dispatchBrowserEvent('flash-status', ['icon' => 'warning', 'status' => 'Done']);
     }
 }

@@ -232,7 +232,6 @@ class Bliss
         $permission = app(config('bliss.Models.Permission'))->query()->where('name', str_slug($permission))->first();
 
         return cache()
-            ->tags(['permissions'])
             ->rememberForever('permission_users:'.$permission->id,
                 function () use ($permission) {
                     $ids = app(config('bliss.Models.Role'))->query()->where('name', 'Admin')->first()->users()->pluck('users.id')->toArray();

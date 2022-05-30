@@ -83,6 +83,5 @@ abstract class User extends Authenticatable
     public function onCachedEvent()
     {
         cache()->forget('permissions:'.$this->id);
-        // cache()->tags('permissions')->flush();
     }
 }

@@ -81,6 +81,6 @@ class Cronjob extends Eloquent
 
     public function onCachedEvent()
     {
-        cache()->tags('cronjob')->flush();
+        cache()->forget('cronjob');
     }
 }
