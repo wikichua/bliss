@@ -17,6 +17,7 @@
 1. https://cylab.be/blog/144/laravel-custom-logging
 1. https://github.com/michael-rubel/livewire-best-practices
 1. https://laravelprotips.com/
+1. https://bladewindui.com/
 
 todo
 1. crud generator -
@@ -62,7 +63,7 @@ setup:
 ```
 laravel new bliss-playground
 cd bliss-playground
-git clone git@github.com:wikichua/bliss.git ./package/wikichua/bliss
+git clone git@github.com:wikichua/bliss.git ./packages/wikichua/bliss
 ```
 
 paste this in composer.json

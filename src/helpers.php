@@ -118,3 +118,12 @@ if (!function_exists('is_collections')) {
         return $collection instanceOf \Illuminate\Support\Collection;
     }
 }
+if (!function_exists('jsonp_decode')) {
+    function jsonp_decode($jsonp, $assoc = false)
+    {
+        if($jsonp[0] !== '[' && $jsonp[0] !== '{') { // we have JSONP
+           $jsonp = substr($jsonp, strpos($jsonp, '('));
+        }
+        return json_decode(trim($jsonp,'();'), $assoc);
+    }
+}
