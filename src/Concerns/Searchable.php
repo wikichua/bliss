@@ -11,7 +11,7 @@ trait Searchable
 
     public function getSearchableFields()
     {
-        return $this->searchableFields;
+        return $this->searchableFields ?? null;
     }
 
     public function toSearchableFieldsArray()
