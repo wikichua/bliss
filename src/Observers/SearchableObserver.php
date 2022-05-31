@@ -9,22 +9,30 @@ class SearchableObserver
 {
     public function saved(Model $model)
     {
-        $mode = $model->wasRecentlyCreated ? 'created' : 'updated';
-        SearchableEvent::dispatch($model, $mode);
+        if (!blank($model->searchableFields)) {
+            $mode = $model->wasRecentlyCreated ? 'created' : 'updated';
+            SearchableEvent::dispatch($model, $mode);
+        }
     }
 
     public function deleted(Model $model)
     {
-        SearchableEvent::dispatch($model, 'deleted');
+        if (!blank($model->searchableFields)) {
+            SearchableEvent::dispatch($model, 'deleted');
+        }
     }
 
     public function restored(Model $model)
     {
-        SearchableEvent::dispatch($model, 'restored');
+        if (!blank($model->searchableFields)) {
+            SearchableEvent::dispatch($model, 'restored');
+        }
     }
 
     public function forceDeleted(Model $model)
     {
-        SearchableEvent::dispatch($model, 'forceDeleted');
+        if (!blank($model->searchableFields)) {
+            SearchableEvent::dispatch($model, 'forceDeleted');
+        }
     }
 }
