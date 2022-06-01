@@ -11,6 +11,8 @@ class Work extends Command
     protected $signature = 'bliss:work {--backoff=1} {--worker=} {--stop-when-empty}';
     protected $description = 'Queue Worker Asynchronous';
     protected $max_workers = null;
+    protected $working = 0;
+
     public function __construct()
     {
         parent::__construct();
@@ -21,16 +23,21 @@ class Work extends Command
         $backoff = !blank($this->option('backoff')) ? $this->option('backoff') : 1;
         $this->max_workers = !blank($this->option('worker')) ? $this->option('worker') : settings('max_workers');
         Loop::addPeriodicTimer($backoff, function () use($backoff) {
-            $result = $this->dispatching($backoff);
-            if ($this->option('stop-when-empty') && !$result) {
-                Loop::stop();
+            if ($this->working < $this->max_workers) {
+                $result = $this->dispatching($backoff);
+                if ($this->option('stop-when-empty') && !$result) {
+                    Loop::stop();
+                }
             }
         });
     }
 
     protected function dispatching($backoff)
     {
-        $workers = app(config('bliss.Models.Worker'))->query()->where('attempted', false)->take($this->max_workers)->get();
+        $remaining = $this->max_workers - $this->working;
+        $workers = app(config('bliss.Models.Worker'))->query()->where('attempted', false)->take($remaining)->get();
+        $this->working = $this->working + count($workers);
+        logger($this->working);
         foreach ($workers as $worker) {
             $worker->attempted = true;
             $worker->save();
@@ -41,10 +48,14 @@ class Work extends Command
                 $data = trim($data);
                 if (str()->contains($data, 'Processed:')) {
                     $this->info($data);
-                    $worker->delete();
+                    if ($worker->delete()) {
+                        $this->working--;
+                    }
                 } elseif (str()->contains($data, 'Failed:')) {
                     $this->error($data);
-                    $worker->delete();
+                    if ($worker->delete()) {
+                        $this->working--;
+                    }
                 } else {
                     $this->line($data);
                 }
@@ -56,7 +67,16 @@ class Work extends Command
                     $this->info('Queue '.$worker->queue.' completed.');
                     $this->newLine();
                     $process->terminate();
-                    $worker->delete();
+                    if ($worker->delete()) {
+                        $this->working--;
+                    }
+                }
+            });
+
+            $process->stdout->on('error', function (Exception $e) use($worker) {
+                $this->error('Error '. $e->getMessage());
+                if ($worker->delete()) {
+                    $this->working--;
                 }
             });
         }
