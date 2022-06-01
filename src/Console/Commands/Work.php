@@ -8,7 +8,7 @@ use React\EventLoop\Loop;
 
 class Work extends Command
 {
-    protected $signature = 'bliss:work {--backoff=1} {--worker=} {--stop-when-empty}';
+    protected $signature = 'bliss:work {--backoff=1} {--worker=} {--stop-when-empty} {--include-attempted}';
     protected $description = 'Queue Worker Asynchronous';
     protected $max_workers = null;
     protected $working = 0;
@@ -35,9 +35,13 @@ class Work extends Command
     protected function dispatching($backoff)
     {
         $remaining = $this->max_workers - $this->working;
-        $workers = app(config('bliss.Models.Worker'))->query()->where('attempted', false)->take($remaining)->get();
+        $workers = app(config('bliss.Models.Worker'))->query();
+        if (!$this->option('include-attempted')) {
+            $workers = $workers->where('attempted', false);
+        }
+        $workers = $workers->take($remaining)->get();
         $this->working = $this->working + count($workers);
-        logger($this->working);
+
         foreach ($workers as $worker) {
             $worker->attempted = true;
             $worker->save();
