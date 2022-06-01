@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->text('batch');
             $table->text('queue');
+            $table->boolean('attempted')->default(false);
             $table->timestamp('created_at')->useCurrent();
         });
         if (\File::exists(base_path('vendor/jenssegers/mongodb'))) {
@@ -19,6 +20,7 @@ return new class extends Migration
                 Schema::connection('mongodb')->table('workers', function (Blueprint $table) {
                     $table->index('queue');
                     $table->index('batch');
+                    $table->index('attempted');
                     $table->index('created_at');
                 });
             } catch (\MongoDB\Driver\Exception\AuthenticationException $e) {

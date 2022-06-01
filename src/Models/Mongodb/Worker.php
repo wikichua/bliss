@@ -16,6 +16,11 @@ class Worker extends Model
     protected $fillable = [
         'queue',
         'batch',
+        'attempted',
+    ];
+
+    protected $attributes = [
+        'attempted' => false,
     ];
 
     protected $appends = [];

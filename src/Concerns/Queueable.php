@@ -19,6 +19,7 @@ trait Queueable
         app(config('bliss.Models.Worker'))->query()->create([
             'batch' => $batch,
             'queue' => $onQueueName,
+            'attempted' => false,
         ]);
         $this->queue = $onQueueName;
 
@@ -37,6 +38,7 @@ trait Queueable
         app(config('bliss.Models.Worker'))->query()->create([
             'batch' => $batch,
             'queue' => $onQueueName,
+            'attempted' => false,
         ]);
         $this->chainQueue = $batch;
         $this->queue = $onQueueName;

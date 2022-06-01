@@ -30,8 +30,10 @@ class Work extends Command
 
     protected function dispatching($backoff)
     {
-        $workers = app(config('bliss.Models.Worker'))->query()->take($this->max_workers)->get();
+        $workers = app(config('bliss.Models.Worker'))->query()->where('attempted', false)->take($this->max_workers)->get();
         foreach ($workers as $worker) {
+            $worker->attempted = true;
+            $worker->save();
             $cmd = "php artisan queue:work --queue='{$worker->queue}' --tries=3 --backoff={$backoff} --stop-when-empty";
             $process = new Process($cmd);
             $process->start();
