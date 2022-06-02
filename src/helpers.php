@@ -127,3 +127,9 @@ if (!function_exists('jsonp_decode')) {
         return json_decode(trim($jsonp,'();'), $assoc);
     }
 }
+if (!function_exists('unitrim')) {
+    function unitrim(string $string): string
+    {
+        return trim(preg_replace('/^[\pZ\pC]+|[\pZ\pC]+$/u', ' ', $string));
+    }
+}
