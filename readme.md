@@ -1,3 +1,4 @@
+refer
 1. https://github.com/Jeroen-G/laravel-packager
 1. https://alpinetoolbox.com
 1. https://www.brandcrowd.com
@@ -18,6 +19,8 @@
 1. https://github.com/michael-rubel/livewire-best-practices
 1. https://laravelprotips.com/
 1. https://bladewindui.com/
+1. https://github.com/LaravelDaily/laravel-tips
+1. https://github.com/LaravelDaily/Best-Laravel-Packages
 
 todo
 1. crud generator -
@@ -57,7 +60,7 @@ to read
 1. https://github.com/cesargb/laravel-magiclink
 1. https://github.com/voku/stop-words
 1. https://codebrisk.com/blog/generate-youtube-like-ids-for-models-with-laravel-hashids
-1. https://github.com/LaravelDaily/laravel-tips
+1. https://github.com/spatie/async
 
 setup:
 
