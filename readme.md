@@ -44,9 +44,9 @@ todo
         - filepond
         - codemirror
 1. individual model searchable (allow live search on listing)
+1. laravel websocket - https://www.youtube.com/watch?v=ML-XlVSxYU4&list=PLfdtiltiRHWGoBloQG32kmesr0EUGoYpn
 1. login rate limit https://laravel.com/docs/9.x/rate-limiting (securing passwordless login too)
 1. passwordless login - https://github.com/grosv/laravel-passwordless-login
-1. laravel websocket - https://www.youtube.com/watch?v=ML-XlVSxYU4&list=PLfdtiltiRHWGoBloQG32kmesr0EUGoYpn
 1. chat message in admin panel - https://www.youtube.com/watch?v=jox1hx2i1Aw
 1. test dropbox https://spatie.be/open-source?search=drop&sort=-downloads
 1. queuejob into mongodb and sample chartjs in dashboard
@@ -126,21 +126,36 @@ stopwaitsecs=3600
 2.
 searchable
 define model with
+
+```
 use \Wikichua\Bliss\Concerns\AllModelTraits;
 public $searchableFields = ['name', 'group'];
+```
 
 then in controller or livewire component
+
+```
 app(config('bliss.Models.Permission'))->query()->searching($this->search ?? '')->get();
+```
 
 3.
 sendAlertNotification
 
-sendAlertNotification(message: 'Your message here', sender: auth()->id(), receivers: userIdsWithPermission('read-permissions'), link: route('your.route.name'));
+```
+sendAlertNotification(
+    message: 'Your message here',
+    sender: auth()->id(),
+    receivers: userIdsWithPermission('read-permissions'),
+    link: route('your.route.name')
+);
+```
 
 4.
 settings helper vice versa
 
 sample:
+
+```
 [
     queuejob_status => [
         "W": "Waiting",
@@ -154,6 +169,7 @@ settings('queuejob_status.E') - Error
 settings('queuejob_status.Error') - E
 settings('queuejob_status.Nothing') - ''
 settings('queuejob_status.Nothing', 'N') - N
+```
 
 5.
 Searchable, Audit and Snapshot into observer, event and listener - https://www.youtube.com/watch?v=DvoaU6cQQHM
