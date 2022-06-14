@@ -13,15 +13,14 @@
     "require": {
         "laravel/breeze": "^1.9",
         "livewire/livewire": "^2.10",
-        "illuminate/support": "^9.12",
+        "illuminate/support": "^9.17",
         "laravel/helpers": "^1.5",
         "jenssegers/agent": "^2.6",
         "rap2hpoutre/fast-excel": "^3.2",
         "lab404/laravel-impersonate": "^1.7",
         "pda/pheanstalk": "^4.0",
         "spatie/laravel-collection-macros": "^7.11",
-        "react/child-process": "^0.6.4",
-        "predis/predis": "^1.1"
+        "react/child-process": "^0.6.4"
     },
     "autoload": {
         "psr-4": {
