@@ -15,6 +15,7 @@ refer
 1. https://leqc.renoki.org/cache-tags/query-caching
 1. https://tailwindcomponents.com
 1. https://flowbite.com/
+1. https://merakiui.com/
 1. https://cylab.be/blog/144/laravel-custom-logging
 1. https://github.com/michael-rubel/livewire-best-practices
 1. https://laravelprotips.com/
@@ -52,6 +53,7 @@ todo
 1. queuejob into mongodb and sample chartjs in dashboard
 1. failjob using mongodb?
 1. revisit model mutator syntax - (if using appends need to be snake_case)
+1. spatie honeypot
 
 to read
 1. https://github.com/mithicher/file-attachment/blob/master/resources/views/components/file-attachment.blade.php
