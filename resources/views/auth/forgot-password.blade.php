@@ -12,7 +12,7 @@
 
         <form wire:submit.prevent="onSubmit">
             @csrf
-
+            <x-honeypot wire:model.defer="honeypotFields" />
             <!-- Email Address -->
             <div>
                 <x-bliss::input id="email" type="email" name="email" :value="$email" required autofocus wire:model.defer="email" :label="__('Email')" />

@@ -14,7 +14,7 @@
             }"
         >
             @csrf
-
+            <x-honeypot wire:model.defer="honeypotFields" />
             <div class="flex flex-col items-center pb-10">
                 @if (!blank($avatar))
                 <img class="mb-3 w-24 h-24 rounded-full shadow-lg object-cover" src="{{ url($avatar) }}" alt="Bonnie image"/>

@@ -14,7 +14,7 @@
             }"
         >
             @csrf
-
+            <x-honeypot wire:model.defer="honeypotFields" />
             <!-- Email Address -->
             <div>
                 <x-bliss::input id="email" type="email" name="email" :label="__('Email')" :value="old('email')" required autofocus wire:model.defer="email" />

@@ -6,7 +6,6 @@ use Livewire\Component;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use Illuminate\Http\Request;
 
 class VerifyEmail extends Component
 {

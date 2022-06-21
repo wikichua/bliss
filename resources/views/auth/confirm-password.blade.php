@@ -9,7 +9,7 @@
 
         <form wire:submit.prevent="onSubmit">
             @csrf
-
+            <x-honeypot wire:model.defer="honeypotFields" />
             <!-- Password -->
             <div>
                 <x-bliss::input id="password" :label="__('Password')"

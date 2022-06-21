@@ -5,7 +5,7 @@
 
         <form wire:submit.prevent="onSubmit">
             @csrf
-
+            <x-honeypot wire:model.defer="honeypotFields" />
             <!-- Name -->
             <div>
                 <x-bliss::input id="name" :label="__('Name')" type="text" name="name" :value="old('name')" required autofocus wire:model.defer="name" />

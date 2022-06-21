@@ -53,7 +53,7 @@ todo
 1. queuejob into mongodb and sample chartjs in dashboard
 1. failjob using mongodb?
 1. revisit model mutator syntax - (if using appends need to be snake_case)
-1. spatie honeypot
+1. spatie honeypot - all modules
 1. https://laradumps.gitbook.io/laradumps/
 
 to read

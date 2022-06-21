@@ -5,14 +5,20 @@ namespace Wikichua\Bliss\Http\Livewire\Auth;
 use Livewire\Component;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
+use Spatie\Honeypot\Http\Livewire\Concerns\HoneypotData;
+use Spatie\Honeypot\Http\Livewire\Concerns\UsesSpamProtection;
 
 class EmailVerificationPrompt extends Component
 {
+    use UsesSpamProtection;
+
     protected $user;
+    public HoneypotData $honeypotFields;
 
     public function mount(Request $request)
     {
         $this->user = $request->user();
+        $this->honeypotFields = new HoneypotData();
     }
 
     public function render()
@@ -24,6 +30,7 @@ class EmailVerificationPrompt extends Component
 
     public function onSubmit(Request $request)
     {
+        $this->protectAgainstSpam();
         $this->user = $request->user();
         if ($this->user->hasVerifiedEmail()) {
             return redirect()->intended(RouteServiceProvider::HOME);

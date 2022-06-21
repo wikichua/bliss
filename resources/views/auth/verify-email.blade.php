@@ -13,7 +13,7 @@
         <div class="mt-4 flex items-center justify-between">
             <form wire:submit.prevent="onSubmit">
                 @csrf
-
+                <x-honeypot wire:model.defer="honeypotFields" />
                 <div>
                     <x-bliss::button>
                         {{ __('Resend Verification Email') }}

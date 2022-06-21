@@ -2,15 +2,25 @@
 
 namespace Wikichua\Bliss\Http\Livewire\Auth;
 
-use Livewire\Component;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+use Livewire\Component;
+use Spatie\Honeypot\Http\Livewire\Concerns\HoneypotData;
+use Spatie\Honeypot\Http\Livewire\Concerns\UsesSpamProtection;
 
 class ConfirmablePassword extends Component
 {
+    use UsesSpamProtection;
+
     public $password;
+    public HoneypotData $honeypotFields;
+
+    public function mount()
+    {
+        $this->honeypotFields = new HoneypotData();
+    }
 
     public function render()
     {
@@ -19,6 +29,7 @@ class ConfirmablePassword extends Component
 
     public function onSubmit(Request $request)
     {
+        $this->protectAgainstSpam();
         $user = $request->user();
         if (! Auth::guard('web')->validate([
             'email' => $user->email,

@@ -5,7 +5,7 @@
 
         <form wire:submit.prevent="onSubmit">
             @csrf
-
+            <x-honeypot wire:model.defer="honeypotFields" />
             <!-- Password Reset Token -->
             <input type="hidden" name="token" :value="$token">
 

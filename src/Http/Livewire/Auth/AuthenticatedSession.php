@@ -2,16 +2,26 @@
 
 namespace Wikichua\Bliss\Http\Livewire\Auth;
 
-use Livewire\Component;
-use Wikichua\Bliss\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
+use Spatie\Honeypot\Http\Livewire\Concerns\HoneypotData;
+use Spatie\Honeypot\Http\Livewire\Concerns\UsesSpamProtection;
+use Wikichua\Bliss\Http\Requests\Auth\LoginRequest;
 
 class AuthenticatedSession extends Component
 {
+    use UsesSpamProtection;
+
     public $email;
     public $password;
     public $remember = false;
+    public HoneypotData $honeypotFields;
+
+    public function mount()
+    {
+        $this->honeypotFields = new HoneypotData();
+    }
 
     public function render()
     {
@@ -31,6 +41,7 @@ class AuthenticatedSession extends Component
 
     public function onSubmit()
     {
+        $this->protectAgainstSpam();
         $this->password = \Crypt::decryptString($this->password);
         $request = new LoginRequest;
 

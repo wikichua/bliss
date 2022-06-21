@@ -9,16 +9,22 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
+use Spatie\Honeypot\Http\Livewire\Concerns\HoneypotData;
+use Spatie\Honeypot\Http\Livewire\Concerns\UsesSpamProtection;
 
 class NewPassword extends Component
 {
+    use UsesSpamProtection;
+
     public $email;
     public $token;
     public $password;
     public $password_confirmation;
+    public HoneypotData $honeypotFields;
 
     public function mount(Request $request, $token)
     {
+        $this->honeypotFields = new HoneypotData();
         $this->email = $request->get('email');
         $this->token = $token;
         $exist = \DB::table('password_resets')->where('token', $this->token)->count();
@@ -34,6 +40,7 @@ class NewPassword extends Component
 
     public function onSubmit()
     {
+        $this->protectAgainstSpam();
         $validatedInputs = $this->validate([
             'token' => ['required'],
             'email' => ['required', 'email'],

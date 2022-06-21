@@ -2,17 +2,20 @@
 
 namespace Wikichua\Bliss\Concerns;
 
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
+use Spatie\Honeypot\Http\Livewire\Concerns\UsesSpamProtection;
+use Spatie\Honeypot\Http\Livewire\Concerns\HoneypotData;
 
 trait ComponentTraits
 {
     use WithPagination;
     use WithFileUploads;
     use AuthorizesRequests;
+    use UsesSpamProtection;
 
     /* DO NOT declare protected listeners and queryString in this traits */
     public $pageOptions = [5, 10,  25,  50,  100,  200];
@@ -22,6 +25,7 @@ trait ComponentTraits
     public $cols = [];
     public Builder|Model $model;
     public $infoData = [];
+    public HoneypotData $honeypotFields;
 
     protected $reauthEnabled = false;
     protected $bulkActionEnabled = true;
@@ -42,7 +46,7 @@ trait ComponentTraits
 
     public function initializeComponentTraits()
     {
-
+        $this->honeypotFields = new HoneypotData();
     }
 
     public function viewShare()

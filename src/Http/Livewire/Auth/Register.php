@@ -9,13 +9,23 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Spatie\Honeypot\Http\Livewire\Concerns\HoneypotData;
+use Spatie\Honeypot\Http\Livewire\Concerns\UsesSpamProtection;
 
 class Register extends Component
 {
+    use UsesSpamProtection;
+
     public $name;
     public $email;
     public $password;
     public $password_confirmation;
+    public HoneypotData $honeypotFields;
+
+    public function mount()
+    {
+        $this->honeypotFields = new HoneypotData();
+    }
 
     public function render()
     {
@@ -24,6 +34,7 @@ class Register extends Component
 
     public function onSubmit()
     {
+        $this->protectAgainstSpam();
         $this->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
