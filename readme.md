@@ -54,6 +54,7 @@ todo
 1. failjob using mongodb?
 1. revisit model mutator syntax - (if using appends need to be snake_case)
 1. spatie honeypot
+1. https://laradumps.gitbook.io/laradumps/
 
 to read
 1. https://github.com/mithicher/file-attachment/blob/master/resources/views/components/file-attachment.blade.php

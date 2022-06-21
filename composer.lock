@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9a13e61d28a5bf72f92f28b2e95d99d7",
+    "content-hash": "27b2d1dd6147681cc38411fac31546cb",
     "packages": [
         {
             "name": "box/spout",
@@ -445,16 +445,16 @@
         },
         {
             "name": "egulias/email-validator",
-            "version": "3.2",
+            "version": "3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/egulias/EmailValidator.git",
-                "reference": "a5ed8d58ed0c340a7c2109f587951b1c84cf6286"
+                "reference": "f88dcf4b14af14a98ad96b14b2b317969eab6715"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/a5ed8d58ed0c340a7c2109f587951b1c84cf6286",
-                "reference": "a5ed8d58ed0c340a7c2109f587951b1c84cf6286",
+                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/f88dcf4b14af14a98ad96b14b2b317969eab6715",
+                "reference": "f88dcf4b14af14a98ad96b14b2b317969eab6715",
                 "shasum": ""
             },
             "require": {
@@ -501,7 +501,7 @@
             ],
             "support": {
                 "issues": "https://github.com/egulias/EmailValidator/issues",
-                "source": "https://github.com/egulias/EmailValidator/tree/3.2"
+                "source": "https://github.com/egulias/EmailValidator/tree/3.2.1"
             },
             "funding": [
                 {
@@ -509,7 +509,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-05-28T22:19:18+00:00"
+            "time": "2022-06-18T20:57:19+00:00"
         },
         {
             "name": "evenement/evenement",
@@ -2939,6 +2939,139 @@
                 }
             ],
             "time": "2022-03-18T07:52:42+00:00"
+        },
+        {
+            "name": "spatie/laravel-honeypot",
+            "version": "4.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-honeypot.git",
+                "reference": "f29e3cd612699a2a3a2912da3f638ee987a3d31d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-honeypot/zipball/f29e3cd612699a2a3a2912da3f638ee987a3d31d",
+                "reference": "f29e3cd612699a2a3a2912da3f638ee987a3d31d",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^8.0|^9.0",
+                "illuminate/encryption": "^8.0|^9.0",
+                "illuminate/http": "^8.0|^9.0",
+                "illuminate/support": "^8.0|^9.0",
+                "illuminate/validation": "^8.0|^9.0",
+                "nesbot/carbon": "^2.0",
+                "php": "^8.0",
+                "spatie/laravel-package-tools": "^1.9",
+                "symfony/http-foundation": "^5.1.2|^6.0"
+            },
+            "require-dev": {
+                "livewire/livewire": "^2.10",
+                "orchestra/testbench": "^6.23|^7.0",
+                "phpunit/phpunit": "^9.4",
+                "spatie/phpunit-snapshot-assertions": "^4.2",
+                "spatie/test-time": "^1.2.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\Honeypot\\HoneypotServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Honeypot\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Preventing spam submitted through forms",
+            "homepage": "https://github.com/spatie/laravel-honeypot",
+            "keywords": [
+                "laravel-honeypot",
+                "spatie"
+            ],
+            "support": {
+                "source": "https://github.com/spatie/laravel-honeypot/tree/4.3.0"
+            },
+            "funding": [
+                {
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "custom"
+                }
+            ],
+            "time": "2022-05-21T11:49:59+00:00"
+        },
+        {
+            "name": "spatie/laravel-package-tools",
+            "version": "1.12.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-package-tools.git",
+                "reference": "9e6c0382553f1317c02f1ae0ee71c64821eb5af0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-package-tools/zipball/9e6c0382553f1317c02f1ae0ee71c64821eb5af0",
+                "reference": "9e6c0382553f1317c02f1ae0ee71c64821eb5af0",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^7.0|^8.0|^9.0",
+                "php": "^7.4|^8.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.4",
+                "orchestra/testbench": "^5.0|^6.23|^7.0",
+                "phpunit/phpunit": "^9.4",
+                "spatie/test-time": "^1.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\LaravelPackageTools\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Tools for creating Laravel packages",
+            "homepage": "https://github.com/spatie/laravel-package-tools",
+            "keywords": [
+                "laravel-package-tools",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/laravel-package-tools/issues",
+                "source": "https://github.com/spatie/laravel-package-tools/tree/1.12.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-06-19T20:01:24+00:00"
         },
         {
             "name": "symfony/console",
