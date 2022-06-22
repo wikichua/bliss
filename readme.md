@@ -66,6 +66,7 @@ to read
 1. https://github.com/spatie/laravel-honeypot
 1. https://dev.to/enrico_dev86/notification-brodacast-system-with-laravel-websocket-and-rxjs-fph
 1. https://laradumps.gitbook.io/laradumps/
+1. https://freek.dev
 
 setup:
 
