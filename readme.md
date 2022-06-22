@@ -54,7 +54,6 @@ todo
 1. failjob using mongodb?
 1. revisit model mutator syntax - (if using appends need to be snake_case)
 1. spatie honeypot - all modules
-1. https://laradumps.gitbook.io/laradumps/
 
 to read
 1. https://github.com/mithicher/file-attachment/blob/master/resources/views/components/file-attachment.blade.php
@@ -64,6 +63,9 @@ to read
 1. https://github.com/voku/stop-words
 1. https://codebrisk.com/blog/generate-youtube-like-ids-for-models-with-laravel-hashids
 1. https://github.com/spatie/async
+1. https://github.com/spatie/laravel-honeypot
+1. https://dev.to/enrico_dev86/notification-brodacast-system-with-laravel-websocket-and-rxjs-fph
+1. https://laradumps.gitbook.io/laradumps/
 
 setup:
 
