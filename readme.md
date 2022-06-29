@@ -56,6 +56,7 @@ todo
 1. spatie honeypot - all modules
 
 to read
+1. https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-nginx-in-ubuntu-22-04
 1. https://github.com/mithicher/file-attachment/blob/master/resources/views/components/file-attachment.blade.php
 1. https://gist.github.com/mehranhadidi/38e38b80e3d533650ed2b94a0f95f7f1
 1. https://www.tutsmake.com/laravel-9-backup-store-on-google-drive-tutorial-with-example/
@@ -67,6 +68,9 @@ to read
 1. https://dev.to/enrico_dev86/notification-brodacast-system-with-laravel-websocket-and-rxjs-fph
 1. https://laradumps.gitbook.io/laradumps/
 1. https://freek.dev
+1. https://github.com/spatie/laravel-morph-map-generator, https://www.youtube.com/watch?v=rx1DQBE01b0
+1. https://davecalnan.blog/easy-multi-tenancy-with-laravel
+1. https://tailwindcomponents.com/component/messanger-design
 
 setup:
 

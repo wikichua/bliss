@@ -1,6 +1,8 @@
 @props(['reauthEnabled' => $reauthEnabled ?? false, 'scripts' => '', 'styles' => ''])
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html
+    lang="{{ str_replace('_', '-', app()->getLocale()) }}"
+>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,24 +10,22 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/alpine.js'])
         <livewire:styles />
         {{ $styles ?? '' }}
         @stack('styles')
 
-        <!-- Scripts -->
         <livewire:scripts />
-        <script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js" data-turbo-eval="false" data-turbolinks-eval="false"></script>
-        <script src="{{ asset('js/app.js') }}"></script>
-        <script src="{{ asset('js/alpine.js') }}" defer></script>
+        {{-- <script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js" data-turbolinks-eval="false" data-turbo-eval="false"></script> --}}
     </head>
     <body class="font-sans antialiased"
-        x-bind:class="{dark: darkMode == true}"
         x-data="xHtml(@js($reauthEnabled))"
+        x-bind:class="{dark: darkMode == true}"
         x-cloak
     >
-        {{ $slot }}
+        <div>
+            {{ $slot }}
+        </div>
 
         {{ $scripts ?? '' }}
         @stack('scripts')

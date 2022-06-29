@@ -31,10 +31,20 @@ class Installation extends Command
         File::ensureDirectoryExists(resource_path('views/vendor/bliss/layouts'));
 
         if (Str::contains($this->vendorPath, 'packages')) {
-            $files = [
-                $vendorPath.'/dev.webpack.mix.js' => base_path('webpack.mix.js'),
-            ];
-            $this->copiesFileOrDirectory($files);
+            // $files = [
+            //     $vendorPath.'/dev.vite.config.js' => base_path('vite.config.js'),
+            // ];
+            // $this->copiesFileOrDirectory($files);
+
+            File::delete(base_path('vite.config.js'));
+            File::link($vendorPath.'/vite.config.js', base_path('vite.config.js'));
+            $this->info('Created symlink '.$vendorPath.'/vite.config.js to '. base_path('vite.config.js'));
+            $this->newLine();
+
+            File::delete(base_path('postcss.config.js'));
+            File::link($vendorPath.'/postcss.config.js', base_path('postcss.config.js'));
+            $this->info('Created symlink '.$vendorPath.'/postcss.config.js to '. base_path('postcss.config.js'));
+            $this->newLine();
 
             File::delete(base_path('package.json'));
             File::link($vendorPath.'/package.json', base_path('package.json'));
@@ -44,6 +54,16 @@ class Installation extends Command
             File::delete(base_path('tailwind.config.js'));
             File::link($vendorPath.'/tailwind.config.js', base_path('tailwind.config.js'));
             $this->info('Created symlink '.$vendorPath.'/tailwind.config.js to '. base_path('tailwind.config.js'));
+            $this->newLine();
+
+            File::delete(resource_path('js'));
+            File::link($vendorPath.'/resources/js', resource_path('js'));
+            $this->info('Created symlink '.$vendorPath.'/resources/js to '. resource_path('js'));
+            $this->newLine();
+
+            File::delete(resource_path('css'));
+            File::link($vendorPath.'/resources/css', resource_path('css'));
+            $this->info('Created symlink '.$vendorPath.'/resources/css to '. resource_path('css'));
             $this->newLine();
 
             File::delete(resource_path('views/vendor/bliss/layouts/navigation.blade.php'));
@@ -59,7 +79,8 @@ class Installation extends Command
             $files = [
                 $vendorPath.'/package.json' => base_path('package.json'),
                 $vendorPath.'/tailwind.config.js' => base_path('tailwind.config.js'),
-                $vendorPath.'/webpack.mix.js' => base_path('webpack.mix.js'),
+                $vendorPath.'/postcss.config.js' => base_path('postcss.config.js'),
+                $vendorPath.'/vite.config.js' => base_path('vite.config.js'),
                 $vendorPath.'/resources/css' => resource_path('css'),
                 $vendorPath.'/resources/js' => resource_path('js'),
             ];

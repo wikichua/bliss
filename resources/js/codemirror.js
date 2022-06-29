@@ -21,4 +21,6 @@ import 'codemirror/mode/xml/xml';
 import 'codemirror/mode/css/css';
 import 'codemirror/mode/php/php';
 import 'codemirror/keymap/sublime';
-const CodeMirror = window.CodeMirror = require('codemirror');
+import CodeMirror from 'codemirror';
+
+window.CodeMirror = CodeMirror;

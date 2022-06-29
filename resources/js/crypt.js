@@ -1,9 +1,9 @@
 import CryptoJS from "crypto-js";
 
-var serialize = require('php-serialize');
+import * as serialize from 'php-serialize';
 
 const LaravelCrypt = function () {
-    this.key = CryptoJS.enc.Base64.parse(process.env.MIX_APP_KEY.substr(7));
+    this.key = CryptoJS.enc.Base64.parse(import.meta.env.VITE_APP_KEY.substr(7));
 }
 
 LaravelCrypt.prototype.decrypt = function (encryptStr) {
