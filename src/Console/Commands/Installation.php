@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 
 class Installation extends Command
 {
-    protected $signature = 'bliss:install {--no-compiled}';
+    protected $signature = 'bliss:install {--no-compiled} {--dev}';
 
     protected $description = 'Bliss Installation';
 
@@ -26,20 +26,20 @@ class Installation extends Command
 
     public function handle()
     {
+        if (!$this->option('dev')) {
+            $this->vendorPath = base_path('vendor/wikichua/bliss');
+        }
+
         $vendorPath = $this->vendorPath;
 
         File::ensureDirectoryExists(resource_path('views/vendor/bliss/layouts'));
 
-        if (Str::contains($this->vendorPath, 'packages')) {
-            // $files = [
-            //     $vendorPath.'/dev.vite.config.js' => base_path('vite.config.js'),
-            // ];
-            // $this->copiesFileOrDirectory($files);
-
+        if (Str::contains($vendorPath, 'packages')) {
             File::delete(base_path('vite.config.js'));
-            File::link($vendorPath.'/vite.config.js', base_path('vite.config.js'));
-            $this->info('Created symlink '.$vendorPath.'/vite.config.js to '. base_path('vite.config.js'));
-            $this->newLine();
+            $files = [
+                $vendorPath.'/vite.config.js' => base_path('vite.config.js'),
+            ];
+            $this->copiesFileOrDirectory($files);
 
             File::delete(base_path('postcss.config.js'));
             File::link($vendorPath.'/postcss.config.js', base_path('postcss.config.js'));
@@ -114,8 +114,8 @@ class Installation extends Command
                 $output = shell_exec('npm install');
                 $this->info($output);
             }
-            if ($this->confirm('npm run prod?', true)) {
-                $output = shell_exec('npm run prod');
+            if ($this->confirm('npm run build?', true)) {
+                $output = shell_exec('npm run build');
                 $this->info($output);
             }
         }
