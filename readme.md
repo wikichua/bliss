@@ -45,7 +45,7 @@ todo
         - filepond
         - codemirror
 1. individual model searchable (allow live search on listing)
-1. laravel websocket - https://www.youtube.com/watch?v=ML-XlVSxYU4&list=PLfdtiltiRHWGoBloQG32kmesr0EUGoYpn
+
 1. login rate limit https://laravel.com/docs/9.x/rate-limiting (securing passwordless login too)
 1. passwordless login - https://github.com/grosv/laravel-passwordless-login
 1. chat message in admin panel - https://www.youtube.com/watch?v=jox1hx2i1Aw
@@ -56,7 +56,6 @@ todo
 1. spatie honeypot - all modules
 
 to read
-1. https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-nginx-in-ubuntu-22-04
 1. https://github.com/mithicher/file-attachment/blob/master/resources/views/components/file-attachment.blade.php
 1. https://gist.github.com/mehranhadidi/38e38b80e3d533650ed2b94a0f95f7f1
 1. https://www.tutsmake.com/laravel-9-backup-store-on-google-drive-tutorial-with-example/
@@ -65,12 +64,16 @@ to read
 1. https://codebrisk.com/blog/generate-youtube-like-ids-for-models-with-laravel-hashids
 1. https://github.com/spatie/async
 1. https://github.com/spatie/laravel-honeypot
-1. https://dev.to/enrico_dev86/notification-brodacast-system-with-laravel-websocket-and-rxjs-fph
 1. https://laradumps.gitbook.io/laradumps/
 1. https://freek.dev
 1. https://github.com/spatie/laravel-morph-map-generator, https://www.youtube.com/watch?v=rx1DQBE01b0
+
 1. https://davecalnan.blog/easy-multi-tenancy-with-laravel
 1. https://tailwindcomponents.com/component/messanger-design
+1. How To Use Broadcasting In Laravel | What is Broadcasting in Laravel? - https://www.youtube.com/watch?v=UwB5z6u7vt8
+1. https://dev.to/enrico_dev86/laravel-notification-system-with-queue-28p4
+1. https://dev.to/enrico_dev86/notification-brodacast-system-with-laravel-websocket-and-rxjs-fph
+1. laravel websocket - https://www.youtube.com/watch?v=ML-XlVSxYU4&list=PLfdtiltiRHWGoBloQG32kmesr0EUGoYpn
 
 setup:
 

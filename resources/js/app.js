@@ -15,7 +15,7 @@ window.Swal = Swal;
 import flatpickr from 'flatpickr';
 window.flatpickr = flatpickr;
 
-import FilePond from 'filepond';
+import * as FilePond from "filepond";
 window.FilePond = FilePond;
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 import FilePondPluginFilePoster from 'filepond-plugin-file-poster';
