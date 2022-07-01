@@ -384,12 +384,12 @@ class Installation extends Command
         $files = [base_path('.env.example'), base_path('.env')];
         foreach ($files as $file) {
             $content = @File::get($file);
-            if (!str_contains($content, 'MIX_APP_KEY')) {
+            if (!str_contains($content, 'VITE_APP_KEY')) {
                 $lines = explode(PHP_EOL, $content);
                 foreach ($lines as $key => $line) {
                     if (str_contains($line, 'APP_DEBUG')) {
                         $from = $line;
-                        $to = $lines[$key] = 'MIX_APP_KEY="${APP_KEY}"'.PHP_EOL.$line;
+                        $to = $lines[$key] = 'VITE_APP_KEY="${APP_KEY}"'.PHP_EOL.$line;
                     }
                 }
                 if (isset($from)) {
