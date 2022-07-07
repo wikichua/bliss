@@ -18,7 +18,7 @@
         <livewire:scripts />
         <script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js" data-turbolinks-eval="false" data-turbo-eval="false"></script>
     </head>
-    <body class="font-sans antialiased"
+    <body class="font-sans antialiased overflow-hidden"
         x-data="xHtml(@js($reauthEnabled))"
         x-bind:class="{dark: darkMode == true}"
         x-cloak
