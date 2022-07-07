@@ -26,5 +26,3 @@ window.Chart = Chart;
 
 import tippy from 'tippy.js';
 window.tippy = tippy;
-
-import './alpine';

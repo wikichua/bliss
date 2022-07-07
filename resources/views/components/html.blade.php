@@ -10,7 +10,7 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/alpine.js'])
         <livewire:styles />
         {{ $styles ?? '' }}
         @stack('styles')
