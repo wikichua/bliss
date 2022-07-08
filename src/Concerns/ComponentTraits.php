@@ -60,10 +60,15 @@ trait ComponentTraits
     public function getListeners()
     {
         $listeners = array_merge($this->listeners, [
-            'refresh' => '$refresh',
-            'filterDatatable' => '$refresh'
+            'refresh' => 'refreshPage',
+            'filterDatatable' => 'refreshPage'
         ]);
         return $listeners;
+    }
+
+    public function refreshPage()
+    {
+        $this->resetPage();
     }
 
     public function paginationView()
