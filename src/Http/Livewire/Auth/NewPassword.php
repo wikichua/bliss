@@ -2,13 +2,13 @@
 
 namespace Wikichua\Bliss\Http\Livewire\Auth;
 
-use Livewire\Component;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
+use Livewire\Component;
 use Spatie\Honeypot\Http\Livewire\Concerns\HoneypotData;
 use Spatie\Honeypot\Http\Livewire\Concerns\UsesSpamProtection;
 
@@ -17,9 +17,13 @@ class NewPassword extends Component
     use UsesSpamProtection;
 
     public $email;
+
     public $token;
+
     public $password;
+
     public $password_confirmation;
+
     public HoneypotData $honeypotFields;
 
     public function mount(Request $request, $token)
@@ -28,7 +32,7 @@ class NewPassword extends Component
         $this->email = $request->get('email');
         $this->token = $token;
         $exist = \DB::table('password_resets')->where('token', $this->token)->count();
-        if (!$exist) {
+        if (! $exist) {
             $this->addError('token', 'Token is invalid or has been expired.');
         }
     }

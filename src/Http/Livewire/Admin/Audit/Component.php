@@ -9,7 +9,9 @@ abstract class Component extends LivewireComponent
     use \Wikichua\Bliss\Concerns\ComponentTraits;
 
     public $headerTitle = 'Audit Logs';
+
     protected $queryString = [];
+
     protected $listeners = [];
 
     public function booted()
@@ -24,7 +26,7 @@ abstract class Component extends LivewireComponent
             $this->alertNotify(
                 message: __('Audit (:modelClass, :modelId) deleted.', [
                     'modelClass' => $model->model_class,
-                    'modelId' => $model->model_id
+                    'modelId' => $model->model_id,
                 ]),
                 permissionString: 'read-audits',
                 link: route('audit.list'),
@@ -43,7 +45,7 @@ abstract class Component extends LivewireComponent
         $this->alertNotify(
             message: __('Audit (:modelClass, :modelId) deleted.', [
                 'modelClass' => $model->model_class,
-                'modelId' => $model->model_id
+                'modelId' => $model->model_id,
             ]),
             permissionString: 'read-audits',
             link: route('audit.list'),
@@ -55,6 +57,7 @@ abstract class Component extends LivewireComponent
             $this->flashStatusSession('Data Deleted.');
         }
     }
+
     protected function getInfoData()
     {
         $this->infoData = [];

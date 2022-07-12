@@ -3,12 +3,12 @@
 namespace Wikichua\Bliss\Models\Mongodb;
 
 use Jenssegers\Mongodb\Eloquent\Model;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Wikichua\Bliss\Casts\MongoDbBsonUtcDateTime as UserTimezone;
 
 class Log extends Model
 {
     use \Wikichua\Bliss\Concerns\AllModelTraits;
+
     public $searchableFields = [
         'level',
         'iteration',
@@ -36,6 +36,7 @@ class Log extends Model
     ];
 
     protected $primaryKey = '_id';
+
     protected $connection = 'mongodb';
 
     public function __construct(array $attributes = [])

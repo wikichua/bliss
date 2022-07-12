@@ -10,7 +10,9 @@ class Audit extends Model
     use \Wikichua\Bliss\Concerns\AllModelTraits;
 
     const UPDATED_AT = null;
+
     public $searchableFields = [];
+
     protected $fillable = [
         'id',
         'user_id',
@@ -38,6 +40,7 @@ class Audit extends Model
     ];
 
     protected $primaryKey = '_id';
+
     protected $connection = 'mongodb';
 
     public function __construct(array $attributes = [])

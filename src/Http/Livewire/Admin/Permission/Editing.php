@@ -11,11 +11,14 @@ class Editing extends Component
         $this->castModelToProperty(app(config('bliss.Models.Permission'))->query()->findOrFail($id));
         $this->name = app(config('bliss.Models.Permission'))->query()->where('group', $this->model->group)->pluck('name');
     }
+
     public function render()
     {
         $this->authorize('update-permissions');
+
         return view('bliss::admin.permission.edit')->layout('bliss::layouts.app');
     }
+
     public function onSubmit()
     {
         $this->authorize('update-permissions');

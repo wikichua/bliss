@@ -11,7 +11,9 @@ abstract class Component extends LivewireComponent
     use \Wikichua\Bliss\Concerns\ComponentTraits;
 
     public $headerTitle = 'Report Management';
+
     protected $queryString = [];
+
     protected $listeners = [];
 
     public $cache_ttl = 300;
@@ -60,6 +62,7 @@ abstract class Component extends LivewireComponent
     {
         return (new ReportRequest)->rules();
     }
+
     protected function getInfoData()
     {
         if ($this->model ?? null) {
@@ -83,6 +86,7 @@ abstract class Component extends LivewireComponent
                     return (array) $value;
                 }, \DB::select($sql));
             }
+
             return $results;
         });
 

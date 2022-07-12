@@ -2,8 +2,8 @@
 
 namespace Wikichua\Bliss\Casts;
 
-use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Carbon\Carbon;
+use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 
 class MongoDbBsonUtcDateTime implements CastsAttributes
 {
@@ -22,6 +22,7 @@ class MongoDbBsonUtcDateTime implements CastsAttributes
             $value = $value->toDateTime();
         }
         $carbon = Carbon::parse($value);
+
         return $carbon->toDateTimeString();
     }
 

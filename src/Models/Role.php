@@ -8,6 +8,7 @@ use Wikichua\Bliss\Casts\UserTimezone;
 class Role extends Model
 {
     use \Wikichua\Bliss\Concerns\AllModelTraits;
+
     public $searchableFields = ['name'];
 
     protected $appends = ['isAdmin'];
@@ -20,6 +21,7 @@ class Role extends Model
     ];
 
     protected $auditable = true;
+
     protected $snapshot = true;
 
     protected $casts = [
@@ -58,6 +60,7 @@ class Role extends Model
         if ($search == '') {
             return $query;
         }
+
         return $query->where('admin', $search);
     }
 
@@ -66,8 +69,10 @@ class Role extends Model
         if ($search == '') {
             return $query;
         }
+
         return $query->whereHas('permissions', function ($query) use ($search) {
             $table = app(config('bliss.Models.Permission'))->getTable();
+
             return $query->whereIn($table.'.id', $search);
         });
     }
@@ -75,8 +80,9 @@ class Role extends Model
     public function getReadUrlAttribute($value)
     {
         if (auth()->user()->can('read-cronjobs')) {
-            return $this->readUrl = isset($this->id)? route('role.show', $this->id):null;
+            return $this->readUrl = isset($this->id) ? route('role.show', $this->id) : null;
         }
+
         return null;
     }
 

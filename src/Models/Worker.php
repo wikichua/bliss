@@ -8,9 +8,13 @@ use Wikichua\Bliss\Casts\UserTimezone;
 class Worker extends Model
 {
     use \Wikichua\Bliss\Concerns\AllModelTraits;
+
     public $searchableFields = [];
+
     protected $auditable = false;
+
     protected $snapshot = false;
+
     const UPDATED_AT = null;
 
     protected $fillable = [

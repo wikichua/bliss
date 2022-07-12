@@ -2,8 +2,6 @@
 
 namespace Wikichua\Bliss\Listeners;
 
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 use Wikichua\Bliss\Events\SnapshotEvent;
 
 class SnapshotListener
@@ -23,7 +21,7 @@ class SnapshotListener
             if (blank($changes)) {
                 $changes = $event->getChanges();
             }
-            if (!blank($changes) || 'deleted' == strtolower($mode)) {
+            if (! blank($changes) || 'deleted' == strtolower($mode)) {
                 $data = $model->getOriginal();
                 app(config('bliss.Models.Versionizer'))->create([
                     'mode' => $mode,

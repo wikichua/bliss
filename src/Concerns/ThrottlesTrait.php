@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 trait ThrottlesTrait
 {
     protected $maxAttempts = 5;
+
     protected $decayMinutes = 1;
 
     protected function setMaxAttempts($value = 5)

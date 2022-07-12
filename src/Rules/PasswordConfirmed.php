@@ -15,7 +15,6 @@ class PasswordConfirmed implements Rule
      */
     public function __construct()
     {
-
     }
 
     /**

@@ -3,7 +3,6 @@
 namespace Wikichua\Bliss\Concerns;
 
 use Carbon\Carbon;
-use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Stringable;
 
 trait ArtisanTrait
@@ -31,8 +30,8 @@ trait ArtisanTrait
         $disabled_commands = $this->commands_disabled[app()->environment()];
         $wildcard_commands = [];
         foreach ($disabled_commands as $i => $disabled_command) {
-            if (\Str::endsWith($disabled_command,'*')) {
-                $wildcard_commands[] = rtrim($disabled_command,'*');
+            if (\Str::endsWith($disabled_command, '*')) {
+                $wildcard_commands[] = rtrim($disabled_command, '*');
                 unset($disabled_commands[$i]);
             }
         }
@@ -41,6 +40,7 @@ trait ArtisanTrait
                 $disabled_commands[] = $command;
             }
         }
+
         return $disabled_commands;
     }
 
@@ -67,22 +67,22 @@ trait ArtisanTrait
             if (in_array($cronjob->mode, ['art'])) {
                 $schedule->command($cronjob->command)->{$frequency}()
                     ->timezone($cronjob->timezone)
-                    ->onSuccess(function (Stringable $output) use ($cron, $time, $outputed) {
+                    ->onSuccess(function (Stringable $output) use ($cron , $outputed) {
                         $cron->output = array_merge([$output], $outputed);
                         $cron->save();
                     })
-                    ->onFailure(function (Stringable $output) use ($cron, $time, $outputed) {
+                    ->onFailure(function (Stringable $output) use ($cron , $outputed) {
                         $cron->output = array_merge([$output], $outputed);
                         $cron->save();
                     });
             } else {
                 $schedule->exec($cronjob->command)
                     ->timezone($cronjob->timezone)
-                    ->onSuccess(function (Stringable $output) use ($cron, $time, $outputed) {
+                    ->onSuccess(function (Stringable $output) use ($cron , $outputed) {
                         $cron->output = array_merge([$output], $outputed);
                         $cron->save();
                     })
-                    ->onFailure(function (Stringable $output) use ($cron, $time, $outputed) {
+                    ->onFailure(function (Stringable $output) use ($cron , $outputed) {
                         $cron->output = array_merge([$output], $outputed);
                         $cron->save();
                     });

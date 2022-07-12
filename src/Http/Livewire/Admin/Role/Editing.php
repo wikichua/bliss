@@ -7,13 +7,14 @@ class Editing extends Component
     public function mount($id)
     {
         $this->castModelToProperty(app(config('bliss.Models.Role'))->query()->findOrFail($id));
-        $this->permissions = $this->model->permissions->pluck('id','id')->toArray();
+        $this->permissions = $this->model->permissions->pluck('id', 'id')->toArray();
     }
 
     public function render()
     {
         $this->authorize('update-roles');
         $groupPermissions = $this->getGroupPermissions();
+
         return view('bliss::admin.role.edit', compact('groupPermissions'))->layout('bliss::layouts.app');
     }
 

@@ -2,16 +2,15 @@
 
 namespace Wikichua\Bliss\Listeners;
 
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
-use Wikichua\Bliss\Events\SearchableEvent;
 use Wikichua\Bliss\Concerns\Searchable;
+use Wikichua\Bliss\Events\SearchableEvent;
 
 class SearchableListener
 {
     use Searchable;
 
     protected $event = null;
+
     protected $model = null;
 
     public function __construct()
@@ -43,6 +42,7 @@ class SearchableListener
     protected function searchableModelAs()
     {
         $model = $this->model;
+
         return $model::class;
     }
 
@@ -54,8 +54,8 @@ class SearchableListener
     protected function toSearchableFieldsArray()
     {
         $array = [];
-        if (!\Str::contains($this->searchableModelAs(), config('bliss.searchable.exceptions'))) {
-            if (!blank($this->getSearchableFields())) {
+        if (! \Str::contains($this->searchableModelAs(), config('bliss.searchable.exceptions'))) {
+            if (! blank($this->getSearchableFields())) {
                 foreach ($this->getSearchableFields() as $field) {
                     $array[$field] = $this->model->attributes[$field] ?? $this->model->{$field};
                 }
@@ -63,12 +63,13 @@ class SearchableListener
                 $array = $this->model->toArray();
             }
         }
+
         return $array;
     }
 
     protected function create()
     {
-        if (!blank($this->toSearchableFieldsArray())) {
+        if (! blank($this->toSearchableFieldsArray())) {
             $searchable = app(config('bliss.Models.Searchable'))->query()->create([
                 'model' => $this->searchableModelAs(),
                 'model_id' => $this->model->id,
@@ -79,7 +80,7 @@ class SearchableListener
 
     protected function update()
     {
-        if (!blank($this->toSearchableFieldsArray())) {
+        if (! blank($this->toSearchableFieldsArray())) {
             $searchable = app(config('bliss.Models.Searchable'))
                 ->query()
                 ->where('model', $this->searchableModelAs())
@@ -95,7 +96,7 @@ class SearchableListener
 
     protected function delete()
     {
-        if (!blank($this->toSearchableFieldsArray())) {
+        if (! blank($this->toSearchableFieldsArray())) {
             $searchable = app(config('bliss.Models.Searchable'))
                 ->where('model', $this->searchableModelAs())
                 ->where('model_id', $this->model->id);

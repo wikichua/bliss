@@ -3,20 +3,20 @@
 namespace Wikichua\Bliss\Http\Livewire\Components;
 
 use Livewire\Component;
-use Illuminate\Support\Facades\Hash;
 use Wikichua\Bliss\Rules\PasswordConfirmed;
 
 class ReAuth extends Component
 {
     public $shouldConfirmPassword = false;
+
     public $confirmPassword;
 
     protected $listeners = ['checkShouldConfirmPassword'];
 
     public function mount()
     {
-
     }
+
     public function render()
     {
         return view('bliss::livewire.reauth');
@@ -42,7 +42,7 @@ class ReAuth extends Component
         return [
             'confirmPassword' => [
                 'required',
-                new PasswordConfirmed
+                new PasswordConfirmed,
             ],
         ];
     }

@@ -9,7 +9,9 @@ abstract class Component extends LivewireComponent
     use \Wikichua\Bliss\Concerns\ComponentTraits;
 
     public $headerTitle = 'Personal Access Token Management';
+
     protected $queryString = [];
+
     protected $listeners = [];
 
     public function booted()
@@ -78,9 +80,10 @@ abstract class Component extends LivewireComponent
         $groupPermissions = [];
         foreach ($permissions as $group => $perms) {
             foreach ($perms as $perm) {
-                $groupPermissions[$group][$perm->id] = 'Can ' . $perm->name;
+                $groupPermissions[$group][$perm->id] = 'Can '.$perm->name;
             }
         }
+
         return $groupPermissions;
     }
 }

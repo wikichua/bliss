@@ -51,15 +51,18 @@ trait AllModelTraits
         return $this->belongsTo(config('bliss.Models.User'), 'updated_by', 'id');
     }
 
-    public function getSnapshot() {
+    public function getSnapshot()
+    {
         return $this->snapshot ?? false;
     }
 
-    public function getAuditable() {
+    public function getAuditable()
+    {
         return $this->auditable ?? false;
     }
 
-    public function getAuditName() {
+    public function getAuditName()
+    {
         return $this->auditName ?? basename(str_replace('\\', '/', $this::class));
     }
 }

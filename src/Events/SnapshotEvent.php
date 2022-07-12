@@ -17,8 +17,7 @@ class SnapshotEvent
         protected null|string $mode = null,
         protected array|Collection|null $before = [],
         protected array|Collection|null $after = []
-    )
-    {
+    ) {
     }
 
     public function getModel()

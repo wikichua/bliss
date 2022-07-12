@@ -2,13 +2,13 @@
 
 namespace Wikichua\Bliss\Http\Livewire\Auth;
 
-use Livewire\Component;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Livewire\Component;
 use Spatie\Honeypot\Http\Livewire\Concerns\HoneypotData;
 use Spatie\Honeypot\Http\Livewire\Concerns\UsesSpamProtection;
 
@@ -17,9 +17,13 @@ class Register extends Component
     use UsesSpamProtection;
 
     public $name;
+
     public $email;
+
     public $password;
+
     public $password_confirmation;
+
     public HoneypotData $honeypotFields;
 
     public function mount()

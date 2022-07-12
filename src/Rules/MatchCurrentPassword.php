@@ -14,7 +14,6 @@ class MatchCurrentPassword implements Rule
      */
     public function __construct()
     {
-
     }
 
     /**

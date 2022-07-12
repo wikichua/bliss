@@ -5,7 +5,9 @@ namespace Wikichua\Bliss\Http\Livewire\Admin\Report;
 class Listing extends Component
 {
     protected $listeners = [];
+
     protected $bulkActionEnabled = true;
+
     protected $reauthEnabled = true;
 
     public function mount()
@@ -19,14 +21,14 @@ class Listing extends Component
             ['title' => '', 'data' => 'actionsView'],
         ];
     }
+
     public function render()
     {
         $this->authorize('read-reports');
         $rows = app(config('bliss.Models.Report'))->query()
             ->filter($this->filters)
             ->sorting($this->sorts)
-            ->paginate($this->take)
-        ;
+            ->paginate($this->take);
         foreach ($rows as $model) {
             $model->cache_status = 'Ready';
             if (config('cache.default') != 'array') {
@@ -34,6 +36,7 @@ class Listing extends Component
             }
             $model->actionsView = view('bliss::admin.report.actions', compact('model'))->render();
         }
+
         return view('bliss::admin.report.list', compact('rows'))->layout('bliss::layouts.app');
     }
 
@@ -41,7 +44,7 @@ class Listing extends Component
     {
         $model = app(config('bliss.Models.Report'))->findOrFail($id);
         \Artisan::call('bliss:report', [
-            'name' => $model->name, '--clear' => true, '--queue' => true
+            'name' => $model->name, '--clear' => true, '--queue' => true,
         ]);
         session()->flash('status', $model->name.' report is progressing.');
     }

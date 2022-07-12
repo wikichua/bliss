@@ -1,4 +1,5 @@
 <?php
+
 namespace Wikichua\Bliss\Concerns;
 
 use Illuminate\Bus\Queueable as LaravelQueueable;
@@ -9,7 +10,7 @@ trait Queueable
 
     public function onQueue($queue)
     {
-        if (!str()->contains($queue, ':')) {
+        if (! str()->contains($queue, ':')) {
             $batch = $queue;
             $onQueueName = $queue.':'.str()->random(10);
         } else {
@@ -28,7 +29,7 @@ trait Queueable
 
     public function allOnQueue($queue)
     {
-        if (!str()->contains($queue, ':')) {
+        if (! str()->contains($queue, ':')) {
             $batch = $queue;
             $onQueueName = $queue.':'.str()->random(10);
         } else {

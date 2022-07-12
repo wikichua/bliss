@@ -9,11 +9,14 @@ class Creating extends Component
         $this->castModelToProperty(app(config('bliss.Models.Permission'))->query());
         $this->name = collect(['']);
     }
+
     public function render()
     {
         $this->authorize('create-permissions');
+
         return view('bliss::admin.permission.create')->layout('bliss::layouts.app');
     }
+
     public function onSubmit()
     {
         $this->authorize('create-permissions');

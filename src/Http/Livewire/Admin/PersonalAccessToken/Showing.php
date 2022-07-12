@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Showing extends Component
 {
     public $userModel;
+
     protected $reauthEnabled = true;
 
     public function mount(Builder|Model|int $user, int $id)
@@ -24,10 +25,12 @@ class Showing extends Component
             $this->abilities[camel_case(strtolower($ability->group))][$ability->id] = $ability->id;
         }
     }
+
     public function render()
     {
         $this->authorize('read-personal-access-token');
         $groupAbilities = $this->getGroupAbilities($this->userModel);
+
         return view('bliss::admin.personal_access_tokens.show', compact('groupAbilities'))->layout('bliss::layouts.app');
     }
 }

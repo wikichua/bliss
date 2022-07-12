@@ -10,6 +10,7 @@ class Searchable extends Model
     use \Wikichua\Bliss\Concerns\AllModelTraits;
 
     protected $dates = [];
+
     protected $fillable = [
         'model',
         'model_id',
@@ -39,6 +40,7 @@ class Searchable extends Model
         }
         $search = '.*'.$search;
         $searches = searchVariants($search);
+
         return $query->whereRaw('`tags` RLIKE ":\.*?('.implode('|', $searches).')\.*?"');
     }
 }

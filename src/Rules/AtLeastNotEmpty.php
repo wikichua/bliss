@@ -3,7 +3,6 @@
 namespace Wikichua\Bliss\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
-use Illuminate\Support\Facades\Hash;
 
 class AtLeastNotEmpty implements Rule
 {
@@ -14,7 +13,6 @@ class AtLeastNotEmpty implements Rule
      */
     public function __construct(protected int $number = 1)
     {
-
     }
 
     /**
@@ -27,6 +25,7 @@ class AtLeastNotEmpty implements Rule
     public function passes($attribute, $value)
     {
         $value = is_null($value) ? [] : $value;
+
         return count(array_filter($value ?? [])) >= $this->number;
     }
 

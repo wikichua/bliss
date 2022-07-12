@@ -14,6 +14,7 @@ class Editing extends Component
     {
         $this->authorize('update-users');
         $rolesOptions = $this->getRolesOptions();
+
         return view('bliss::admin.user.edit', compact('rolesOptions'))->layout('bliss::layouts.app');
     }
 

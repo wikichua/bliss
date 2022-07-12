@@ -10,6 +10,7 @@ class ExperimentFilepond extends Component
     use WithFileUploads;
 
     public $expFile;
+
     public $expFiles;
 
     public $uploadedFiles;
@@ -24,12 +25,13 @@ class ExperimentFilepond extends Component
                 $this->expFiles[] = \Storage::url($file);
             }
         }
+
         return view('bliss::livewire.experiment.filepond')->layout('bliss::layouts.guest');
     }
 
     public function onSubmit()
     {
-        if ($this->expFile && $this->expFile instanceOf \Livewire\TemporaryUploadedFile) {
+        if ($this->expFile && $this->expFile instanceof \Livewire\TemporaryUploadedFile) {
             $expFile = $this->expFile->store('public/exp');
             cache()->forever('experiment.file', $expFile);
         }
@@ -39,7 +41,7 @@ class ExperimentFilepond extends Component
                 $expFiles = cache()->get('experiment.files');
             }
             foreach ($this->expFiles as $expFile) {
-                if ($expFile instanceOf \Livewire\TemporaryUploadedFile) {
+                if ($expFile instanceof \Livewire\TemporaryUploadedFile) {
                     $expFiles[] = $expFile->store('public/exp');
                 }
             }

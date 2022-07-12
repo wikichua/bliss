@@ -9,11 +9,15 @@ abstract class Component extends LivewireComponent
     use \Wikichua\Bliss\Concerns\ComponentTraits;
 
     public $headerTitle = 'Setting Management';
+
     protected $queryString = [];
+
     protected $listeners = [];
 
     public $useKeyvalue = false;
-    public $keyvalueTemplate = ['key' => null,'val' => null];
+
+    public $keyvalueTemplate = ['key' => null, 'val' => null];
+
     public $keyvalue = [];
 
     public function booted()

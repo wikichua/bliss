@@ -5,10 +5,12 @@ namespace Wikichua\Bliss\Http\Livewire\Admin\Report;
 class Showing extends Component
 {
     protected $reauthEnabled = true;
+
     public function mount($id)
     {
         $this->castModelToProperty(app(config('bliss.Models.Report'))->query()->findOrFail($id));
     }
+
     public function render()
     {
         $this->authorize('read-reports');
@@ -19,8 +21,10 @@ class Showing extends Component
                     return (array) $value;
                 }, \DB::select($sql));
             }
+
             return $results;
         });
+
         return view('bliss::admin.report.show', compact('reports'))->layout('bliss::layouts.app');
     }
 }

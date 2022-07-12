@@ -11,8 +11,9 @@ class Searchable extends Component
     public $query = '';
 
     protected $queryString = [
-        'page' => ['as' => 'sp']
+        'page' => ['as' => 'sp'],
     ];
+
     protected $listeners = [];
 
     public function render()
@@ -28,6 +29,7 @@ class Searchable extends Component
                 ]);
             }
         }
+
         return view('bliss::livewire.searchable', compact('searchables'));
     }
 }

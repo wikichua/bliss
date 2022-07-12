@@ -10,7 +10,9 @@ class FailedJob extends Model
     use \Wikichua\Bliss\Concerns\AllModelTraits;
 
     public $timestamps = false;
+
     protected $dates = ['failed_at'];
+
     protected $fillable = [
         'uuid',
         'connection',
@@ -20,6 +22,7 @@ class FailedJob extends Model
         'exception',
         'failed_at',
     ];
+
     protected $casts = [
         'failed_at' => UserTimezone::class,
     ];
@@ -52,6 +55,6 @@ class FailedJob extends Model
 
     public function getReadUrlAttribute($value)
     {
-        return $this->readUrl = isset($this->id) ? route('failedjob.show', $this->id):null;
+        return $this->readUrl = isset($this->id) ? route('failedjob.show', $this->id) : null;
     }
 }

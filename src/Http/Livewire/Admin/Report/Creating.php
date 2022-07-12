@@ -12,6 +12,7 @@ class Creating extends Component
     public function render()
     {
         $this->authorize('create-reports');
+
         return view('bliss::admin.report.create')->layout('bliss::layouts.app');
     }
 

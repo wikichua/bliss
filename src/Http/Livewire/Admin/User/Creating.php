@@ -13,6 +13,7 @@ class Creating extends Component
     {
         $this->authorize('create-users');
         $rolesOptions = $this->getRolesOptions();
+
         return view('bliss::admin.user.create', compact('rolesOptions'))->layout('bliss::layouts.app');
     }
 
@@ -43,6 +44,7 @@ class Creating extends Component
             permissionString: 'read-users',
             link: $model->readUrl,
         );
+
         return $this->flashStatusSession('Data created.', route('user.list'));
     }
 }

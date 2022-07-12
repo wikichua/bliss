@@ -2,9 +2,9 @@
 
 namespace Wikichua\Bliss\Concerns;
 
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Support\Facades\Cache;
 
 trait AdminUser
 {

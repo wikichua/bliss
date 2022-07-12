@@ -3,8 +3,8 @@
 namespace Wikichua\Bliss\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Wikichua\Bliss\Rules\AtLeastNotEmpty;
 use Wikichua\Bliss\Rules\AllFilledNoEmpty;
+use Wikichua\Bliss\Rules\AtLeastNotEmpty;
 
 class PermissionRequest extends FormRequest
 {

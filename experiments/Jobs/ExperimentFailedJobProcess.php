@@ -2,7 +2,6 @@
 
 namespace Wikichua\Bliss\Exp\Jobs;
 
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -26,7 +25,7 @@ class ExperimentFailedJobProcess implements ShouldQueue
     {
         $response = \Http::withoutVerifying()->get(route('exp.random_result'));
         if ($response->status() != 200) {
-            throw new \Exception("Error Processing Request", 1);
+            throw new \Exception('Error Processing Request', 1);
         }
     }
 }

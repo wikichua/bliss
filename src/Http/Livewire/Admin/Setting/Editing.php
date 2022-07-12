@@ -19,6 +19,7 @@ class Editing extends Component
     public function render()
     {
         $this->authorize('update-settings');
+
         return view('bliss::admin.setting.edit')->layout('bliss::layouts.app');
     }
 

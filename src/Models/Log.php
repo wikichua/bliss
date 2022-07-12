@@ -8,6 +8,7 @@ use Wikichua\Bliss\Casts\UserTimezone;
 class Log extends Model
 {
     use \Wikichua\Bliss\Concerns\AllModelTraits;
+
     public $searchableFields = [
         'level',
         'iteration',

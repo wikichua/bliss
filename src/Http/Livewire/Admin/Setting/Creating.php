@@ -13,6 +13,7 @@ class Creating extends Component
     public function render()
     {
         $this->authorize('create-settings');
+
         return view('bliss::admin.setting.create')->layout('bliss::layouts.app');
     }
 

@@ -1,10 +1,10 @@
 <?php
 
- namespace Wikichua\Bliss\Console\Commands;
+namespace Wikichua\Bliss\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class Resource extends Command
 {
@@ -16,13 +16,21 @@ class Resource extends Command
         'migration' => true,
         'tableName' => '',
     ];
+
     protected $componentPath;
+
     protected $configPath;
+
     protected $modelPath;
+
     protected $module;
+
     protected $requestPath;
+
     protected $resourceConfig = [];
+
     protected $stubsPath;
+
     protected $viewPath;
 
     public function __construct()
@@ -33,7 +41,7 @@ class Resource extends Command
     public function handle()
     {
         $cmd = $this->argument('cmd');
-        if (!in_array(Str::lower($cmd), ['config', 'make'])) {
+        if (! in_array(Str::lower($cmd), ['config', 'make'])) {
             $cmd = $this->choice(
                 'Which 1 again?',
                 ['config', 'make'],
@@ -52,7 +60,7 @@ class Resource extends Command
 
         $this->stubsPath = base_path('vendor/wikichua/bliss/stubs');
 
-        $this->placeholders['tableName'] = !blank($this->option('table')) ? $this->option('table') : Str::plural(Str::snake($this->module));
+        $this->placeholders['tableName'] = ! blank($this->option('table')) ? $this->option('table') : Str::plural(Str::snake($this->module));
 
         switch ($cmd) {
             case 'config':
@@ -64,17 +72,18 @@ class Resource extends Command
                 break;
         }
 
-        $this->info('Module: '. $this->module);
+        $this->info('Module: '.$this->module);
     }
 
     protected function makeResource()
     {
         $configFile = Str::of('?/?.php')->replaceArray('?', [$this->configPath, $this->module]);
-        if (!File::exists($configFile)) {
-            $this->error($configFile . ' not found!');
+        if (! File::exists($configFile)) {
+            $this->error($configFile.' not found!');
+
             return;
         }
-        $this->resourceConfig = collect(require($configFile));
+        $this->resourceConfig = collect(require $configFile);
 
         $this->placeholders['lower'] = Str::lower($this->module);
         $this->placeholders['singular'] = Str::singular($this->module);
@@ -82,7 +91,7 @@ class Resource extends Command
         $this->placeholders['plural'] = Str::plural($this->module);
         $this->placeholders['lower-plural'] = Str::lower(Str::plural($this->module));
         $this->placeholders['model'] = $this->module;
-        $this->placeholders['headerTitle'] = implode(' ', Str::ucsplit($this->module . 'Management'));
+        $this->placeholders['headerTitle'] = implode(' ', Str::ucsplit($this->module.'Management'));
         $this->placeholders['namespace'] = Str::of('?Http\Livewire\Admin\?')->replaceArray('?', [app()->getNamespace(), $this->module]);
         $this->placeholders['requestNamepace'] = Str::of('?Http\Requests\Admin')->replaceArray('?', [app()->getNamespace()]);
         $this->placeholders['moduleRequest'] = Str::of('?Request')->replaceArray('?', [$this->module]);
@@ -102,7 +111,7 @@ class Resource extends Command
             $nullable = $migration['nullable'] ? '->nullable()' : '';
             $index = $migration['index'] ? '->index()' : '';
             $useCurrent = '';
-            $default = !blank($migration['default']) ? '->default(\''.$migration['default'].'\')' : '';
+            $default = ! blank($migration['default']) ? '->default(\''.$migration['default'].'\')' : '';
             if (in_array($column, ['date', 'dateTime', 'dateTimeTz', 'time', 'timeTz'])) {
                 $useCurrent = $migration['useCurrent'] ? '->useCurrent()' : '';
             }
@@ -121,7 +130,7 @@ class Resource extends Command
 
             // Listing
             $label = $data['label'];
-            $sortable = is_bool($data['sortable']) && $data['sortable']? 'true' : 'false';
+            $sortable = is_bool($data['sortable']) && $data['sortable'] ? 'true' : 'false';
             $listingStr[] = <<<EOL
             ['title' => '$label', 'data' => '$fieldName', 'sortable' => $sortable]
             EOL;
@@ -243,13 +252,13 @@ class Resource extends Command
                 {{--KeepMeHerePlease linkStr--}}
         EOL;
 
-        if (!Str::contains($fileContent, $activeStrCheck)) {
+        if (! Str::contains($fileContent, $activeStrCheck)) {
             $fileContent = str_replace('{{--KeepMeHerePlease activeStr--}}', $activeStr, $fileContent);
         }
-        if (!Str::contains($fileContent, $canStrCheck)) {
+        if (! Str::contains($fileContent, $canStrCheck)) {
             $fileContent = str_replace('{{--KeepMeHerePlease canStr--}}', $canStr, $fileContent);
         }
-        if (!Str::contains($fileContent, $linkStrCheck)) {
+        if (! Str::contains($fileContent, $linkStrCheck)) {
             $fileContent = str_replace('{{--KeepMeHerePlease linkStr--}}', $linkStr, $fileContent);
         }
 
@@ -301,14 +310,14 @@ class Resource extends Command
         $stubContent
             /*KeepMeHerePlease*/
         EOL;
-        if (!Str::contains($fileContent, $stubContent)) {
+        if (! Str::contains($fileContent, $stubContent)) {
             $fileContent = str_replace('/*KeepMeHerePlease*/', $str, $fileContent);
             File::put($file, $fileContent);
             $this->line('bliss file updated: <info>'.$file.'</info>');
         } else {
             $str = $stubContent;
             $this->error('bliss file not updated: <info>'.$file.'</info>');
-            $this->line('please manually remove this string >>> ' . $str);
+            $this->line('please manually remove this string >>> '.$str);
         }
     }
 
@@ -347,9 +356,9 @@ class Resource extends Command
         $stub = Str::of('?/config.stub')->replaceArray('?', [$this->stubsPath]);
         $configFile = Str::of('?/?.php')->replaceArray('?', [$this->configPath, $this->module]);
         if (File::exists($configFile) &&
-            !$this->confirm(Str::of('? exists. Do you wish to continue?')->replaceArray('?', [$configFile]))
+            ! $this->confirm(Str::of('? exists. Do you wish to continue?')->replaceArray('?', [$configFile]))
         ) {
-            return ;
+            return;
         }
         $stubContent = File::get($stub);
         $stubContent = $this->getReplacers($stubContent);
@@ -361,15 +370,17 @@ class Resource extends Command
     {
         $placeholders = collect($this->placeholders);
         $placeholders = $placeholders->mapWithKeys(function ($item, $key) {
-            $item = !blank($this->{$key} ?? null) ? $this->{$key} : $item;
+            $item = ! blank($this->{$key} ?? null) ? $this->{$key} : $item;
             if (is_bool($item)) {
                 $item = $item ? 'true' : 'false';
             }
             $mapKey = '['.$key.']';
+
             return [
                 $mapKey => $item,
             ];
         });
+
         return str_replace($placeholders->keys()->toArray(), $placeholders->values()->toArray(), $content);
     }
 }

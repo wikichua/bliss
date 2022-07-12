@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
@@ -40,7 +40,6 @@ return new class extends Migration
                     $table->index(['user_id', 'model_id', 'model_class']);
                 });
             } catch (\MongoDB\Driver\Exception\AuthenticationException $e) {
-
             }
         }
     }

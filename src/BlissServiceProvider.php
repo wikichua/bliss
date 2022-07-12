@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Str;
 use Livewire\Livewire;
 use Wikichua\Bliss\Http\Middleware\HttpsProtocol;
 
@@ -52,7 +51,6 @@ class BlissServiceProvider extends ServiceProvider
             Console\Commands\Report::class,
             Console\Commands\Work::class,
         ]);
-
     }
 
     /**
@@ -119,7 +117,7 @@ class BlissServiceProvider extends ServiceProvider
     {
         $components = collect(config('bliss.Livewires'))->flatten();
         foreach ($components as $component) {
-            $baseName = strtolower(basename(str_replace(['Wikichua\\Bliss\\Http\\Livewire\\','\\'], ['','-'], $component)));
+            $baseName = strtolower(basename(str_replace(['Wikichua\\Bliss\\Http\\Livewire\\', '\\'], ['', '-'], $component)));
             Livewire::component($baseName, $component);
         }
         Livewire::component('reauth', \Wikichua\Bliss\Http\Livewire\Components\ReAuth::class);
@@ -170,7 +168,7 @@ class BlissServiceProvider extends ServiceProvider
                 $value /= 1024;
             }
 
-            return number_format($value, 2) . ' ' . $units[$i];
+            return number_format($value, 2).' '.$units[$i];
         });
     }
 }

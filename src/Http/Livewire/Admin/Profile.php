@@ -3,19 +3,22 @@
 namespace Wikichua\Bliss\Http\Livewire\Admin;
 
 use Livewire\Component;
-use Wikichua\Bliss\Http\Requests\Admin\ProfileSaveProfileRequest;
-use Wikichua\Bliss\Http\Requests\Admin\ProfileSavePasswordRequest;
 use Wikichua\Bliss\Http\Requests\Admin\ProfileSaveAvatarRequest;
+use Wikichua\Bliss\Http\Requests\Admin\ProfileSavePasswordRequest;
+use Wikichua\Bliss\Http\Requests\Admin\ProfileSaveProfileRequest;
 
 class Profile extends Component
 {
     use \Wikichua\Bliss\Concerns\ComponentTraits;
 
     public $headerTitle = 'My Profile';
+
     protected $queryString = [];
+
     protected $listeners = [];
 
     public $current_password;
+
     public $password_confirmation;
 
     public function mount()
@@ -35,6 +38,7 @@ class Profile extends Component
     public function getQueryString()
     {
         unset($this->queryString['take'], $this->queryString['filters'], $this->queryString['sorts'], $this->queryString['page']);
+
         return $this->queryString;
     }
 
@@ -53,7 +57,7 @@ class Profile extends Component
         ];
         $model->update($data);
         $this->flashStatusSession('Data Updated.');
-        $this->emitTo('header-profile','refresh');
+        $this->emitTo('header-profile', 'refresh');
     }
 
     public function onSaveProfile()
@@ -68,7 +72,7 @@ class Profile extends Component
         ];
         $model->update($data);
         $this->flashStatusSession('Data Updated.');
-        $this->emitTo('header-profile','refresh');
+        $this->emitTo('header-profile', 'refresh');
     }
 
     public function onSavePassword()

@@ -9,12 +9,15 @@ use Wikichua\Bliss\Casts\UserTimezone;
 class Setting extends Model
 {
     use \Wikichua\Bliss\Concerns\AllModelTraits;
+
     public $searchableFields = ['key'];
 
     protected $auditable = true;
+
     protected $snapshot = true;
 
-    protected $appends = ['useKeyvalue','keyvalue'];
+    protected $appends = ['useKeyvalue', 'keyvalue'];
+
     protected $fillable = [
         'key',
         'value',
@@ -82,6 +85,7 @@ class Setting extends Model
         if ($decoded = json_decode($value, 1)) {
             return is_array($decoded);
         }
+
         return false;
     }
 
@@ -102,10 +106,12 @@ class Setting extends Model
                 foreach ($keyvalue as $key => $val) {
                     $fieldValue[] = compact('key', 'val');
                 }
+
                 return $fieldValue;
             }
         }
-        return $fieldValue[] = ['key'=> null, 'val' => null];
+
+        return $fieldValue[] = ['key' => null, 'val' => null];
     }
 
     public function getAllSettings()
@@ -133,7 +139,7 @@ class Setting extends Model
 
     public function getReadUrlAttribute($value)
     {
-        return $this->readUrl = isset($this->id) ? route('setting.show', $this->id):null;
+        return $this->readUrl = isset($this->id) ? route('setting.show', $this->id) : null;
     }
 
     public function onCachedEvent()

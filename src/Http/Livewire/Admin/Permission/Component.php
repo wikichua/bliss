@@ -10,7 +10,9 @@ abstract class Component extends LivewireComponent
     use \Wikichua\Bliss\Concerns\ComponentTraits;
 
     public $headerTitle = 'Permission Management';
+
     protected $queryString = [];
+
     protected $listeners = [];
 
     public function booted()

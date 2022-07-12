@@ -2,9 +2,9 @@
 
 namespace Wikichua\Bliss\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 use Wikichua\Bliss\Casts\UserTimezone;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Cronjob extends Eloquent
 {
@@ -12,9 +12,11 @@ class Cronjob extends Eloquent
     use \Wikichua\Bliss\Concerns\AllModelTraits;
 
     protected $auditable = true;
+
     protected $snapshot = false;
 
     protected $dates = ['deleted_at'];
+
     protected $fillable = [
         'name',
         'mode',
@@ -68,14 +70,14 @@ class Cronjob extends Eloquent
     public function output(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => is_array($value)? $value:[]
+            get: fn ($value) => is_array($value) ? $value : []
         );
     }
 
     public function readUrl(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => $this->readUrl = isset($this->id)? route('cronjob.show', $this->id):null
+            get: fn ($value) => $this->readUrl = isset($this->id) ? route('cronjob.show', $this->id) : null
         );
     }
 

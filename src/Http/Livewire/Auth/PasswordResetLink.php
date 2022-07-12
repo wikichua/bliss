@@ -2,8 +2,8 @@
 
 namespace Wikichua\Bliss\Http\Livewire\Auth;
 
-use Livewire\Component;
 use Illuminate\Support\Facades\Password;
+use Livewire\Component;
 use Spatie\Honeypot\Http\Livewire\Concerns\HoneypotData;
 use Spatie\Honeypot\Http\Livewire\Concerns\UsesSpamProtection;
 
@@ -12,6 +12,7 @@ class PasswordResetLink extends Component
     use UsesSpamProtection;
 
     public $email;
+
     public HoneypotData $honeypotFields;
 
     public function mount()

@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
@@ -34,7 +34,7 @@ return new class extends Migration
             'name' => 'User',
             'email' => 'user@example.com',
             'password' => Hash::make('admin123'),
-            'status' => 'A'
+            'status' => 'A',
         ]);
 
         $permission = app(config('bliss.Models.Permission'));
@@ -53,7 +53,6 @@ return new class extends Migration
         }
         $permission->createGroup('Queue Jobs', ['read-queuejobs', 'delete-queuejobs', 'bulk-delete-queuejobs'], $user_id);
         $permission->createGroup('Failed Jobs', ['read-failedjobs', 'retry-failedjobs', 'delete-failedjobs', 'bulk-retry-failedjobs', 'bulk-delete-failedjobs'], $user_id);
-
 
         $setting = app(config('bliss.Models.Setting'));
         $setting->create([

@@ -34,6 +34,7 @@ class ExperimentServiceProvider extends ServiceProvider
                 $router->get('exp/searching', \Wikichua\Bliss\Exp\Livewire\ExperimentSearching::class);
                 $router->get('exp/random_result', function () {
                     $status = array_rand([400 => 400, 200 => 200]);
+
                     return response(status: $status);
                 })->name('exp.random_result');
                 $router->get('exp/poll', \Wikichua\Bliss\Exp\Livewire\ExperimentPoll::class);
@@ -55,6 +56,5 @@ class ExperimentServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
     }
 }

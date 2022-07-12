@@ -26,7 +26,7 @@ class Installation extends Command
 
     public function handle()
     {
-        if (!$this->option('dev')) {
+        if (! $this->option('dev')) {
             $this->vendorPath = base_path('vendor/wikichua/bliss');
         }
 
@@ -43,37 +43,37 @@ class Installation extends Command
 
             File::delete(base_path('postcss.config.js'));
             File::link($vendorPath.'/postcss.config.js', base_path('postcss.config.js'));
-            $this->info('Created symlink '.$vendorPath.'/postcss.config.js to '. base_path('postcss.config.js'));
+            $this->info('Created symlink '.$vendorPath.'/postcss.config.js to '.base_path('postcss.config.js'));
             $this->newLine();
 
             File::delete(base_path('package.json'));
             File::link($vendorPath.'/package.json', base_path('package.json'));
-            $this->info('Created symlink '.$vendorPath.'/package.json to '. base_path('package.json'));
+            $this->info('Created symlink '.$vendorPath.'/package.json to '.base_path('package.json'));
             $this->newLine();
 
             File::delete(base_path('tailwind.config.js'));
             File::link($vendorPath.'/tailwind.config.js', base_path('tailwind.config.js'));
-            $this->info('Created symlink '.$vendorPath.'/tailwind.config.js to '. base_path('tailwind.config.js'));
+            $this->info('Created symlink '.$vendorPath.'/tailwind.config.js to '.base_path('tailwind.config.js'));
             $this->newLine();
 
             File::delete(resource_path('js'));
             File::link($vendorPath.'/resources/js', resource_path('js'));
-            $this->info('Created symlink '.$vendorPath.'/resources/js to '. resource_path('js'));
+            $this->info('Created symlink '.$vendorPath.'/resources/js to '.resource_path('js'));
             $this->newLine();
 
             File::delete(resource_path('css'));
             File::link($vendorPath.'/resources/css', resource_path('css'));
-            $this->info('Created symlink '.$vendorPath.'/resources/css to '. resource_path('css'));
+            $this->info('Created symlink '.$vendorPath.'/resources/css to '.resource_path('css'));
             $this->newLine();
 
             File::delete(resource_path('views/vendor/bliss/layouts/navigation.blade.php'));
             File::link($vendorPath.'/resources/views/layouts/navigation.blade.php', resource_path('views/vendor/bliss/layouts/navigation.blade.php'));
-            $this->info('Created symlink '.$vendorPath.'/resources/views/layouts/navigation.blade.php to '. resource_path('views/vendor/bliss/layouts/navigation.blade.php'));
+            $this->info('Created symlink '.$vendorPath.'/resources/views/layouts/navigation.blade.php to '.resource_path('views/vendor/bliss/layouts/navigation.blade.php'));
             $this->newLine();
 
             File::delete(resource_path('views/vendor/bliss/layouts/header.blade.php'));
             File::link($vendorPath.'/resources/views/layouts/header.blade.php', resource_path('views/vendor/bliss/layouts/header.blade.php'));
-            $this->info('Created symlink '.$vendorPath.'/resources/views/layouts/header.blade.php to '. resource_path('views/vendor/bliss/layouts/header.blade.php'));
+            $this->info('Created symlink '.$vendorPath.'/resources/views/layouts/header.blade.php to '.resource_path('views/vendor/bliss/layouts/header.blade.php'));
             $this->newLine();
         } else {
             $files = [
@@ -120,7 +120,7 @@ class Installation extends Command
             }
         }
         cache()->flush();
-        return ;
+
     }
 
     protected function dumpComposer()
@@ -134,7 +134,7 @@ class Installation extends Command
         if (in_array(config('cache.default'), ['file'])) {
             $file = config_path('cache.php');
             $content = @File::get($file);
-            if (!str_contains($content, '\'default\' => env(\'CACHE_DRIVER\', \'array\'),')) {
+            if (! str_contains($content, '\'default\' => env(\'CACHE_DRIVER\', \'array\'),')) {
                 $lines = explode(PHP_EOL, $content);
                 foreach ($lines as $key => $line) {
                     if (str_contains($line, '\'default\' => env(\'CACHE_DRIVER\', \'file\'),')) {
@@ -144,7 +144,7 @@ class Installation extends Command
                 }
                 if (isset($from)) {
                     @File::replace($file, implode(PHP_EOL, $lines));
-                    $this->info('Replace '.trim($from).' to '. trim($to) . ' in ' . $file);
+                    $this->info('Replace '.trim($from).' to '.trim($to).' in '.$file);
                     $this->newLine();
                 }
             }
@@ -161,7 +161,7 @@ class Installation extends Command
             }
             if (isset($from)) {
                 @File::replace($file, implode(PHP_EOL, $lines));
-                $this->info('Replace '.trim($from).' to '. trim($to) . ' in ' . $file);
+                $this->info('Replace '.trim($from).' to '.trim($to).' in '.$file);
                 $this->newLine();
             }
         }
@@ -173,8 +173,8 @@ class Installation extends Command
             if ($replace == false && file_exists($to)) {
                 return;
             }
-            is_dir($from)? @File::copyDirectory($from, $to):@File::copy($from, $to);
-            $this->info('Copy '.$from.' to '. $to);
+            is_dir($from) ? @File::copyDirectory($from, $to) : @File::copy($from, $to);
+            $this->info('Copy '.$from.' to '.$to);
             $this->newLine();
         }
     }
@@ -184,31 +184,31 @@ class Installation extends Command
         $file = app_path('Providers/RouteServiceProvider.php');
         $lines = explode(PHP_EOL, @File::get($file));
         foreach ($lines as $key => $line) {
-            if (str_contains($line, 'public const HOME') && !str_contains($line, "public const HOME = '/';")) {
+            if (str_contains($line, 'public const HOME') && ! str_contains($line, "public const HOME = '/';")) {
                 $from = $line;
                 $to = $lines[$key] = "\tpublic const HOME = '/';";
             }
         }
         if (isset($from) && '' != $from) {
             @File::replace($file, implode(PHP_EOL, $lines));
-            $this->info('Replace '.trim($from).' to '. trim($to) . ' in ' . $file);
+            $this->info('Replace '.trim($from).' to '.trim($to).' in '.$file);
             $this->newLine();
         }
 
         $file = app_path('Providers/RouteServiceProvider.php');
         $content = File::get($file);
-        if (!str_contains($content, '->group(base_path(\'routes/bliss.php\'));')) {
-            $lookFor = <<<EOL
+        if (! str_contains($content, '->group(base_path(\'routes/bliss.php\'));')) {
+            $lookFor = <<<'EOL'
             ->group(base_path('routes/web.php'));
             EOL;
-            $replace = <<<EOL
+            $replace = <<<'EOL'
             ->group(base_path('routes/web.php'));
 
                         Route::middleware('web')
                             ->group(base_path('routes/bliss.php'));
             EOL;
             @File::replace($file, str_replace($lookFor, $replace, $content));
-            $this->info('Replace '.trim($lookFor).' to '. trim($replace) . ' in ' . $file);
+            $this->info('Replace '.trim($lookFor).' to '.trim($replace).' in '.$file);
         }
     }
 
@@ -216,7 +216,7 @@ class Installation extends Command
     {
         $file = app_path('Models/User.php');
         $content = @File::get($file);
-        if (!str_contains($content, 'class User extends \Wikichua\Bliss\Models\User')) {
+        if (! str_contains($content, 'class User extends \Wikichua\Bliss\Models\User')) {
             $lines = explode(PHP_EOL, $content);
             foreach ($lines as $key => $line) {
                 if (str_contains($line, 'class User extends Authenticatable')) {
@@ -226,19 +226,19 @@ class Installation extends Command
             }
             if (isset($from)) {
                 @File::replace($file, implode(PHP_EOL, $lines));
-                $this->info('Replace '.trim($from).' to '. trim($to) . ' in ' . $file);
+                $this->info('Replace '.trim($from).' to '.trim($to).' in '.$file);
                 $this->newLine();
             }
         }
         $file = app_path('Models/User.php');
         $content = @File::get($file);
-        if (!str_contains($content, '\'created_by\'') && !str_contains($content, '\'updated_by\'')) {
-            $lookFor = <<<EOL
+        if (! str_contains($content, '\'created_by\'') && ! str_contains($content, '\'updated_by\'')) {
+            $lookFor = <<<'EOL'
                     'name',
                     'email',
                     'password',
             EOL;
-            $replaceStr = <<<EOL
+            $replaceStr = <<<'EOL'
                     'name',
                     'email',
                     'password',
@@ -266,7 +266,7 @@ class Installation extends Command
         EOL;
         $file = base_path('config/logging.php');
         $content = @File::get($file);
-        if (!str_contains($content, '\Wikichua\Bliss\Logging\DbLogger::class')) {
+        if (! str_contains($content, '\Wikichua\Bliss\Logging\DbLogger::class')) {
             $lines = explode(PHP_EOL, $content);
             foreach ($lines as $key => $line) {
                 if (str_contains($line, '\'stack\' => [')) {
@@ -276,7 +276,7 @@ class Installation extends Command
             }
             if (isset($from)) {
                 @File::replace($file, implode(PHP_EOL, $lines));
-                $this->info('Replace '.trim($from).' to '. trim($to) . ' in ' . $file);
+                $this->info('Replace '.trim($from).' to '.trim($to).' in '.$file);
                 $this->newLine();
             }
         }
@@ -284,7 +284,7 @@ class Installation extends Command
 
     protected function injectMongoConfigIntoDatabaseConfigFile()
     {
-        $configStr = <<<EOL
+        $configStr = <<<'EOL'
 
                 'mongodb' => [
                     'driver' => 'mongodb',
@@ -302,7 +302,7 @@ class Installation extends Command
         EOL;
         $file = base_path('config/database.php');
         $content = @File::get($file);
-        if (!str_contains($content, '\'mongodb\' => [')) {
+        if (! str_contains($content, '\'mongodb\' => [')) {
             $lines = explode(PHP_EOL, $content);
             foreach ($lines as $key => $line) {
                 if (str_contains($line, '\'connections\' => [')) {
@@ -312,7 +312,7 @@ class Installation extends Command
             }
             if (isset($from)) {
                 @File::replace($file, implode(PHP_EOL, $lines));
-                $this->info('Replace '.trim($from).' to '. trim($to) . ' in ' . $file);
+                $this->info('Replace '.trim($from).' to '.trim($to).' in '.$file);
                 $this->newLine();
             }
         }
@@ -322,7 +322,7 @@ class Installation extends Command
     {
         $file = app_path('Console/Kernel.php');
         $content = @File::get($file);
-        if (!str_contains($content, '$this->runCronjobs($schedule);')) {
+        if (! str_contains($content, '$this->runCronjobs($schedule);')) {
             $lines = explode(PHP_EOL, $content);
             foreach ($lines as $key => $line) {
                 if (str_contains($line, '$schedule->command(\'inspire\')->hourly();')) {
@@ -332,7 +332,7 @@ class Installation extends Command
             }
             if (isset($from)) {
                 @File::replace($file, implode(PHP_EOL, $lines));
-                $this->info('Replace '.trim($from).' to '. trim($to) . ' in ' . $file);
+                $this->info('Replace '.trim($from).' to '.trim($to).' in '.$file);
                 $this->newLine();
             }
         }
@@ -342,7 +342,7 @@ class Installation extends Command
     {
         $file = app_path('Console/Kernel.php');
         $content = @File::get($file);
-        if (!str_contains($content, 'use \Wikichua\Bliss\Concerns\ArtisanTrait;')) {
+        if (! str_contains($content, 'use \Wikichua\Bliss\Concerns\ArtisanTrait;')) {
             $lines = explode(PHP_EOL, $content);
             foreach ($lines as $key => $line) {
                 if (str_contains($line, 'protected function schedule(Schedule $schedule)')) {
@@ -354,7 +354,7 @@ class Installation extends Command
             }
             if (isset($from)) {
                 @File::replace($file, implode(PHP_EOL, $lines));
-                $this->info('Replace '.trim($from).' to '. trim($to) . ' in ' . $file);
+                $this->info('Replace '.trim($from).' to '.trim($to).' in '.$file);
                 $this->newLine();
             }
         }
@@ -364,7 +364,7 @@ class Installation extends Command
     {
         $file = app_path('Console/Kernel.php');
         $content = @File::get($file);
-        if (!str_contains($content, '$this->disableCommands();')) {
+        if (! str_contains($content, '$this->disableCommands();')) {
             $lines = explode(PHP_EOL, $content);
             foreach ($lines as $key => $line) {
                 if (str_contains($line, '$this->load(__DIR__.\'/Commands\');')) {
@@ -374,17 +374,18 @@ class Installation extends Command
             }
             if (isset($from)) {
                 @File::replace($file, implode(PHP_EOL, $lines));
-                $this->info('Replace '.trim($from).' to '. trim($to) . ' in ' . $file);
+                $this->info('Replace '.trim($from).' to '.trim($to).' in '.$file);
                 $this->newLine();
             }
         }
     }
+
     protected function injectMixAppKeyInEnvFile()
     {
         $files = [base_path('.env.example'), base_path('.env')];
         foreach ($files as $file) {
             $content = @File::get($file);
-            if (!str_contains($content, 'VITE_APP_KEY')) {
+            if (! str_contains($content, 'VITE_APP_KEY')) {
                 $lines = explode(PHP_EOL, $content);
                 foreach ($lines as $key => $line) {
                     if (str_contains($line, 'APP_DEBUG')) {
@@ -394,12 +395,13 @@ class Installation extends Command
                 }
                 if (isset($from)) {
                     @File::replace($file, implode(PHP_EOL, $lines));
-                    $this->info('Added '. trim($to) . ' in ' . $file);
+                    $this->info('Added '.trim($to).' in '.$file);
                     $this->newLine();
                 }
             }
         }
     }
+
     protected function removeDefaultWebRoute()
     {
         $file = base_path('routes/web.php');
@@ -418,7 +420,7 @@ class Installation extends Command
         }
 
         $file = base_path('routes/bliss.php');
-        if (!File::exists($file)) {
+        if (! File::exists($file)) {
             $content = <<<EOL
             <?php
 
@@ -431,6 +433,7 @@ class Installation extends Command
             File::put($file, $content);
         }
     }
+
     protected function injectPublishLivewireAssetsIntoComposerJson()
     {
         $this->call('vendor:publish', [
@@ -439,54 +442,55 @@ class Installation extends Command
             '--tag' => 'livewire:assets',
         ]);
         $content = @File::get(base_path('composer.json'));
-        if (!Str::contains($content, '"@php artisan vendor:publish --force --tag=livewire:assets --ansi"')) {
+        if (! Str::contains($content, '"@php artisan vendor:publish --force --tag=livewire:assets --ansi"')) {
             $content = str_replace('"@php artisan package:discover --ansi"',
                 '"@php artisan package:discover --ansi",'.PHP_EOL."\t\t\t".'"@php artisan vendor:publish --force --tag=livewire:assets --ansi"', $content);
             @File::replace(base_path('composer.json'), $content);
         }
     }
+
     protected function publishLaravelStubsAndReplaceSomething()
     {
         $this->call('stub:publish');
         $this->call('livewire:stubs');
         foreach (File::files(base_path('stubs')) as $file) {
             $content = @File::get($file->getPathname());
-            if (Str::contains($content, 'use Illuminate\Bus\Queueable;') && !Str::contains($content, 'use Wikichua\Bliss\Concerns\Queueable;')) {
+            if (Str::contains($content, 'use Illuminate\Bus\Queueable;') && ! Str::contains($content, 'use Wikichua\Bliss\Concerns\Queueable;')) {
                 $content = str_replace('use Illuminate\Bus\Queueable;', 'use Wikichua\Bliss\Concerns\Queueable;', $content);
                 @File::replace($file, $content);
             }
         }
 
         $livewireStubContent = @File::get(base_path('stubs/livewire.stub'));
-        if (!Str::contains($livewireStubContent, 'use Wikichua\Bliss\Concerns\ComponentTraits;')) {
+        if (! Str::contains($livewireStubContent, 'use Wikichua\Bliss\Concerns\ComponentTraits;')) {
             $livewireStubContent = str_replace('use Livewire\Component;',
                 'use Livewire\Component;'.PHP_EOL.'use Wikichua\Bliss\Concerns\ComponentTraits;', $livewireStubContent);
             @File::replace(base_path('stubs/livewire.stub'), $livewireStubContent);
         }
-        if (!Str::contains($livewireStubContent, 'use ComponentTraits;')) {
+        if (! Str::contains($livewireStubContent, 'use ComponentTraits;')) {
             $livewireStubContent = str_replace('public function render()',
                 'use ComponentTraits;'.PHP_EOL.PHP_EOL."\t".'public function render()', $livewireStubContent);
             @File::replace(base_path('stubs/livewire.stub'), $livewireStubContent);
         }
 
         $modelStubContent = @File::get(base_path('stubs/model.stub'));
-        if (!Str::contains($modelStubContent, 'use Wikichua\Bliss\Casts\UserTimezone;')) {
+        if (! Str::contains($modelStubContent, 'use Wikichua\Bliss\Casts\UserTimezone;')) {
             $modelStubContent = str_replace('use Illuminate\Database\Eloquent\Model;',
                 'use Illuminate\Database\Eloquent\Model;'.PHP_EOL.'use Wikichua\Bliss\Casts\UserTimezone;', $modelStubContent);
             @File::replace(base_path('stubs/model.stub'), $modelStubContent);
         }
-        if (!Str::contains($modelStubContent, 'use Wikichua\Bliss\Concerns\AllModelTraits;')) {
+        if (! Str::contains($modelStubContent, 'use Wikichua\Bliss\Concerns\AllModelTraits;')) {
             $modelStubContent = str_replace('use Illuminate\Database\Eloquent\Model;',
                 'use Illuminate\Database\Eloquent\Model;'.PHP_EOL.'use Wikichua\Bliss\Concerns\AllModelTraits;', $modelStubContent);
             @File::replace(base_path('stubs/model.stub'), $modelStubContent);
         }
-        $eol = <<<EOL
-            protected \$casts = [
+        $eol = <<<'EOL'
+            protected $casts = [
                 'created_at' => UserTimezone::class,
                 'updated_at' => UserTimezone::class,
             ];
         EOL;
-        if (!Str::contains($modelStubContent, $eol)) {
+        if (! Str::contains($modelStubContent, $eol)) {
             $modelStubContent = str_replace('use HasFactory;',
                 'use HasFactory;'.PHP_EOL.$eol, $modelStubContent);
             @File::replace(base_path('stubs/model.stub'), $modelStubContent);

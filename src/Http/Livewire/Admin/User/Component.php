@@ -10,10 +10,13 @@ abstract class Component extends LivewireComponent
     use \Wikichua\Bliss\Concerns\ComponentTraits;
 
     public $headerTitle = 'User Management';
+
     protected $queryString = [];
+
     protected $listeners = [];
 
     public $roles;
+
     public $password_confirmation;
 
     public function booted()

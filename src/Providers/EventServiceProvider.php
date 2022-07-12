@@ -59,13 +59,13 @@ class EventServiceProvider extends ServiceProvider
             if (Str::contains($modelClass, 'Wikichua\Bliss\Exp\Models')) {
                 continue;
             }
-            if (!in_array($modelClass, config('bliss.audit.exceptions'))) {
+            if (! in_array($modelClass, config('bliss.audit.exceptions'))) {
                 app($modelClass)->observe(AuditObserver::class);
             }
-            if (!in_array($modelClass, config('bliss.snapshot.exceptions'))) {
+            if (! in_array($modelClass, config('bliss.snapshot.exceptions'))) {
                 app($modelClass)->observe(SnapshotObserver::class);
             }
-            if (!in_array($modelClass, config('bliss.searchable.exceptions'))) {
+            if (! in_array($modelClass, config('bliss.searchable.exceptions'))) {
                 app($modelClass)->observe(SearchableObserver::class);
             }
         }

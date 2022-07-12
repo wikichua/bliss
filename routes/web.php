@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/dashboard');
 
-Route::middleware(['auth','can:access-admin-panel'])->group(function () {
+Route::middleware(['auth', 'can:access-admin-panel'])->group(function () {
     Route::get('/dashboard', \Wikichua\Bliss\Http\Livewire\Admin\Dashboard::class)->name('dashboard');
 
     Route::get('/profile', \Wikichua\Bliss\Http\Livewire\Admin\Profile::class)->name('profile');

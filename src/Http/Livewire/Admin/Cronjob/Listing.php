@@ -5,7 +5,9 @@ namespace Wikichua\Bliss\Http\Livewire\Admin\Cronjob;
 class Listing extends Component
 {
     protected $listeners = [];
+
     protected $bulkActionEnabled = true;
+
     protected $reauthEnabled = true;
 
     public function mount()
@@ -20,6 +22,7 @@ class Listing extends Component
             ['title' => '', 'data' => 'actionsView'],
         ];
     }
+
     public function render()
     {
         $this->authorize('read-cronjobs');
@@ -27,11 +30,11 @@ class Listing extends Component
             ->where('mode', '!=', 'que')
             ->filter($this->filters)
             ->sorting($this->sorts)
-            ->paginate($this->take)
-        ;
+            ->paginate($this->take);
         foreach ($rows as $model) {
             $model->actionsView = view('bliss::admin.cronjob.actions', compact('model'))->render();
         }
+
         return view('bliss::admin.cronjob.list', compact('rows'))->layout('bliss::layouts.app');
     }
 }

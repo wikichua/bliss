@@ -9,7 +9,9 @@ abstract class Component extends LivewireComponent
     use \Wikichua\Bliss\Concerns\ComponentTraits;
 
     public $headerTitle = 'Failed Jobs';
+
     protected $queryString = [];
+
     protected $listeners = [];
 
     public function booted()
@@ -51,6 +53,7 @@ abstract class Component extends LivewireComponent
             $this->flashStatusSession('Data Deleted.');
         }
     }
+
     protected function getInfoData()
     {
         if ($this->model ?? null) {
@@ -59,6 +62,7 @@ abstract class Component extends LivewireComponent
             ];
         }
     }
+
     public function onRetry($id)
     {
         $model = app(config('bliss.Models.FailedJob'))->query()->findOrFail($id);
@@ -76,9 +80,10 @@ abstract class Component extends LivewireComponent
             link: route('failedjob.list'),
         );
     }
+
     public function onBatchRetry($ids)
     {
-        $models = app(config('bliss.Models.FailedJob'))->query()->whereIn('id',$ids)->get();
+        $models = app(config('bliss.Models.FailedJob'))->query()->whereIn('id', $ids)->get();
         foreach ($models as $model) {
             app(config('bliss.Models.Worker'))->query()->create([
                 'queue' => $model->queue,

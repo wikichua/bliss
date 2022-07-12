@@ -9,6 +9,7 @@ class EditingPassword extends Component
     protected $reauthEnabled = true;
 
     public $password;
+
     public $password_confirmation;
 
     public function mount($id)
@@ -19,6 +20,7 @@ class EditingPassword extends Component
     public function render()
     {
         $this->authorize('update-users-password');
+
         return view('bliss::admin.user.editPassword')->layout('bliss::layouts.app');
     }
 

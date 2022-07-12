@@ -8,10 +8,11 @@ use Wikichua\Bliss\Casts\UserTimezone;
 class ExperimentKeywordsModel extends Model
 {
     use \Wikichua\Bliss\Concerns\AllModelTraits;
+
     public $table = 'experiment_keywords_queue';
 
     protected $fillable = [
-        'keyword'
+        'keyword',
     ];
 
     protected $appends = [];
@@ -22,15 +23,16 @@ class ExperimentKeywordsModel extends Model
     ];
 
     public $searchableFields = ['keyword'];
-    protected $auditable = ['keyword'];
-    protected $auditName = 'Keyword';
-    protected $snapshot = true;
 
+    protected $auditable = ['keyword'];
+
+    protected $auditName = 'Keyword';
+
+    protected $snapshot = true;
 
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
         // $this->connection = 'mysql';
     }
-
 }

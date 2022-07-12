@@ -18,7 +18,7 @@ trait ModelScopes
                         if (method_exists($this, $method)) {
                             $query->{$scope}($search);
                         } else {
-                            if (!is_array($search)) {
+                            if (! is_array($search)) {
                                 try {
                                     $query->filterGenericDate($field, $search);
                                 } catch (\Carbon\Exceptions\InvalidFormatException $e) {
@@ -38,16 +38,17 @@ trait ModelScopes
 
     public function scopeSorting($query, $sorts)
     {
-        if (!empty($sorts)) {
+        if (! empty($sorts)) {
             foreach ($sorts as $sortBy => $sortDirection) {
                 $query->when($sortBy, function ($query) use ($sortDirection, $sortBy) {
                     $method = Str::camel('scopeSortBy_'.$sortBy);
                     $scope = Str::camel('sortBy_'.$sortBy);
-                    if (isset($this->sortByCustomAttributeMaps)){
+                    if (isset($this->sortByCustomAttributeMaps)) {
                         $sortBy = $this->sortByCustomAttributeMaps[$sortBy] ?? $sortBy;
                     } elseif (method_exists($this, $method)) {
                         return $query->{$scope}($sortDirection);
                     }
+
                     return $query->orderBy($sortBy, $sortDirection);
                 });
             }
@@ -110,17 +111,17 @@ trait ModelScopes
         ]);
     }
 
-    public function scopeFilterGenericLike($query, $field , $search)
+    public function scopeFilterGenericLike($query, $field, $search)
     {
         return $query->where($field, 'like', "%{$search}%");
     }
 
-    public function scopeFilterGenericIn($query, $field , $search)
+    public function scopeFilterGenericIn($query, $field, $search)
     {
         return $query->whereIn($field, $search);
     }
 
-    public function scopeFilterGenericDate($query, $field,  $search)
+    public function scopeFilterGenericDate($query, $field, $search)
     {
         $date = $this->getDateFilter($search);
 

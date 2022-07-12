@@ -3,14 +3,15 @@
 namespace Wikichua\Bliss\Http\Livewire\Admin\Role;
 
 use Livewire\Component as LivewireComponent;
-use Wikichua\Bliss\Http\Requests\Admin\RoleRequest;
 
 abstract class Component extends LivewireComponent
 {
     use \Wikichua\Bliss\Concerns\ComponentTraits;
 
     public $headerTitle = 'Role Management';
+
     protected $queryString = [];
+
     protected $listeners = [];
 
     public $permissions;
@@ -68,9 +69,10 @@ abstract class Component extends LivewireComponent
         $groupPermissions = [];
         foreach ($permissions as $group => $perms) {
             foreach ($perms as $perm) {
-                $groupPermissions[$group][$perm->id] = 'Can ' . $perm->name;
+                $groupPermissions[$group][$perm->id] = 'Can '.$perm->name;
             }
         }
+
         return $groupPermissions;
     }
 }

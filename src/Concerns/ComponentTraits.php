@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
-use Spatie\Honeypot\Http\Livewire\Concerns\UsesSpamProtection;
 use Spatie\Honeypot\Http\Livewire\Concerns\HoneypotData;
+use Spatie\Honeypot\Http\Livewire\Concerns\UsesSpamProtection;
 
 trait ComponentTraits
 {
@@ -19,17 +19,27 @@ trait ComponentTraits
 
     /* DO NOT declare protected listeners and queryString in this traits */
     public $pageOptions = [5, 10,  25,  50,  100,  200];
+
     public $sorts = [];
+
     public $take = 25;
+
     public $filters = [];
+
     public $cols = [];
+
     public Builder|Model $model;
+
     public $infoData = [];
+
     public HoneypotData $honeypotFields;
 
     protected $reauthEnabled = false;
+
     protected $bulkActionEnabled = true;
+
     protected $bulkActionKey = 'id';
+
     public $bulkSelectedKeys = [];
 
     public function bootComponentTraits()
@@ -61,8 +71,9 @@ trait ComponentTraits
     {
         $listeners = array_merge($this->listeners, [
             'refresh' => 'refreshPage',
-            'filterDatatable' => 'refreshPage'
+            'filterDatatable' => 'refreshPage',
         ]);
+
         return $listeners;
     }
 
@@ -98,7 +109,7 @@ trait ComponentTraits
     public function castModelToProperty(Builder|Model $model = null, array $only = [])
     {
         $model = $model ??= $this->model;
-        if ($model instanceOf Model) {
+        if ($model instanceof Model) {
             $this->model = $model;
             $properties = collect($this->model->toArray());
         } else {
@@ -107,7 +118,7 @@ trait ComponentTraits
             $fillablesValues = array_map(fn () => null, $fillables);
             $properties = collect(array_combine($fillables, $fillablesValues));
         }
-        if (!empty($only)) {
+        if (! empty($only)) {
             $properties = $properties->only($only);
         }
         foreach ($properties as $key => $value) {
@@ -117,6 +128,7 @@ trait ComponentTraits
             data_set($this, $key, $value);
         }
         $this->getInfoData();
+
         return $this;
     }
 
@@ -140,6 +152,7 @@ trait ComponentTraits
             session()->flash('status', $message);
         } else { // url
             $redirect = $eventOrSession;
+
             return redirect()->to($redirect)->with('status', $message);
         }
     }

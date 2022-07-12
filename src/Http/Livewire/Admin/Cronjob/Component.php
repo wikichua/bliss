@@ -10,7 +10,9 @@ abstract class Component extends LivewireComponent
     use \Wikichua\Bliss\Concerns\ComponentTraits;
 
     public $headerTitle = 'Cronjob Management';
+
     protected $queryString = [];
+
     protected $listeners = [];
 
     public $modeOptions = ['art' => 'Run with php artisan', 'exec' => 'Run on shell exec'];
@@ -59,6 +61,7 @@ abstract class Component extends LivewireComponent
     {
         return (new CronjobRequest)->rules();
     }
+
     protected function getInfoData()
     {
         if ($this->model ?? null) {

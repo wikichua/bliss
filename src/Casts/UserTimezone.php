@@ -2,8 +2,8 @@
 
 namespace Wikichua\Bliss\Casts;
 
-use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Carbon\Carbon;
+use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 
 class UserTimezone implements CastsAttributes
 {

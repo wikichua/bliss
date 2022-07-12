@@ -15,10 +15,11 @@ class ExperimentSearching extends Component
     {
         $searches = null;
         $searchesInModel = null;
-        if (!blank($this->search ?? '')) {
+        if (! blank($this->search ?? '')) {
             $searches = app(config('bliss.Models.Permission'))->query()->searching($this->search ?? '')->get();
             $searchesInModel = app(config('bliss.Models.Permission'))->query()->searchInModel($this->search ?? '')->get();
         }
+
         return view('bliss::livewire.experiment.searching', compact('searches', 'searchesInModel'))->layout('bliss::layouts.guest');
     }
 }

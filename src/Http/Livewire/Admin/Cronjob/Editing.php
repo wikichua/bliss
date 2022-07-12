@@ -12,6 +12,7 @@ class Editing extends Component
     public function render()
     {
         $this->authorize('update-cronjobs');
+
         return view('bliss::admin.cronjob.edit')->layout('bliss::layouts.app');
     }
 

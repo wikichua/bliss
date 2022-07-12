@@ -36,7 +36,7 @@ class ExperimentImportKeywordsQueue extends Command
 
         $max = 500;
         $keyword = 'twitter';
-        dispatch(function() use($keyword, $max) {
+        dispatch(function () use ($keyword, $max) {
             $table = \DB::table('experiment_keywords_queue');
             $table->insert(['keyword' => $keyword, 'created_at' => now(), 'updated_at' => now()]);
             $numerics = range(0, $max);
@@ -47,11 +47,11 @@ class ExperimentImportKeywordsQueue extends Command
 
         dispatchToWorker([
             new ExperimentImportKeywordsQueueProcess('google', 500),
-            function() {
+            function () {
                 $keyword = 'instagram';
                 $table = \DB::table('experiment_keywords_queue');
                 $table->insert(['keyword' => $keyword, 'created_at' => now(), 'updated_at' => now()]);
-                $numerics = range(0,250);
+                $numerics = range(0, 250);
                 foreach ($numerics as $numeric) {
                     $table->insert(['keyword' => sprintf('%s %s', $keyword, $numeric), 'created_at' => now(), 'updated_at' => now()]);
                 }

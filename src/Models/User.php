@@ -3,12 +3,11 @@
 namespace Wikichua\Bliss\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Support\Carbon;
+use Lab404\Impersonate\Models\Impersonate;
+use Laravel\Sanctum\HasApiTokens;
 use Wikichua\Bliss\Casts\UserTimezone;
-use \Lab404\Impersonate\Models\Impersonate;
-use \Laravel\Sanctum\HasApiTokens;
-use \Wikichua\Bliss\Concerns\AdminUser;
-use \Wikichua\Bliss\Concerns\AllModelTraits;
+use Wikichua\Bliss\Concerns\AdminUser;
+use Wikichua\Bliss\Concerns\AllModelTraits;
 
 abstract class User extends Authenticatable
 {
@@ -17,9 +16,11 @@ abstract class User extends Authenticatable
     public $searchableFields = ['name', 'email'];
 
     protected $auditable = true;
+
     protected $snapshot = true;
 
     protected $appends = ['roles_string'];
+
     protected $casts = [
         'created_at' => UserTimezone::class,
         'updated_at' => UserTimezone::class,
@@ -33,9 +34,10 @@ abstract class User extends Authenticatable
 
     public function getAvatarAttribute($value)
     {
-        if ($value && is_string($value) && !$value instanceof \Illuminate\Http\UploadedFile) {
+        if ($value && is_string($value) && ! $value instanceof \Illuminate\Http\UploadedFile) {
             return \Storage::url($value);
         }
+
         return $value;
     }
 
@@ -64,15 +66,17 @@ abstract class User extends Authenticatable
         if ($search == '') {
             return $query;
         }
+
         return $query->whereHas('roles', function ($query) use ($search) {
             $table = app(config('bliss.Models.Role'))->getTable();
+
             return $query->whereIn($table.'.id', $search);
         });
     }
 
     public function getReadUrlAttribute($value)
     {
-        return $this->readUrl = isset($this->id) ? route('user.show', $this->id):null;
+        return $this->readUrl = isset($this->id) ? route('user.show', $this->id) : null;
     }
 
     public function activitylogs()

@@ -9,7 +9,9 @@ abstract class Component extends LivewireComponent
     use \Wikichua\Bliss\Concerns\ComponentTraits;
 
     public $headerTitle = 'Versionizer';
+
     protected $queryString = [];
+
     protected $listeners = [];
 
     public function booted()
@@ -71,7 +73,7 @@ abstract class Component extends LivewireComponent
     public function onRevert($id)
     {
         $model = app(config('bliss.Models.Versionizer'))->query()->findOrFail($id);
-        $revertModel = app($model->model_class)->where('id',$model->model_id);
+        $revertModel = app($model->model_class)->where('id', $model->model_id);
         $checkModel = (clone $revertModel)->first();
         if ($checkModel && 'Updated' == $model->mode) {
             $revertModel->update($model->data);

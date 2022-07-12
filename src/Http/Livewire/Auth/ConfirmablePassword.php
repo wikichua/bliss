@@ -15,6 +15,7 @@ class ConfirmablePassword extends Component
     use UsesSpamProtection;
 
     public $password;
+
     public HoneypotData $honeypotFields;
 
     public function mount()

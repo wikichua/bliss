@@ -14,6 +14,7 @@ class DbLoggerFormatter extends NormalizerFormatter
     public function format(array $record)
     {
         $record = parent::format($record);
+
         return $this->convertToDataBase($record);
     }
 
@@ -22,7 +23,7 @@ class DbLoggerFormatter extends NormalizerFormatter
         $el = $record['extra'];
         $el['level'] = strtolower($record['level_name']);
         $el['message'] = $record['message'];
-        if (!blank($record['context']['exception'] ?? [])) {
+        if (! blank($record['context']['exception'] ?? [])) {
             $el['iteration'] = $record['context']['exception'];
         } else {
             $el['iteration'] = null;

@@ -1,14 +1,14 @@
 <?php
-use Wikichua\Bliss\Http\Livewire\Auth\Register;
-use Wikichua\Bliss\Http\Livewire\Auth\AuthenticatedSession;
-use Wikichua\Bliss\Http\Livewire\Auth\PasswordResetLink;
-use Wikichua\Bliss\Http\Livewire\Auth\NewPassword;
-use Wikichua\Bliss\Http\Livewire\Auth\LogoutSession;
-use Wikichua\Bliss\Http\Livewire\Auth\EmailVerificationPrompt;
-use Wikichua\Bliss\Http\Livewire\Auth\VerifyEmail;
-use Wikichua\Bliss\Http\Livewire\Auth\ConfirmablePassword;
-use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\Route;
+use Wikichua\Bliss\Http\Livewire\Auth\AuthenticatedSession;
+use Wikichua\Bliss\Http\Livewire\Auth\ConfirmablePassword;
+use Wikichua\Bliss\Http\Livewire\Auth\EmailVerificationPrompt;
+use Wikichua\Bliss\Http\Livewire\Auth\LogoutSession;
+use Wikichua\Bliss\Http\Livewire\Auth\NewPassword;
+use Wikichua\Bliss\Http\Livewire\Auth\PasswordResetLink;
+use Wikichua\Bliss\Http\Livewire\Auth\Register;
+use Wikichua\Bliss\Http\Livewire\Auth\VerifyEmail;
 
 Route::middleware('guest')->prefix('')->group(function () {
     Route::get('register', Register::class)->name('register');

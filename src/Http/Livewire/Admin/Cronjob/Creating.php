@@ -12,6 +12,7 @@ class Creating extends Component
     public function render()
     {
         $this->authorize('create-cronjobs');
+
         return view('bliss::admin.cronjob.create')->layout('bliss::layouts.app');
     }
 

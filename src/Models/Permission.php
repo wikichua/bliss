@@ -8,16 +8,20 @@ use Wikichua\Bliss\Casts\UserTimezone;
 class Permission extends Model
 {
     use \Wikichua\Bliss\Concerns\AllModelTraits;
+
     public $searchableFields = ['name', 'group'];
+
     protected $fillable = [
         'group',
         'name',
     ];
 
     protected $auditable = true;
+
     protected $snapshot = true;
 
     protected $appends = [];
+
     protected $casts = [
         'created_at' => UserTimezone::class,
         'updated_at' => UserTimezone::class,
@@ -71,7 +75,7 @@ class Permission extends Model
 
     public function getReadUrlAttribute($value)
     {
-        return $this->readUrl = isset($this->id) ? route('permission.show', $this->id):null;
+        return $this->readUrl = isset($this->id) ? route('permission.show', $this->id) : null;
     }
 
     public function onCachedEvent()

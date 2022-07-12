@@ -12,6 +12,7 @@ class Editing extends Component
     public function render()
     {
         $this->authorize('update-reports');
+
         return view('bliss::admin.report.edit')->layout('bliss::layouts.app');
     }
 

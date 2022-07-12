@@ -35,7 +35,7 @@ class ExperimentEventListener extends Command
         ]);
         $oldKeyword = $model->keyword;
 
-        ExperimentKeywordsModel::where('id', $model->id)->first()->update(['keyword' => randomWords(),]);
+        ExperimentKeywordsModel::where('id', $model->id)->first()->update(['keyword' => randomWords()]);
         $newKeyword = randomWords();
         ExperimentKeywordsModel::where('id', $model->id)->update([
             'keyword' => $newKeyword,

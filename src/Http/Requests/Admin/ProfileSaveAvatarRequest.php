@@ -28,7 +28,7 @@ class ProfileSaveAvatarRequest extends FormRequest
                 'required',
                 'mimes:jpeg,jpg,png',
                 'max:1024',
-                'dimensions:min_width=250,min_height=250'
+                'dimensions:min_width=250,min_height=250',
             ],
         ];
     }

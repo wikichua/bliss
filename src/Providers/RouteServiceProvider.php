@@ -2,8 +2,8 @@
 
 namespace Wikichua\Bliss\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -34,6 +34,7 @@ class RouteServiceProvider extends ServiceProvider
             $this->loadRoutesFrom(__DIR__.'/../../routes/auth.php');
             $router->impersonate();
         });
+
         return $this;
     }
 
@@ -42,6 +43,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::bind('user', function ($value) {
             return app(config('bliss.Models.User'))->query()->findOrFail($value);
         });
+
         return $this;
     }
 }

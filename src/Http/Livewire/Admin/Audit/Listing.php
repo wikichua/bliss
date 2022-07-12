@@ -5,7 +5,9 @@ namespace Wikichua\Bliss\Http\Livewire\Admin\Audit;
 class Listing extends Component
 {
     protected $listeners = [];
+
     protected $bulkActionEnabled = true;
+
     protected $reauthEnabled = true;
 
     public function mount()
@@ -19,6 +21,7 @@ class Listing extends Component
             ['title' => '', 'data' => 'actionsView'],
         ];
     }
+
     public function render()
     {
         $this->authorize('read-audits');
@@ -26,11 +29,11 @@ class Listing extends Component
             ->with(['user'])
             ->filter($this->filters)
             ->sorting($this->sorts)
-            ->paginate($this->take)
-        ;
+            ->paginate($this->take);
         foreach ($rows as $model) {
             $model->actionsView = view('bliss::admin.audit.actions', compact('model'))->render();
         }
+
         return view('bliss::admin.audit.list', compact('rows'))->layout('bliss::layouts.app');
     }
 }

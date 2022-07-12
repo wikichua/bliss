@@ -6,13 +6,10 @@ use App\Notifications\QueueHasLongWaitTime;
 use Illuminate\Queue\Events\JobFailed;
 use Illuminate\Queue\Events\JobProcessed;
 use Illuminate\Queue\Events\JobProcessing;
-use Illuminate\Queue\Events\JobQueued;
 use Illuminate\Queue\Events\QueueBusy;
 use Illuminate\Queue\QueueServiceProvider as LaravelQueueServiceProvider;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Queue;
-use Wikichua\Bliss\Providers\DatabaseUuidFailedJobProvider;
-use Wikichua\Bliss\Models\QueueJob;
 
 class QueueServiceProvider extends LaravelQueueServiceProvider
 {
@@ -34,11 +31,11 @@ class QueueServiceProvider extends LaravelQueueServiceProvider
     public function boot()
     {
         // Event::listen(function (QueueBusy $event) {
-            /*new QueueHasLongWaitTime(
-                $event->connection,
-                $event->queue,
-                $event->size
-            );*/
+        /*new QueueHasLongWaitTime(
+            $event->connection,
+            $event->queue,
+            $event->size
+        );*/
         // });
 
         Queue::before(function (JobProcessing $event) {

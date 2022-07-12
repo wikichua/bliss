@@ -9,6 +9,7 @@ class AlertNotification extends Component
     protected $listeners = [
         'refresh' => '$refresh',
     ];
+
     public function render()
     {
         $alerts = app(config('bliss.Models.Alert'))->query()
@@ -21,6 +22,7 @@ class AlertNotification extends Component
 
         return view('bliss::livewire.alert-notification', compact('ids', 'alerts', 'unread_count'));
     }
+
     public function onRead(array $ids = [])
     {
         $modelKeyName = app(config('bliss.Models.Alert'))->getModel()->getKeyName();

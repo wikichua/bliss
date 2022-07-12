@@ -5,7 +5,9 @@ namespace Wikichua\Bliss\Http\Livewire\Admin\Role;
 class Listing extends Component
 {
     protected $listeners = [];
+
     protected $bulkActionEnabled = true;
+
     protected $reauthEnabled = true;
 
     public function mount()
@@ -17,6 +19,7 @@ class Listing extends Component
             ['title' => '', 'data' => 'actionsView'],
         ];
     }
+
     public function render()
     {
         $this->authorize('read-roles');
@@ -24,8 +27,7 @@ class Listing extends Component
             ->where('id', '!=', 1)
             ->filter($this->filters)
             ->sorting($this->sorts)
-            ->paginate($this->take)
-        ;
+            ->paginate($this->take);
         foreach ($rows as $model) {
             $model->actionsView = view('bliss::admin.role.actions', compact('model'))->render();
             $permissions = $model->permissions()->pluck('name')->toArray();
@@ -33,9 +35,10 @@ class Listing extends Component
         }
         $filterPermissions = app(config('bliss.Models.Permission'))->query()
             ->pluck('name', 'id')
-            ->map(function($value) {
-                return 'Can ' . \Str::headline($value);
+            ->map(function ($value) {
+                return 'Can '.\Str::headline($value);
             });
+
         return view('bliss::admin.role.list', compact('rows', 'filterPermissions'))->layout('bliss::layouts.app');
     }
 }

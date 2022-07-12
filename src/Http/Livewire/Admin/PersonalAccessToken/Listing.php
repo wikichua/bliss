@@ -8,9 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Listing extends Component
 {
     protected $listeners = [];
+
     protected $bulkActionEnabled = false;
+
     protected $reauthEnabled = true;
+
     protected $userModel;
+
     protected $query;
 
     public function mount(Builder|Model|int $user)
@@ -30,18 +34,19 @@ class Listing extends Component
             ['title' => '', 'data' => 'actionsView'],
         ];
     }
+
     public function render()
     {
         $this->authorize('read-personal-access-token');
         $rows = $this->query
             // ->filter($this->filters)
-            ->paginate($this->take)
-        ;
+            ->paginate($this->take);
         foreach ($rows as $model) {
             $model->actionsView = view('bliss::admin.personal_access_tokens.actions', compact('model'))->render();
             $model->abilities = '<pre class="text-sm text-gray-500 dark:text-gray-400">'.(is_array($model->abilities) ? json_encode($model->abilities, JSON_PRETTY_PRINT) : $model->abilities).'</pre>';
         }
         $user = $this->userModel;
+
         return view('bliss::admin.personal_access_tokens.list', compact('rows', 'user'))->layout('bliss::layouts.app');
     }
 }

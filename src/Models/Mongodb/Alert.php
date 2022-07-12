@@ -3,12 +3,12 @@
 namespace Wikichua\Bliss\Models\Mongodb;
 
 use Jenssegers\Mongodb\Eloquent\Model;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Wikichua\Bliss\Casts\MongoDbBsonUtcDateTime as UserTimezone;
 
 class Alert extends Model
 {
     use \Wikichua\Bliss\Concerns\AllModelTraits;
+
     public $searchableFields = [];
 
     protected $fillable = [
@@ -32,6 +32,7 @@ class Alert extends Model
     ];
 
     protected $primaryKey = '_id';
+
     protected $connection = 'mongodb';
 
     public function __construct(array $attributes = [])

@@ -1,6 +1,6 @@
 <?php
 
- namespace Wikichua\Bliss\Console\Commands;
+namespace Wikichua\Bliss\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Cache;
@@ -9,6 +9,7 @@ use Wikichua\Bliss\Jobs\ReportProcess;
 class Report extends Command
 {
     protected $signature = 'bliss:report {name?} {--queue} {--clear}';
+
     protected $description = 'Generating Report';
 
     public function __construct()
@@ -79,6 +80,7 @@ class Report extends Command
                     receivers: userIdsWithPermission('read-failedjobs'),
                     link: $report->readUrl,
                 );
+
                 return $results;
             }
         );

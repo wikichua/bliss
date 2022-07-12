@@ -2,16 +2,18 @@
 
 namespace Wikichua\Bliss\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Wikichua\Bliss\Casts\UserTimezone;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Audit extends Model
 {
     use \Wikichua\Bliss\Concerns\AllModelTraits;
 
     const UPDATED_AT = null;
+
     public $searchableFields = [];
+
     protected $fillable = [
         'user_id',
         'model_id',

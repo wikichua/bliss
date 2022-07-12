@@ -8,9 +8,13 @@ use Wikichua\Bliss\Casts\MongoDbBsonUtcDateTime as UserTimezone;
 class Worker extends Model
 {
     use \Wikichua\Bliss\Concerns\AllModelTraits;
+
     public $searchableFields = [];
+
     protected $auditable = false;
+
     protected $snapshot = false;
+
     const UPDATED_AT = null;
 
     protected $fillable = [
@@ -30,6 +34,7 @@ class Worker extends Model
     ];
 
     protected $primaryKey = '_id';
+
     protected $connection = 'mongodb';
 
     public function __construct(array $attributes = [])

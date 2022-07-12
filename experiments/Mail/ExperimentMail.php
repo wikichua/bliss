@@ -2,10 +2,10 @@
 
 namespace Wikichua\Bliss\Exp\Mail;
 
-use Wikichua\Bliss\Concerns\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Wikichua\Bliss\Concerns\Queueable;
 
 class ExperimentMail extends Mailable implements ShouldQueue
 {

@@ -2,9 +2,9 @@
 
 namespace Wikichua\Bliss\Http\Livewire\Auth;
 
-use Livewire\Component;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
+use Livewire\Component;
 use Spatie\Honeypot\Http\Livewire\Concerns\HoneypotData;
 use Spatie\Honeypot\Http\Livewire\Concerns\UsesSpamProtection;
 
@@ -13,6 +13,7 @@ class EmailVerificationPrompt extends Component
     use UsesSpamProtection;
 
     protected $user;
+
     public HoneypotData $honeypotFields;
 
     public function mount(Request $request)

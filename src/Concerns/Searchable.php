@@ -17,7 +17,7 @@ trait Searchable
     public function toSearchableFieldsArray()
     {
         $array = [];
-        if (!\Str::contains($this::class, config('bliss.searchable.exceptions'))) {
+        if (! \Str::contains($this::class, config('bliss.searchable.exceptions'))) {
             if (isset($this->searchableFields)) {
                 foreach ($this->searchableFields as $field) {
                     $array[$field] = $this->attributes[$field] ?? $this->{$field};
@@ -26,6 +26,7 @@ trait Searchable
                 $array = $this->toArray();
             }
         }
+
         return $array;
     }
 
@@ -35,18 +36,21 @@ trait Searchable
             ->where('model', $this->searchableModelAs())
             ->filterTags($search)
             ->pluck('model_id');
+
         return $query->whereIn('id', $modelIds);
     }
 
     public function scopeSearchInModel($query, $search)
     {
         $searches = searchVariants($search);
+
         return $query->where(function ($query) use ($searches) {
             foreach (array_keys($this->toSearchableFieldsArray()) as $field) {
                 foreach ($searches as $search) {
                     $query->orWhere($field, 'like', "%$search%");
                 }
             }
+
             return $query;
         });
     }

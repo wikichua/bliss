@@ -6,7 +6,6 @@ namespace Wikichua\Bliss\Logging;
 use Monolog\Formatter\FormatterInterface;
 use Monolog\Handler\AbstractProcessingHandler;
 use Monolog\Logger;
-use Wikichua\Bliss\Logging\DbLoggerFormatter;
 
 class DbLoggerHandler extends AbstractProcessingHandler
 {

@@ -2,15 +2,17 @@
 
 namespace Wikichua\Bliss\Http\Livewire\Admin\Log;
 
-use Livewire\Component as LivewireComponent;
 use Illuminate\Support\Facades\Gate;
+use Livewire\Component as LivewireComponent;
 
 abstract class Component extends LivewireComponent
 {
     use \Wikichua\Bliss\Concerns\ComponentTraits;
 
     public $headerTitle = 'Logs';
+
     protected $queryString = [];
+
     protected $listeners = [];
 
     public function booted()
@@ -53,6 +55,7 @@ abstract class Component extends LivewireComponent
             $this->flashStatusSession('Data Deleted.');
         }
     }
+
     protected function getInfoData()
     {
         if ($this->model ?? null) {

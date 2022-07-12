@@ -10,7 +10,7 @@ trait DynamicFillable
     // set fillable using db table columns
     public function getFillable()
     {
-        if (!blank($this->fillable ?? [])) {
+        if (! blank($this->fillable ?? [])) {
             return $this->fillable;
         }
 

@@ -5,7 +5,9 @@ namespace Wikichua\Bliss\Http\Livewire\Admin\Log;
 class Listing extends Component
 {
     protected $listeners = [];
+
     protected $bulkActionEnabled = true;
+
     protected $reauthEnabled = true;
 
     public function mount()
@@ -17,17 +19,18 @@ class Listing extends Component
             ['title' => '', 'data' => 'actionsView'],
         ];
     }
+
     public function render()
     {
         $this->authorize('read-logs');
         $rows = app(config('bliss.Models.Log'))->query()
             ->filter($this->filters)
             ->sorting($this->sorts)
-            ->paginate($this->take)
-        ;
+            ->paginate($this->take);
         foreach ($rows as $model) {
             $model->actionsView = view('bliss::admin.log.actions', compact('model'))->render();
         }
+
         return view('bliss::admin.log.list', compact('rows'))->layout('bliss::layouts.app');
     }
 }

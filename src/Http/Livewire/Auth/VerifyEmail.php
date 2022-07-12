@@ -2,10 +2,10 @@
 
 namespace Wikichua\Bliss\Http\Livewire\Auth;
 
-use Livewire\Component;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Livewire\Component;
 
 class VerifyEmail extends Component
 {
@@ -30,6 +30,5 @@ class VerifyEmail extends Component
 
     public function render()
     {
-
     }
 }

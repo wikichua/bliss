@@ -9,7 +9,9 @@ abstract class Component extends LivewireComponent
     use \Wikichua\Bliss\Concerns\ComponentTraits;
 
     public $headerTitle = 'Queue Jobs';
+
     protected $queryString = [];
+
     protected $listeners = [];
 
     public function booted()
@@ -51,6 +53,7 @@ abstract class Component extends LivewireComponent
             $this->flashStatusSession('Data Deleted.');
         }
     }
+
     protected function getInfoData()
     {
         if ($this->model ?? null) {

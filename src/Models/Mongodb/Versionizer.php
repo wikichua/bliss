@@ -8,9 +8,11 @@ use Wikichua\Bliss\Casts\MongoDbBsonUtcDateTime as UserTimezone;
 class Versionizer extends Model
 {
     use \Wikichua\Bliss\Concerns\AllModelTraits;
+
     protected $auditable = false;
 
     protected $dates = ['reverted_at'];
+
     protected $fillable = [
         'mode',
         'model_class',
@@ -34,6 +36,7 @@ class Versionizer extends Model
     protected $searchableFields = [];
 
     protected $primaryKey = '_id';
+
     protected $connection = 'mongodb';
 
     public function __construct(array $attributes = [])

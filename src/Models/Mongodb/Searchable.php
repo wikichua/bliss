@@ -10,6 +10,7 @@ class Searchable extends Model
     use \Wikichua\Bliss\Concerns\AllModelTraits;
 
     protected $dates = [];
+
     protected $fillable = [
         'model',
         'model_id',
@@ -27,6 +28,7 @@ class Searchable extends Model
     ];
 
     protected $primaryKey = '_id';
+
     protected $connection = 'mongodb';
 
     public function __construct(array $attributes = [])
@@ -41,6 +43,7 @@ class Searchable extends Model
             return $query;
         }
         $searches = searchVariants($search);
+
         return $query->where('tags', 'regexp', '/'.implode('|', $searches).'/i');
     }
 }

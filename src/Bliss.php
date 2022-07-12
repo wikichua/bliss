@@ -2,20 +2,15 @@
 
 namespace Wikichua\Bliss;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Queue;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
-use Illuminate\Support\Arr;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Str;
 
 class Bliss
 {
     public function getSettings(string $name, mixed $default = null)
     {
-        if (!is_array(config('settings.'.$name)) && json_decode(config('settings.'.$name), 1)) {
+        if (! is_array(config('settings.'.$name)) && json_decode(config('settings.'.$name), 1)) {
             return json_decode(config('settings.'.$name), 1) ? json_decode(config('settings.'.$name), 1) : $default;
         }
 
@@ -30,8 +25,10 @@ class Bliss
             $lastName = last($name);
             array_pop($name);
             $name = implode('.', $name);
+
             return array_flip($this->getSettings($name, $default))[$lastName] ?? $this->getSettings($originalName, $default);
         }
+
         return $this->getSettings($originalName, $default);
     }
 
@@ -47,12 +44,13 @@ class Bliss
         $autoload = array_keys(include base_path('/vendor/composer/autoload_classmap.php'));
         $models = collect(config('bliss.Models'))->values()->toArray();
         foreach ($autoload as $namespace) {
-            if (Str::contains($namespace, [app()->getNamespace(), 'Wikichua\Bliss\Exp\Models']) && !Str::endsWith($namespace, 'Models\User')) {
+            if (Str::contains($namespace, [app()->getNamespace(), 'Wikichua\Bliss\Exp\Models']) && ! Str::endsWith($namespace, 'Models\User')) {
                 if (Str::contains($namespace, 'Models')) {
                     $models[] = $namespace;
                 }
             }
         }
+
         return array_unique($models);
     }
 
@@ -80,6 +78,7 @@ class Bliss
         $results = Cache::remember('iplocation-'.$ip, (60 * 60 * 24 * 30), function () use ($fields) {
             return json_decode(\Http::get('//ip-api.com/json/', ['fields' => implode(',', $fields)]), 1);
         });
+
         return array_merge($results, ['locale' => request()->route('locale')]);
     }
 
@@ -210,7 +209,7 @@ class Bliss
 
     public function randomWords(int $length = 3)
     {
-        $words = cache()->rememberForever('humanRandomWord', function() {
+        $words = cache()->rememberForever('humanRandomWord', function () {
             $responses = \Illuminate\Support\Facades\Http::pool(fn (\Illuminate\Http\Client\Pool $pool) => [
                 $pool->get('https://raw.githubusercontent.com/AlessandroMinoccheri/human-names/master/data/male-human-names-en.json'),
                 $pool->get('https://raw.githubusercontent.com/AlessandroMinoccheri/human-names/master/data/female-human-names-en.json'),
@@ -221,9 +220,11 @@ class Bliss
                     $words = array_merge($words, $response->json());
                 }
             }
+
             return $words;
         });
         $blocks = \Arr::random($words, $length);
+
         return implode('-', $blocks);
     }
 
@@ -240,8 +241,8 @@ class Bliss
                         $ids = array_merge($ids, $role->users()->pluck('users.id')->toArray());
                     }
 
-                return $ids = array_unique($ids);
-            });
+                    return $ids = array_unique($ids);
+                });
     }
 
     public function searchVariants(string $search): array
@@ -264,27 +265,29 @@ class Bliss
             str($search)->ucfirst(),
             str($search)->upper(),
         ] + str($search)->ucsplit()->toArray();
+
         return $searches = array_unique($searches);
     }
+
     public function dispatchToWorker(mixed $closure, string $onQueue = 'default', bool $afterResponse = false, Carbon $delay = null)
     {
         $toInvokes = [];
-        if (!is_array($closure)) {
+        if (! is_array($closure)) {
             $toInvokes[] = $closure;
         } else {
             $toInvokes = $closure;
         }
 
         foreach ($toInvokes as $index => $toInvoke) {
-            if (!is_closure($toInvoke) && ($toInvoke instanceOf \Illuminate\Contracts\Queue\ShouldQueue) == false) {
-                throw new \Exception("Error Processing Request", 1);
+            if (! is_closure($toInvoke) && ($toInvoke instanceof \Illuminate\Contracts\Queue\ShouldQueue) == false) {
+                throw new \Exception('Error Processing Request', 1);
             }
             if ($afterResponse) {
                 dispatch($toInvoke)->afterResponse();
             } else {
                 $batch = $onQueue;
                 $onQueueName = $onQueue.':'.str()->random(10);
-                if ($delay instanceOf Carbon) {
+                if ($delay instanceof Carbon) {
                     dispatch($toInvoke)->delay($delay)->onQueue($onQueueName);
                 } else {
                     dispatch($toInvoke)->onQueue($onQueueName);

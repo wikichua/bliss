@@ -5,7 +5,9 @@ namespace Wikichua\Bliss\Http\Livewire\Admin\Permission;
 class Listing extends Component
 {
     protected $listeners = [];
+
     protected $bulkActionEnabled = true;
+
     protected $reauthEnabled = true;
 
     public function mount()
@@ -16,6 +18,7 @@ class Listing extends Component
             ['title' => '', 'data' => 'actionsView'],
         ];
     }
+
     public function render()
     {
         $this->authorize('read-permissions');
@@ -26,14 +29,14 @@ class Listing extends Component
             ])->groupBy('group')
             ->filter($this->filters)
             ->sorting($this->sorts)
-            ->paginate($this->take)
-        ;
+            ->paginate($this->take);
         foreach ($rows as $model) {
             $model->actionsView = view('bliss::admin.permission.actions', compact('model'))->render();
             $permissions = app(config('bliss.Models.Permission'))->query()->where('group', $model->group)->pluck('name')->toArray();
             $model->permissions = view('bliss::admin.role.permissionList', compact('permissions'))->render();
         }
-        $filterPermissionOptions = app(config('bliss.Models.Permission'))->query()->groupby('group')->pluck('group','group');
+        $filterPermissionOptions = app(config('bliss.Models.Permission'))->query()->groupby('group')->pluck('group', 'group');
+
         return view('bliss::admin.permission.list', compact('rows', 'filterPermissionOptions'))->layout('bliss::layouts.app');
     }
 }

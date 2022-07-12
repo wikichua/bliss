@@ -8,9 +8,11 @@ use Wikichua\Bliss\Casts\UserTimezone;
 class Versionizer extends Model
 {
     use \Wikichua\Bliss\Concerns\AllModelTraits;
+
     protected $auditable = false;
 
     protected $dates = ['reverted_at'];
+
     protected $fillable = [
         'mode',
         'model_class',

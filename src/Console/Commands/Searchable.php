@@ -1,6 +1,6 @@
 <?php
 
- namespace Wikichua\Bliss\Console\Commands;
+namespace Wikichua\Bliss\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Schema;
@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 class Searchable extends Command
 {
     protected $signature = 'bliss:searchable {chunk=1000}';
+
     protected $description = 'Indexing searchable';
 
     public function __construct()
@@ -22,7 +23,7 @@ class Searchable extends Command
         $this->info('Indexing to Searchable');
         $models = getModelsList();
         $excludeMongoDb = false;
-        if (!\File::exists(base_path('vendor/jenssegers/mongodb'))) {
+        if (! \File::exists(base_path('vendor/jenssegers/mongodb'))) {
             $excludeMongoDb = true;
         }
         app(config('bliss.Models.Searchable'))->truncate();
@@ -36,7 +37,6 @@ class Searchable extends Command
                 $table = app($model)->query()->getModel()->getTable();
                 $hasTable = Schema::hasTable($table);
             } catch (\Illuminate\Database\QueryException $e) {
-
             }
 
             if ($hasTable && count(app($model)->toSearchableFieldsArray()) && $count = app($model)->query()->count()) {

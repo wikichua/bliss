@@ -11,9 +11,11 @@ class Report extends Model
     use \Wikichua\Bliss\Concerns\AllModelTraits;
 
     protected $auditable = true;
+
     protected $snapshot = true;
 
     protected $dates = ['deleted_at'];
+
     protected $fillable = [
         'created_by',
         'updated_by',
@@ -73,6 +75,6 @@ class Report extends Model
 
     public function getReadUrlAttribute($value)
     {
-        return $this->readUrl = isset($this->id)? route('report.show', $this->id):null;
+        return $this->readUrl = isset($this->id) ? route('report.show', $this->id) : null;
     }
 }

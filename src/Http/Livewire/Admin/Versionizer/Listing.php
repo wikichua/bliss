@@ -5,7 +5,9 @@ namespace Wikichua\Bliss\Http\Livewire\Admin\Versionizer;
 class Listing extends Component
 {
     protected $listeners = [];
+
     protected $bulkActionEnabled = true;
+
     protected $reauthEnabled = true;
 
     public function mount()
@@ -19,18 +21,19 @@ class Listing extends Component
             ['title' => '', 'data' => 'actionsView'],
         ];
     }
+
     public function render()
     {
         $this->authorize('read-versionizers');
         $rows = app(config('bliss.Models.Versionizer'))->query()
             ->filter($this->filters)
             ->sorting($this->sorts)
-            ->paginate($this->take)
-        ;
+            ->paginate($this->take);
         foreach ($rows as $model) {
             $model->changes_view = view('bliss::admin.versionizer.changes', compact('model'))->render();
             $model->actionsView = view('bliss::admin.versionizer.actions', compact('model'))->render();
         }
+
         return view('bliss::admin.versionizer.list', compact('rows'))->layout('bliss::layouts.app');
     }
 }

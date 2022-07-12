@@ -5,7 +5,9 @@ namespace Wikichua\Bliss\Http\Livewire\Admin\User;
 class Listing extends Component
 {
     protected $listeners = [];
+
     protected $bulkActionEnabled = false;
+
     protected $reauthEnabled = true;
 
     public function viewShare()
@@ -25,18 +27,19 @@ class Listing extends Component
             ['title' => '', 'data' => 'actionsView'],
         ];
     }
+
     public function render()
     {
         $rows = app(config('bliss.Models.User'))->query()
             ->where('id', '!=', 1)
             ->filter($this->filters)
             ->sorting($this->sorts)
-            ->paginate($this->take)
-        ;
+            ->paginate($this->take);
         foreach ($rows as $model) {
             $model->actionsView = view('bliss::admin.user.actions', compact('model'))->render();
         }
         $rolesOptions = $this->getRolesOptions();
+
         return view('bliss::admin.user.list', compact('rows', 'rolesOptions'))->layout('bliss::layouts.app');
     }
 }

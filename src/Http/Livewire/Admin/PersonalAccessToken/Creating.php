@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Creating extends Component
 {
     public $userModel;
+
     public $abilities;
+
     protected $reauthEnabled = true;
 
     public function mount(Builder|Model|int $user)
@@ -26,6 +28,7 @@ class Creating extends Component
     {
         $this->authorize('create-personal-access-token');
         $groupAbilities = $this->getGroupAbilities($this->userModel);
+
         return view('bliss::admin.personal_access_tokens.create', compact('groupAbilities'))->layout('bliss::layouts.app');
     }
 
@@ -39,8 +42,7 @@ class Creating extends Component
         $tokenResult = $user->createToken($this->name, $abilities)->plainTextToken;
         $tokenResult = explode('|', $tokenResult);
         $model = app(config('bliss.Models.PersonalAccessToken'))->query()
-            ->find($tokenResult[0])
-        ;
+            ->find($tokenResult[0]);
         $model->plain_text_token = $tokenResult[1];
         $model->save();
 

@@ -3,7 +3,6 @@
 namespace Wikichua\Bliss\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
-use Illuminate\Support\Facades\Hash;
 
 class AllFilledNoEmpty implements Rule
 {
@@ -14,7 +13,6 @@ class AllFilledNoEmpty implements Rule
      */
     public function __construct()
     {
-
     }
 
     /**
@@ -27,6 +25,7 @@ class AllFilledNoEmpty implements Rule
     public function passes($attribute, $value)
     {
         $value = is_null($value) ? [] : $value;
+
         return count(array_filter($value ?? [])) >= count($value);
     }
 

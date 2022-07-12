@@ -5,6 +5,7 @@ namespace Wikichua\Bliss\Http\Livewire\Admin\Setting;
 class Showing extends Component
 {
     protected $reauthEnabled = true;
+
     public function mount($id)
     {
         $this->model = app(config('bliss.Models.Setting'))->query()->findOrFail($id);
@@ -15,9 +16,11 @@ class Showing extends Component
             $this->keyvalue = [$this->keyvalueTemplate];
         }
     }
+
     public function render()
     {
         $this->authorize('read-settings');
+
         return view('bliss::admin.setting.show')->layout('bliss::layouts.app');
     }
 }

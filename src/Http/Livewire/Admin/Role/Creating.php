@@ -13,7 +13,8 @@ class Creating extends Component
     {
         $this->authorize('create-roles');
         $groupPermissions = $this->getGroupPermissions();
-        return view('bliss::admin.role.create',compact('groupPermissions'))->layout('bliss::layouts.app');
+
+        return view('bliss::admin.role.create', compact('groupPermissions'))->layout('bliss::layouts.app');
     }
 
     public function onSubmit()
@@ -38,6 +39,7 @@ class Creating extends Component
             permissionString: 'read-roles',
             link: $model->readUrl,
         );
+
         return $this->flashStatusSession('Data created.', route('role.list'));
     }
 }
