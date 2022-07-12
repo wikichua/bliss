@@ -1,15 +1,14 @@
-import { defineConfig } from 'vite';
+import { defineConfig, splitVendorChunkPlugin } from 'vite';
 import laravel from 'laravel-vite-plugin';
 
 export default defineConfig({
     server: {
-        https: true,
         hmr: {
           protocol: 'ws',
-          // port: 3000
         },
     },
     plugins: [
+        splitVendorChunkPlugin(),
         laravel([
             'resources/css/app.css',
             'resources/js/app.js',
@@ -25,6 +24,6 @@ export default defineConfig({
                     });
                 }
             },
-        },
+        }
     ],
 });
