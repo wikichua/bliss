@@ -9,6 +9,7 @@ module.exports = {
         './vendor/wikichua/bliss/resources/**/*.js',
         './resources/**/*.blade.php',
         './resources/**/*.js',
+        './node_modules/flowbite/**/*.js',
     ],
 
     theme: {
