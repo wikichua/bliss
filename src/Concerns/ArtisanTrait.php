@@ -67,22 +67,22 @@ trait ArtisanTrait
             if (in_array($cronjob->mode, ['art'])) {
                 $schedule->command($cronjob->command)->{$frequency}()
                     ->timezone($cronjob->timezone)
-                    ->onSuccess(function (Stringable $output) use ($cron , $outputed) {
+                    ->onSuccess(function (Stringable $output) use ($cron, $outputed) {
                         $cron->output = array_merge([$output], $outputed);
                         $cron->save();
                     })
-                    ->onFailure(function (Stringable $output) use ($cron , $outputed) {
+                    ->onFailure(function (Stringable $output) use ($cron, $outputed) {
                         $cron->output = array_merge([$output], $outputed);
                         $cron->save();
                     });
             } else {
                 $schedule->exec($cronjob->command)
                     ->timezone($cronjob->timezone)
-                    ->onSuccess(function (Stringable $output) use ($cron , $outputed) {
+                    ->onSuccess(function (Stringable $output) use ($cron, $outputed) {
                         $cron->output = array_merge([$output], $outputed);
                         $cron->save();
                     })
-                    ->onFailure(function (Stringable $output) use ($cron , $outputed) {
+                    ->onFailure(function (Stringable $output) use ($cron, $outputed) {
                         $cron->output = array_merge([$output], $outputed);
                         $cron->save();
                     });

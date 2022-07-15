@@ -2,9 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
-    @vite(['resources/css/mail.css'])
-
+    <script src="https://cdn.tailwindcss.com"></script>
     @if($subject = $attributes->get('subject'))
         <title>{{ $subject }}</title>
     @endif

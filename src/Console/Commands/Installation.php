@@ -120,7 +120,6 @@ class Installation extends Command
             }
         }
         cache()->flush();
-
     }
 
     protected function dumpComposer()
