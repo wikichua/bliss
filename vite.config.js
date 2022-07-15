@@ -11,6 +11,7 @@ export default defineConfig({
         splitVendorChunkPlugin(),
         laravel([
             'resources/css/app.css',
+            'resources/css/mail.css',
             'resources/js/app.js',
             'resources/js/alpine.js',
         ]),
