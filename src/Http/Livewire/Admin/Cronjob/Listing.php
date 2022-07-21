@@ -30,7 +30,7 @@ class Listing extends Component
             ->where('mode', '!=', 'que')
             ->filter($this->filters)
             ->sorting($this->sorts)
-            ->paginate($this->take);
+            ->fastPaginate($this->take);
         foreach ($rows as $model) {
             $model->actionsView = view('bliss::admin.cronjob.actions', compact('model'))->render();
         }

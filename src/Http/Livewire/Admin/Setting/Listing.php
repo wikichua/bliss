@@ -25,7 +25,7 @@ class Listing extends Component
         $rows = app(config('bliss.Models.Setting'))->query()
             ->filter($this->filters)
             ->sorting($this->sorts)
-            ->paginate($this->take);
+            ->fastPaginate($this->take);
         foreach ($rows as $model) {
             $model->actionsView = view('bliss::admin.setting.actions', compact('model'))->render();
             $model->valueString = '<pre class="text-sm text-gray-500 dark:text-gray-400">'.(is_array($model->value) ? json_encode($model->value, JSON_PRETTY_PRINT) : $model->value).'</pre>';

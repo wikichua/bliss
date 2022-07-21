@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f9cf9eaedaf1d8ee2333dd2c1440c77c",
+    "content-hash": "2963cc8d24f2df45edaafb3a0fb739db",
     "packages": [
         {
             "name": "box/spout",
@@ -691,6 +691,58 @@
                 }
             ],
             "time": "2021-11-21T21:41:47+00:00"
+        },
+        {
+            "name": "hammerstone/fast-paginate",
+            "version": "v0.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hammerstonedev/fast-paginate.git",
+                "reference": "154da286f8160a9e75e64e8025b0da682aa2ba23"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hammerstonedev/fast-paginate/zipball/154da286f8160a9e75e64e8025b0da682aa2ba23",
+                "reference": "154da286f8160a9e75e64e8025b0da682aa2ba23",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^8.37|^9.0",
+                "php": "^7.4|^8.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.3.3",
+                "orchestra/testbench": "^6|^7",
+                "phpunit/phpunit": "^8|^9"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Hammerstone\\FastPaginate\\FastPaginateProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Hammerstone\\FastPaginate\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aaron Francis",
+                    "email": "aaron@hammerstone.dev"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/hammerstonedev/fast-paginate/issues",
+                "source": "https://github.com/hammerstonedev/fast-paginate/tree/v0.1.5"
+            },
+            "time": "2022-07-18T21:05:09+00:00"
         },
         {
             "name": "jaybizzle/crawler-detect",

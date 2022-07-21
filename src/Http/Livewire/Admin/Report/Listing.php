@@ -28,7 +28,7 @@ class Listing extends Component
         $rows = app(config('bliss.Models.Report'))->query()
             ->filter($this->filters)
             ->sorting($this->sorts)
-            ->paginate($this->take);
+            ->fastPaginate($this->take);
         foreach ($rows as $model) {
             $model->cache_status = 'Ready';
             if (config('cache.default') != 'array') {

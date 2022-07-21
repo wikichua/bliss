@@ -21,7 +21,8 @@
         "pda/pheanstalk": "^4.0",
         "spatie/laravel-collection-macros": "^7.11",
         "react/child-process": "^0.6.4",
-        "spatie/laravel-honeypot": "^4.3"
+        "spatie/laravel-honeypot": "^4.3",
+        "hammerstone/fast-paginate": "^0.1.5"
     },
     "autoload": {
         "psr-4": {

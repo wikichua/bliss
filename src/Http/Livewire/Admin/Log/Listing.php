@@ -26,7 +26,7 @@ class Listing extends Component
         $rows = app(config('bliss.Models.Log'))->query()
             ->filter($this->filters)
             ->sorting($this->sorts)
-            ->paginate($this->take);
+            ->fastPaginate($this->take);
         foreach ($rows as $model) {
             $model->actionsView = view('bliss::admin.log.actions', compact('model'))->render();
         }

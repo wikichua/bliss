@@ -28,7 +28,7 @@ class Listing extends Component
         $rows = app(config('bliss.Models.Versionizer'))->query()
             ->filter($this->filters)
             ->sorting($this->sorts)
-            ->paginate($this->take);
+            ->fastPaginate($this->take);
         foreach ($rows as $model) {
             $model->changes_view = view('bliss::admin.versionizer.changes', compact('model'))->render();
             $model->actionsView = view('bliss::admin.versionizer.actions', compact('model'))->render();

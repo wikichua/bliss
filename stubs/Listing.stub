@@ -23,7 +23,7 @@ class Listing extends Component
         $rows = [model]::query()
             ->filter($this->filters)
             ->sorting($this->sorts)
-            ->paginate($this->take)
+            ->fastPaginate($this->take)
         ;
         foreach ($rows as $model) {
             $model->actionsView = view('livewire.admin.[lower].actions', compact('model'))->render();

@@ -40,7 +40,7 @@ class Listing extends Component
         $this->authorize('read-personal-access-token');
         $rows = $this->query
             // ->filter($this->filters)
-            ->paginate($this->take);
+            ->fastPaginate($this->take);
         foreach ($rows as $model) {
             $model->actionsView = view('bliss::admin.personal_access_tokens.actions', compact('model'))->render();
             $model->abilities = '<pre class="text-sm text-gray-500 dark:text-gray-400">'.(is_array($model->abilities) ? json_encode($model->abilities, JSON_PRETTY_PRINT) : $model->abilities).'</pre>';

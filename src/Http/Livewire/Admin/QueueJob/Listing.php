@@ -28,7 +28,7 @@ class Listing extends Component
         $rows = app(config('bliss.Models.QueueJob'))->query()
             ->filter($this->filters)
             ->sorting($this->sorts)
-            ->paginate($this->take);
+            ->fastPaginate($this->take);
         foreach ($rows as $model) {
             $model->actionsView = view('bliss::admin.queuejob.actions', compact('model'))->render();
         }

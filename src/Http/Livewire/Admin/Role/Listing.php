@@ -27,7 +27,7 @@ class Listing extends Component
             ->where('id', '!=', 1)
             ->filter($this->filters)
             ->sorting($this->sorts)
-            ->paginate($this->take);
+            ->fastPaginate($this->take);
         foreach ($rows as $model) {
             $model->actionsView = view('bliss::admin.role.actions', compact('model'))->render();
             $permissions = $model->permissions()->pluck('name')->toArray();

@@ -24,9 +24,10 @@ class Listing extends Component
         $this->authorize('read-permissions');
         $rows = app(config('bliss.Models.Permission'))->query()
             ->select([
-                'group',
                 \DB::raw('min(`id`) as id'),
-            ])->groupBy('group')
+                'group',
+            ])
+            ->groupBy('group')
             ->filter($this->filters)
             ->sorting($this->sorts)
             ->paginate($this->take);
