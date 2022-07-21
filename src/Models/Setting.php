@@ -5,6 +5,7 @@ namespace Wikichua\Bliss\Models;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Database\Eloquent\Model;
 use Wikichua\Bliss\Casts\UserTimezone;
+use Str;
 
 class Setting extends Model
 {
@@ -145,5 +146,10 @@ class Setting extends Model
     public function onCachedEvent()
     {
         cache()->forget('config-settings');
+    }
+
+    public function getKeyWords()
+    {
+        return Str::headline($this->key);
     }
 }

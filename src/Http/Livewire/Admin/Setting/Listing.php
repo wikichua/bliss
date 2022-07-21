@@ -13,6 +13,7 @@ class Listing extends Component
     public function mount()
     {
         $this->cols = [
+            ['title' => 'Headline', 'data' => 'getKeyWords'],
             ['title' => 'Key', 'data' => 'key', 'sortable' => true, 'td-class' => 'align-top'],
             ['title' => 'Value', 'data' => 'valueString'],
             ['title' => '', 'data' => 'actionsView'],

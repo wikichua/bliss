@@ -73,9 +73,16 @@
                                     @php
                                     $cd = explode('.', $col['data']);
                                     @endphp
-                                    {!! $row->{$cd[0]}->{$cd[1]} !!}
+                                    {!! $row->{$cd[0]}->{$cd[1]} ?? null !!}
                                     @else
-                                    {!! $row->{$col['data']} !!}
+                                        @php
+                                            $col['data'] = trim(str_replace(['(',')'],'',$col['data']));
+                                        @endphp
+                                        @if (method_exists($row, $col['data']) && is_callable([$row, $col['data']]))
+                                        {!! $row->{$col['data']}() ?? null !!}
+                                        @else
+                                        {!! $row->{$col['data']} ?? null !!}
+                                        @endif
                                     @endif
                                 </td>
                                 @endforeach
