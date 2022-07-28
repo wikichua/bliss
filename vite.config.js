@@ -7,7 +7,7 @@ export default defineConfig({
           protocol: 'ws',
         },
     },
-    build: {
+    /*build: {
         rollupOptions: {
           output: {
             // entryFileNames: `assets/[name].js`,
@@ -15,7 +15,7 @@ export default defineConfig({
             assetFileNames: `assets/[name].[ext]`
           }
         }
-    },
+    },*/
     plugins: [
         splitVendorChunkPlugin(),
         laravel([
