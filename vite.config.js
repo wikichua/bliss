@@ -7,9 +7,19 @@ export default defineConfig({
           protocol: 'ws',
         },
     },
+    build: {
+        rollupOptions: {
+          output: {
+            // entryFileNames: `assets/[name].js`,
+            // chunkFileNames: `assets/[name].js`,
+            assetFileNames: `assets/[name].[ext]`
+          }
+        }
+    },
     plugins: [
         splitVendorChunkPlugin(),
         laravel([
+            'resources/css/mail.css',
             'resources/css/app.css',
             'resources/js/app.js',
             'resources/js/alpine.js',
