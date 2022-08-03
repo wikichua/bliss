@@ -22,8 +22,10 @@ refer
 1. https://bladewindui.com/
 1. https://github.com/LaravelDaily/laravel-tips
 1. https://github.com/LaravelDaily/Best-Laravel-Packages
+1. https://github.com/kazzkiq/CodeFlask
 
 todo
+1. codemirror to CodeFlask
 1. crud generator -
     - views - done
     - navigation - done
@@ -43,7 +45,7 @@ todo
         - editor
         - checkboxes
         - filepond
-        - codemirror
+        - CodeFlask
 1. individual model searchable (allow live search on listing)
 
 1. login rate limit https://laravel.com/docs/9.x/rate-limiting (securing passwordless login too)
