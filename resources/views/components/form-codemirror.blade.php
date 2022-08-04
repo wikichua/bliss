@@ -14,42 +14,26 @@
     <div class="{{ empty($label) ? 'col-span-full' : 'col-span-3' }}"
         x-cloak
         x-data="{
+            oneDark: $data.darkMode,
             content: '',
             init() {
                 let wire = $wire;
 
-                codeMirrorEditor{{ $id }} = CodeMirror.fromTextArea(this.$refs.codemirror{{ $id }}, {
-                    keyMap: 'sublime',
-                    lineWrapping: true,
-                    mode: '{{ $type }}',
-                    theme: 'elegant',
-                    lineNumbers: true,
-                    matchBrackets: true,
-                    indentUnit: 4,
-                    indentWithTabs: true,
-                    tabSize: 4,
-                    foldGutter: true,
-                    gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter']
+                this.content = this.$refs.editor{{ $id }}.value;
+
+                let editor = Editor.create(this.$refs.editor{{ $id }}, {
+                    doc: this.content,
+                    oneDark: this.oneDark,
                 });
 
-                this.content = this.$refs.codemirror{{ $id }}.value;
-                codeMirrorEditor{{ $id }}.setValue(this.content);
-                {{-- codeMirrorEditor{{ $id }}.setSize(this.$refs.codemirror{{ $id }}.value.split('\n').length + 5, 'height'); --}}
-                setTimeout(function() {
-                    codeMirrorEditor{{ $id }}.refresh();
-                }, 1);
-
-                codeMirrorEditor{{ $id }}.on('change', () => this.content = codeMirrorEditor{{ $id }}.getValue());
                 $watch('content', () => {
-                    {{-- codeMirrorEditor{{ $id }}.setValue(this.content); --}}
-                    this.$wire.set('{{ $wireModel['value'] }}',this.content, true);
-                    codeMirrorEditor{{ $id }}.refresh();
+                    this.$wire.set('{{ $wireModel['value'] }}', this.content, true);
                 });
             },
         }"
     >
-        <textarea x-ref="codemirror{{ $id }}" {{ $attributes->merge(['class' => 'form-control w-full p-2 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-gray-600 focus:outline-none'])->whereDoesntStartWith('wire') }} id="{{ $id }}" {{ $attributes->whereStartsWith('wire') }} x-model="content">
-        </textarea>
+        <div x-ref="editor{{ $id }}" {{ $attributes->merge(['class' => 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'])->whereDoesntStartWith('wire') }} id="{{ $id }}" {{ $attributes->whereStartsWith('wire') }} x-model="content">
+        </div>
         @error($attributes->whereStartsWith('wire:model')->first())
         <div class="mt-2">
             <small class="block mt-1 font-bold text-xs text-red-600">{{ $message ?? '' }}</small>

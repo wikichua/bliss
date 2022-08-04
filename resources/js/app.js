@@ -1,6 +1,8 @@
 import './bootstrap';
 import './crypt';
-import './codemirror';
+
+import Editor from './editor';
+window.Editor = Editor;
 
 import 'flowbite';
 

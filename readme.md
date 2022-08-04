@@ -22,10 +22,8 @@ refer
 1. https://bladewindui.com/
 1. https://github.com/LaravelDaily/laravel-tips
 1. https://github.com/LaravelDaily/Best-Laravel-Packages
-1. https://github.com/kazzkiq/CodeFlask
 
 todo
-1. codemirror to CodeFlask
 1. crud generator -
     - views - done
     - navigation - done

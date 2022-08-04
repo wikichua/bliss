@@ -6,11 +6,6 @@
 @import 'tom-select/dist/css/tom-select';
 @import 'flatpickr/dist/flatpickr';
 @import 'sweetalert2/dist/sweetalert2';
-@import 'codemirror/lib/codemirror';
-@import 'codemirror/addon/search/matchesonscrollbar';
-@import 'codemirror/addon/dialog/dialog';
-@import 'codemirror/addon/fold/foldgutter';
-@import 'codemirror/theme/elegant';
 @import 'filepond/dist/filepond';
 @import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview';
 @import 'filepond-plugin-file-poster/dist/filepond-plugin-file-poster';
