@@ -64,8 +64,6 @@ to read
 1. https://github.com/cesargb/laravel-magiclink
 1. https://github.com/voku/stop-words
 1. https://codebrisk.com/blog/generate-youtube-like-ids-for-models-with-laravel-hashids
-1. https://github.com/spatie/async
-1. https://github.com/spatie/laravel-honeypot
 1. https://laradumps.gitbook.io/laradumps/
 1. https://freek.dev
 1. https://github.com/spatie/laravel-morph-map-generator, https://www.youtube.com/watch?v=rx1DQBE01b0
@@ -76,6 +74,7 @@ to read
 1. https://dev.to/enrico_dev86/laravel-notification-system-with-queue-28p4
 1. https://dev.to/enrico_dev86/notification-brodacast-system-with-laravel-websocket-and-rxjs-fph
 1. laravel websocket - https://www.youtube.com/watch?v=ML-XlVSxYU4&list=PLfdtiltiRHWGoBloQG32kmesr0EUGoYpn
+1. https://github.com/def-studio/vite-livewire-plugin
 
 setup:
 
