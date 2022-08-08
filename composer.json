@@ -19,10 +19,10 @@
         "rap2hpoutre/fast-excel": "^3.2",
         "lab404/laravel-impersonate": "^1.7",
         "pda/pheanstalk": "^4.0",
-        "spatie/laravel-collection-macros": "^7.11",
+        "spatie/laravel-collection-macros": "^7.12",
         "react/child-process": "^0.6.4",
         "spatie/laravel-honeypot": "^4.3",
-        "hammerstone/fast-paginate": "^0.1.7"
+        "hammerstone/fast-paginate": "^0.1.8"
     },
     "autoload": {
         "psr-4": {
