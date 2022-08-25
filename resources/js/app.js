@@ -1,3 +1,8 @@
+import.meta.glob([
+  '../images/**',
+  '../fonts/**',
+]);
+// <img src="{{ Vite::asset('resources/images/logo.png') }}">
 import './bootstrap';
 import './crypt';
 
