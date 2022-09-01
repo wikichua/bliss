@@ -41,11 +41,10 @@ todo
         - multiple-select
         - datepicker
         - multiple-input
-        - editor
         - checkboxes
         - filepond
         - codemirror
-        - quill
+        - quill - done
 1. individual model searchable (allow live search on listing)
 
 1. login rate limit https://laravel.com/docs/9.x/rate-limiting (securing passwordless login too)

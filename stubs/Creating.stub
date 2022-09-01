@@ -20,7 +20,9 @@ class Creating extends Component
         $this->authorize('create-[lower-plural]');
         $this->validate();
 
-        $data = [];
+        $data = [
+            [creatingDataSet]
+        ];
 
         $model = [model]::create($data);
 

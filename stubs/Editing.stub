@@ -24,7 +24,9 @@ class Editing extends Component
 
         $model = $this->model;
 
-        $data = [];
+        $data = [
+            [editingDataSet]
+        ];
 
         $model->update($data);
 

@@ -5,9 +5,12 @@ namespace Wikichua\Bliss\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use Wikichua\Bliss\Console\Concerns\FormComponentsTrait;
 
 class Resource extends Command
 {
+    use FormComponentsTrait;
+
     protected $signature = 'bliss:resource {cmd=config} {module?} {--table=}';
 
     protected $description = 'Make Admin Resource';
@@ -140,23 +143,25 @@ class Resource extends Command
                 case '':
                     break;
 
+                case 'editor':
+                        $formComponents = $this->formEditor($component, $fieldName, $label);
+                    break;
+
                 default:
-                        $formComponentStr = <<<EOL
-                        <x-bliss::form-input type="$component" wire:model.defer="$fieldName" label="$label" />
-                        EOL;
-                        $formDisabledComponentStr = <<<EOL
-                        <x-bliss::form-input type="$component" wire:model.defer="$fieldName" label="$label" disabled />
-                        EOL;
-                        $searchComponentStr = <<<EOL
-                        <x-bliss::search-input type="text" id="$fieldName" label="$label" wire:model.defer="filters.$fieldName" />
-                        EOL;
+                        $formComponents = $this->formDefault($component, $fieldName, $label);
                     break;
             }
-            $formStr[] = $formComponentStr;
-            $formDisabledStr[] = $formDisabledComponentStr;
-            if ($searchable) {
-                $searchStr[] = $searchComponentStr;
+            $formStr[] = $formComponents['form'];
+            $formDisabledStr[] = $formComponents['formDisabled'];
+            if ($searchable && ! blank($formComponents['search'])) {
+                $searchStr[] = $formComponents['search'];
             }
+            $creatingDataSets[] = <<<EOL
+            '$fieldName' => \$this->$fieldName,
+            EOL;
+            $editingDataSets[] = <<<EOL
+            '$fieldName' => \$this->$fieldName,
+            EOL;
         }
 
         // migration
@@ -189,6 +194,9 @@ class Resource extends Command
                     $requiredStr
                 ];
         EOL;
+
+        $this->placeholders['creatingDataSet'] = implode(PHP_EOL.Str::repeat("\t", 3), $creatingDataSets);
+        $this->placeholders['editingDataSet'] = implode(PHP_EOL.Str::repeat("\t", 3), $editingDataSets);
 
         $this->componentPath = app_path('Http/Livewire/Admin/'.$this->module);
         File::ensureDirectoryExists($this->componentPath);

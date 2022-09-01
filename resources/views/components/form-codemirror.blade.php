@@ -1,4 +1,4 @@
-@props(['id' => uniqid(), 'label' => '', 'type' => 'javascript'])
+@props(['id' => uniqid(), 'label' => '', 'ref' => fake()->word()])
 @php
     $wireModel = [];
     foreach ($attributes->whereStartsWith('wire:model') as $key => $value) {
@@ -17,11 +17,9 @@
             oneDark: $data.darkMode,
             content: '',
             init() {
-                let wire = $wire;
+                this.content = this.$refs.{{ $ref }}.value;
 
-                this.content = this.$refs.editor{{ $id }}.value;
-
-                let editor = Editor.create(this.$refs.editor{{ $id }}, {
+                let editor = Editor.create(this.$refs.{{ $ref }}, {
                     doc: this.content,
                     oneDark: this.oneDark,
                 });
@@ -32,7 +30,7 @@
             },
         }"
     >
-        <div x-ref="editor{{ $id }}" {{ $attributes->merge(['class' => 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'])->whereDoesntStartWith('wire') }} id="{{ $id }}" {{ $attributes->whereStartsWith('wire') }} x-model="content">
+        <div x-ref="{{ $ref }}" {{ $attributes->merge(['class' => 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'])->whereDoesntStartWith('wire') }} id="{{ $id }}" {{ $attributes->whereStartsWith('wire') }} x-model="content">
         </div>
         @error($attributes->whereStartsWith('wire:model')->first())
         <div class="mt-2">

@@ -6,8 +6,8 @@ import.meta.glob([
 import './bootstrap';
 import './crypt';
 
-import Editor from './editor';
-window.Editor = Editor;
+import CodeMirror from './codemirror';
+window.Editor = CodeMirror;
 
 import 'flowbite';
 
@@ -33,3 +33,6 @@ window.Chart = Chart;
 
 import tippy from 'tippy.js';
 window.tippy = tippy;
+
+import Quill from 'quill';
+window.Quill = Quill;

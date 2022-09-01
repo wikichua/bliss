@@ -10,6 +10,7 @@
 @import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview';
 @import 'filepond-plugin-file-poster/dist/filepond-plugin-file-poster';
 @import 'tippy.js/dist/tippy';
+@import 'quill/dist/quill.snow';
 
 [x-cloak] {
     display: none;
