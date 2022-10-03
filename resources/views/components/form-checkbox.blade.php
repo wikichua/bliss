@@ -1,4 +1,4 @@
-@props(['id' => uniqid(), 'label', 'checkedLabel' => 'Checked', 'uncheckedLabel' => 'Unchecked'])
+@props(['id' => fake()->word(), 'label', 'checkedLabel' => 'Checked', 'uncheckedLabel' => 'Unchecked'])
 <div class="mb-3 grid grid-cols-4 items-center" x-data="{
     label: '',
     checkedLabel: '{{ $checkedLabel }}',

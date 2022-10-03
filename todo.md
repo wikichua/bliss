@@ -35,11 +35,13 @@ todo
     - config - done
     - fields
         - text - done
-        - textarea
+        - textarea - done
         - file
         - select
         - multiple-select
-        - datepicker
+        - datepicker - done
+        - datetimepicker - done
+        - daterangepicker - done
         - multiple-input
         - checkboxes
         - filepond

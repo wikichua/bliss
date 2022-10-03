@@ -7,7 +7,7 @@ return [
     'form' => [
         'field_name' => [
             'label' => 'Label String',
-            'component' => '', // text, password, email, textarea, datepicker, multiple-input, editor, checkboxes, select, multiple-select, file, filepond
+            'component' => '', // text, password, email, textarea, datepicker, multiple-input, editor, checkboxes, select, multiple-select, file, filepond, daterangepicker, datetimepicker
             'sortable' => true,
             'searchable' => true,
             'required' => true,

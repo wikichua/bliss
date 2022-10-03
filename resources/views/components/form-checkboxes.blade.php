@@ -1,4 +1,4 @@
-@props(['id' => uniqid(), 'label', 'options' => [], 'disabled' => false])
+@props(['id' => fake()->word(), 'label', 'options' => [], 'disabled' => false])
 @php
     if (is_object($options) && $options instanceOf \Illuminate\Support\Collection) {
         $options = $options->toArray();

@@ -1,4 +1,4 @@
-@props(['id' => uniqid(), 'label', 'options' => ['']])
+@props(['id' => fake()->word(), 'label', 'options' => ['']])
 @php
     list($modelKey, $modelVal) = array_keys(collect($options)->first());
     $wireModel = [];

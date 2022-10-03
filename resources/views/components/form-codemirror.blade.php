@@ -1,4 +1,4 @@
-@props(['id' => uniqid(), 'label' => '', 'ref' => fake()->word()])
+@props(['id' => fake()->word(), 'label' => '', 'ref' => fake()->word()])
 @php
     $wireModel = [];
     foreach ($attributes->whereStartsWith('wire:model') as $key => $value) {

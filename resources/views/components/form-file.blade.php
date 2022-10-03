@@ -1,5 +1,5 @@
 @props([
-    'id' => uniqid(),
+    'id' => fake()->word(),
     'label',
     'file' => null,
     'accept' => 'image/jpg,image/jpeg,image/png,application/pdf',

@@ -143,8 +143,24 @@ class Resource extends Command
                 case '':
                     break;
 
+                case 'datepicker':
+                        $formComponents = $this->formDatepicker($component, $fieldName, $label);
+                    break;
+
+                case 'datetimepicker':
+                        $formComponents = $this->formDatetimepicker($component, $fieldName, $label);
+                    break;
+
+                case 'daterangepicker':
+                        $formComponents = $this->formDaterangepicker($component, $fieldName, $label);
+                    break;
+
                 case 'editor':
                         $formComponents = $this->formEditor($component, $fieldName, $label);
+                    break;
+
+                case 'textarea':
+                        $formComponents = $this->formTextarea($component, $fieldName, $label);
                     break;
 
                 default:
