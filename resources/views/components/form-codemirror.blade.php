@@ -19,7 +19,7 @@
             init() {
                 this.content = this.$refs.{{ $ref }}.value;
 
-                let editor = Editor.create(this.$refs.{{ $ref }}, {
+                let codemirror = CodeMirror.create(this.$refs.{{ $ref }}, {
                     doc: this.content,
                     oneDark: this.oneDark,
                 });

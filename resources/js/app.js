@@ -7,7 +7,7 @@ import './bootstrap';
 import './crypt';
 
 import CodeMirror from './codemirror';
-window.Editor = CodeMirror;
+window.CodeMirror = CodeMirror;
 
 import 'flowbite';
 
