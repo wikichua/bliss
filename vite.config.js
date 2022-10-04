@@ -21,6 +21,7 @@ export default defineConfig({
         laravel([
             'resources/css/mail.css',
             'resources/css/app.css',
+            'resources/css/styles.css',
             'resources/js/app.js',
             'resources/js/alpine.js',
         ]),
