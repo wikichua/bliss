@@ -13,7 +13,7 @@
     "require": {
         "laravel/breeze": "^1.14",
         "livewire/livewire": "^2.10",
-        "illuminate/support": "^9.36",
+        "illuminate/support": "^9.37",
         "laravel/helpers": "^1.5",
         "jenssegers/agent": "^2.6",
         "rap2hpoutre/fast-excel": "^4.1",
