@@ -20,6 +20,17 @@ paste this in composer.json
     }
 ```
 
+or
+
+```
+    "repositories": {
+        "wikichua/bliss": {
+            "type": "vcs",
+            "url": "https://github.com/wikichua/bliss.git"
+        }
+    }
+```
+
 ```
 composer req wikichua/bliss:@dev
 ```
