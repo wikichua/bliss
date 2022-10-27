@@ -59,6 +59,7 @@ todo
 1. spatie honeypot - all modules
 
 to read
+1. https://www.iankumu.com/blog/laravel-search/
 1. https://ayeesha.hashnode.dev/deploying-your-laravel-project-on-heroku
 1. https://sebastiandedeyne.com/vite-with-laravel/
 1. https://github.com/mithicher/file-attachment/blob/master/resources/views/components/file-attachment.blade.php

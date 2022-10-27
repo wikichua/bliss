@@ -13,10 +13,10 @@
     "require": {
         "laravel/breeze": "^1.14",
         "livewire/livewire": "^2.10",
-        "illuminate/support": "^9.35",
+        "illuminate/support": "^9.36",
         "laravel/helpers": "^1.5",
         "jenssegers/agent": "^2.6",
-        "rap2hpoutre/fast-excel": "^3.2",
+        "rap2hpoutre/fast-excel": "^4.1",
         "lab404/laravel-impersonate": "^1.7",
         "pda/pheanstalk": "^4.0",
         "spatie/laravel-collection-macros": "^7.12",
@@ -54,6 +54,6 @@
         }
     },
     "require-dev": {
-        "laravel/pint": "^0.2.4"
+        "laravel/pint": "^1.2"
     }
 }
