@@ -8,6 +8,11 @@ use Illuminate\Support\Str;
 
 class Bliss
 {
+    public function encodeURIComponent($str) {
+        $revert = array('%21'=>'!', '%2A'=>'*', '%27'=>"'", '%28'=>'(', '%29'=>')');
+        return strtr(rawurlencode($str), $revert);
+    }
+
     public function getSettings(string $name, mixed $default = null)
     {
         if (! is_array(config('settings.'.$name)) && json_decode(config('settings.'.$name), 1)) {
