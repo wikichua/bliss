@@ -36,7 +36,7 @@ return new class extends Migration
             });
             Schema::table('personal_access_tokens', function (Blueprint $table) {
                 if (config('database.default') != 'sqlite') {
-                    $table->increments('id')->before('tokenable');
+                    $table->ulid('id')->first();
                 }
                 $table->string('plain_text_token')->nullable()->index();
             });
