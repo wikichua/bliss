@@ -2,11 +2,12 @@
 
 namespace [modelNamespace];
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Wikichua\Bliss\Casts\UserTimezone;
 use Wikichua\Bliss\Concerns\AllModelTraits;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class [model] extends Eloquent
 {

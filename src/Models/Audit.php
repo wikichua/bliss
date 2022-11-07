@@ -8,6 +8,7 @@ use Wikichua\Bliss\Casts\UserTimezone;
 
 class Audit extends Model
 {
+    use \Illuminate\Database\Eloquent\Concerns\HasUlids;
     use \Wikichua\Bliss\Concerns\AllModelTraits;
 
     const UPDATED_AT = null;

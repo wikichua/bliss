@@ -7,6 +7,7 @@ use Wikichua\Bliss\Casts\UserTimezone;
 
 class Permission extends Model
 {
+    use \Illuminate\Database\Eloquent\Concerns\HasUlids;
     use \Wikichua\Bliss\Concerns\AllModelTraits;
 
     public $searchableFields = ['name', 'group'];
@@ -14,6 +15,8 @@ class Permission extends Model
     protected $fillable = [
         'group',
         'name',
+        'created_by',
+        'updated_by',
     ];
 
     protected $auditable = true;
@@ -46,14 +49,15 @@ class Permission extends Model
     }
 
     // create permission group
-    public function createGroup($group, $names = [], $user_id = '1')
+    public function createGroup($group, $names = [], $user_id = null)
     {
+        $user_id = $user_id ? $user_id : (auth()->check() ? auth()->id() : null);
         foreach ($names as $name) {
             $this->create([
                 'group' => $group,
                 'name' => $name,
-                'created_by' => auth()->check() ? auth()->id() : $user_id,
-                'updated_by' => auth()->check() ? auth()->id() : $user_id,
+                'created_by' => $user_id,
+                'updated_by' => $user_id,
             ]);
         }
     }

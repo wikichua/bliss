@@ -9,7 +9,12 @@ return new class extends Migration
     public function up()
     {
         Schema::table('failed_jobs', function (Blueprint $table) {
+            $table->dropColumn(['id']);
+        });
+
+        Schema::table('failed_jobs', function (Blueprint $table) {
             $table->text('batch')->nullable()->after('connection');
+            $table->ulid('id')->first();
         });
     }
 

@@ -7,6 +7,7 @@ use Wikichua\Bliss\Casts\UserTimezone;
 
 class Worker extends Model
 {
+    use \Illuminate\Database\Eloquent\Concerns\HasUlids;
     use \Wikichua\Bliss\Concerns\AllModelTraits;
 
     public $searchableFields = [];

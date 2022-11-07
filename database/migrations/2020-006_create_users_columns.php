@@ -9,11 +9,16 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('id');
+        });
+
+        Schema::table('users', function (Blueprint $table) {
+            $table->ulid('id')->first();
             $table->string('avatar')->nullable();
             $table->string('timezone')->default(config('app.timezone'))->index();
             $table->string('status', 1)->nullable()->default('I');
-            $table->integer('created_by')->nullable()->default(1);
-            $table->integer('updated_by')->nullable()->default(1);
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
         });
 
         Schema::dropIfExists('password_resets');

@@ -11,6 +11,7 @@ use Wikichua\Bliss\Concerns\AllModelTraits;
 
 abstract class User extends Authenticatable
 {
+    use \Illuminate\Database\Eloquent\Concerns\HasUlids;
     use AdminUser, AllModelTraits, HasApiTokens, Impersonate;
 
     public $searchableFields = ['name', 'email'];

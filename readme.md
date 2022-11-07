@@ -133,9 +133,10 @@ enable with
 LOG_CHANNEL=db
 ```
 
-LOG_CHANNEL=stack to disabled this feature
+LOG_CHANNEL=stack // to disabled this feature
 
-
+8.
+ID changed to ULID
 
 Vite Config
 

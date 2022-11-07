@@ -9,7 +9,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('queue_jobs', function (Blueprint $table) {
-            $table->id();
+            $table->ulid('id');
             $table->string('uuid')->unique();
             $table->text('connection');
             $table->text('batch');

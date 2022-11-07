@@ -8,7 +8,7 @@ use React\EventLoop\Loop;
 
 class Work extends Command
 {
-    protected $signature = 'bliss:work {--backoff=1} {--worker=} {--stop-when-empty} {--include-attempted}';
+    protected $signature = 'bliss:work {--backoff=0} {--worker=} {--stop-when-empty} {--include-attempted}';
 
     protected $description = 'Queue Worker Asynchronous';
 
@@ -23,7 +23,7 @@ class Work extends Command
 
     public function handle()
     {
-        $backoff = ! blank($this->option('backoff')) ? $this->option('backoff') : 1;
+        $backoff = ! blank($this->option('backoff')) ? $this->option('backoff') : 0;
         $this->max_workers = ! blank($this->option('worker')) ? $this->option('worker') : settings('max_workers');
         Loop::addPeriodicTimer($backoff, function () use ($backoff) {
             if ($this->working < $this->max_workers) {
@@ -53,12 +53,13 @@ class Work extends Command
             $process->start();
             $process->stdout->on('data', function ($data) use ($worker) {
                 $data = trim($data);
-                if (str()->contains($data, 'Processed:')) {
+                $dataStrLower = strtolower($data);
+                if (str()->contains($dataStrLower, 'processed:') || str()->contains($dataStrLower, 'done')) {
                     $this->info($data);
                     if ($worker->delete()) {
                         $this->working--;
                     }
-                } elseif (str()->contains($data, 'Failed:')) {
+                } elseif (str()->contains($dataStrLower, 'fail')) {
                     $this->error($data);
                     if ($worker->delete()) {
                         $this->working--;

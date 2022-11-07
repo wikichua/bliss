@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('[tableName]', function (Blueprint $table) {
-            $table->id();
+            $table->ulid('id');
             [tableSetup]
             $table->timestamps();
             $table->softDeletes();

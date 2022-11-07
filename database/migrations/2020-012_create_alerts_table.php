@@ -9,13 +9,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('alerts', function (Blueprint $table) {
-            $table->increments('id');
+            $table->ulid('id');
             $table->string('icon')->nullable()->default('');
             $table->string('link')->nullable();
             $table->text('message');
             $table->timestamps();
-            $table->integer('sender_id')->default(0); // 0 - everyone
-            $table->integer('receiver_id')->default(0); // 0 - everyone
+            $table->string('sender_id'); // 0 - everyone
+            $table->string('receiver_id'); // 0 - everyone
             $table->string('status', 1)->default('U'); // R - read / U - unread
 
             $table->index('status');

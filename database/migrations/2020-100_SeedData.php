@@ -7,14 +7,15 @@ return new class extends Migration
 {
     public function up()
     {
-        $user_id = 1;
         // create default admin user
         $user = app(config('bliss.Models.User'))->create([
             'name' => 'Admin',
             'email' => 'admin@example.com',
             'password' => Hash::make('admin123'),
-            'type' => 'Admin',
             'status' => 'A',
+        ]);
+        $user_id = $user->id;
+        $user->update([
             'created_by' => $user_id,
             'updated_by' => $user_id,
         ]);

@@ -7,6 +7,7 @@ use Wikichua\Bliss\Casts\UserTimezone;
 
 class Report extends Model
 {
+    use \Illuminate\Database\Eloquent\Concerns\HasUlids;
     use \Illuminate\Database\Eloquent\SoftDeletes;
     use \Wikichua\Bliss\Concerns\AllModelTraits;
 

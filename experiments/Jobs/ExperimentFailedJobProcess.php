@@ -24,8 +24,8 @@ class ExperimentFailedJobProcess implements ShouldQueue
     public function handle()
     {
         $response = \Http::withoutVerifying()->get(route('exp.random_result'));
-        if ($response->status() != 200) {
+        // if ($response->status() != 200) {
             throw new \Exception('Error Processing Request', 1);
-        }
+        // }
     }
 }

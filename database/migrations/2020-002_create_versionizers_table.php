@@ -9,14 +9,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('versionizers', function (Blueprint $table) {
-            $table->increments('id');
+            $table->ulid('id');
             $table->string('mode');
             $table->string('model_class');
-            $table->integer('model_id');
+            $table->string('model_id');
             $table->json('data');
             $table->json('changes');
             $table->timestamp('reverted_at')->nullable();
-            $table->integer('reverted_by')->nullable();
+            $table->string('reverted_by')->nullable();
             $table->timestamps();
 
             $table->index(['mode']);

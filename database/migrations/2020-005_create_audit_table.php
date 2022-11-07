@@ -9,9 +9,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('audits', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('user_id')->nullable();
-            $table->integer('model_id')->nullable();
+            $table->ulid('id');
+            $table->string('user_id')->nullable();
+            $table->string('model_id')->nullable();
             $table->string('model_class')->nullable();
             $table->string('message');
             $table->json('data')->nullable();

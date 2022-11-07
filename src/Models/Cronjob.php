@@ -8,6 +8,7 @@ use Wikichua\Bliss\Casts\UserTimezone;
 
 class Cronjob extends Eloquent
 {
+    use \Illuminate\Database\Eloquent\Concerns\HasUlids;
     use \Illuminate\Database\Eloquent\SoftDeletes;
     use \Wikichua\Bliss\Concerns\AllModelTraits;
 

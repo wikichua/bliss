@@ -9,7 +9,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('workers', function (Blueprint $table) {
-            $table->id();
+            $table->ulid('id');
             $table->text('batch');
             $table->text('queue');
             $table->boolean('attempted')->default(false);

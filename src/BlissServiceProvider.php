@@ -3,6 +3,7 @@
 namespace Wikichua\Bliss;
 
 use Illuminate\Contracts\Http\Kernel;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Schema;
@@ -19,6 +20,8 @@ class BlissServiceProvider extends ServiceProvider
      */
     public function boot(Kernel $kernel): void
     {
+        Model::shouldBeStrict(app()->isLocal());
+
         $kernel->pushMiddleware(HttpsProtocol::class);
 
         Schema::defaultStringLength(191);

@@ -9,13 +9,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('logs', function (Blueprint $table) {
-            $table->id();
+            $table->ulid('id');
             $table->timestamps();
             $table->enum('level', ['emergency', 'alert', 'critical', 'error', 'warning', 'notice', 'info', 'debug']);
             $table->longText('message')->nullable();
             $table->longText('iteration')->nullable();
-            $table->text('user_id')->nullable();
-            $table->integer('job_id')->nullable();
+            $table->string('user_id')->nullable();
+            $table->string('job_id')->nullable();
         });
         if (\File::exists(base_path('vendor/jenssegers/mongodb'))) {
             try {

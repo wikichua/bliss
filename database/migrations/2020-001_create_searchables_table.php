@@ -9,9 +9,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('searchables', function (Blueprint $table) {
-            $table->increments('id');
+            $table->ulid('id');
             $table->string('model');
-            $table->integer('model_id');
+            $table->string('model_id');
             $table->json('tags');
             $table->timestamps();
 

@@ -7,6 +7,7 @@ use Wikichua\Bliss\Casts\UserTimezone;
 
 class Versionizer extends Model
 {
+    use \Illuminate\Database\Eloquent\Concerns\HasUlids;
     use \Wikichua\Bliss\Concerns\AllModelTraits;
 
     protected $auditable = false;

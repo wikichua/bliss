@@ -9,6 +9,7 @@ use Str;
 
 class Setting extends Model
 {
+    use \Illuminate\Database\Eloquent\Concerns\HasUlids;
     use \Wikichua\Bliss\Concerns\AllModelTraits;
 
     public $searchableFields = ['key'];

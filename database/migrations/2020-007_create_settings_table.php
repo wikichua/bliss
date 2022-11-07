@@ -9,13 +9,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('settings', function (Blueprint $table) {
-            $table->increments('id');
+            $table->ulid('id');
             $table->string('key')->index();
             $table->longText('value')->nullable();
             $table->boolean('protected')->default(false);
             $table->timestamps();
-            $table->integer('created_by')->nullable()->default(1);
-            $table->integer('updated_by')->nullable()->default(1);
+            $table->string('created_by')->nullable()->default(1);
+            $table->string('updated_by')->nullable()->default(1);
         });
     }
 
