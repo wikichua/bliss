@@ -73,7 +73,7 @@ if (! function_exists('iplocation')) {
     }
 }
 if (! function_exists('sendAlertNotification')) {
-    function sendAlertNotification(string $message, int $sender, array $receivers, $link = '', $icon = '')
+    function sendAlertNotification(string $message, string $sender, array $receivers, $link = '', $icon = '')
     {
         $arguments = compact('message', 'sender', 'receivers', 'link', 'icon');
 
@@ -81,7 +81,7 @@ if (! function_exists('sendAlertNotification')) {
     }
 }
 if (! function_exists('sendAlertNotificationNow')) {
-    function sendAlertNotificationNow(string $message, int $sender, array $receivers, $link = '', $icon = '')
+    function sendAlertNotificationNow(string $message, string $sender, array $receivers, $link = '', $icon = '')
     {
         $arguments = compact('message', 'sender', 'receivers', 'link', 'icon');
 

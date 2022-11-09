@@ -13,6 +13,7 @@ class AlertNotification extends Component
     public function render()
     {
         $alerts = app(config('bliss.Models.Alert'))->query()
+            ->with(['sender', 'receiver'])
             ->orderBy('created_at', 'desc')
             ->where('receiver_id', auth()->id())
             ->take(25)

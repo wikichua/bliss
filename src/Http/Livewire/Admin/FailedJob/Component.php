@@ -67,6 +67,7 @@ abstract class Component extends LivewireComponent
     {
         $model = app(config('bliss.Models.FailedJob'))->query()->findOrFail($id);
         app(config('bliss.Models.Worker'))->query()->create([
+            'batch' => $model->batch,
             'queue' => $model->queue,
         ]);
         \Artisan::call('queue:retry', [

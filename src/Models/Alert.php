@@ -2,7 +2,6 @@
 
 namespace Wikichua\Bliss\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Model;
 use Wikichua\Bliss\Casts\UserTimezone;
 

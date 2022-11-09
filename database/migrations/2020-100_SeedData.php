@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 
 return new class extends Migration
 {
@@ -19,6 +21,8 @@ return new class extends Migration
             'created_by' => $user_id,
             'updated_by' => $user_id,
         ]);
+        $this->updateAdminIdToEnvFile(base_path('.env'), $user_id);
+        $this->updateAdminIdToEnvFile(base_path('.env.example'), null);
         // create default admin role
         app(config('bliss.Models.Role'))->create([
             'name' => 'Admin',
@@ -107,5 +111,37 @@ return new class extends Migration
             'user_status',
             'locales',
         ])->delete();
+    }
+
+    protected function updateAdminIdToEnvFile($file, $id = null)
+    {
+        $change = false;
+        $content = @File::get($file);
+        if (! str_contains($content, 'ADMIN_ID')) {
+            $lines = explode(PHP_EOL, $content);
+            foreach ($lines as $key => $line) {
+                if (str_contains($line, 'DB_CONNECTION')) {
+                    $change = true;
+                    $lines[$key] = 'ADMIN_ID='.PHP_EOL.$line;
+                    if (! blank($id)) {
+                        $lines[$key] = 'ADMIN_ID="'.$id.'"'.PHP_EOL.$line;
+                    }
+                }
+            }
+        } else {
+            $lines = explode(PHP_EOL, $content);
+            foreach ($lines as $key => $line) {
+                if (str_contains($line, 'ADMIN_ID')) {
+                    $change = true;
+                    $lines[$key] = 'ADMIN_ID=';
+                    if (! blank($id)) {
+                        $lines[$key] = 'ADMIN_ID="'.$id.'"';
+                    }
+                }
+            }
+        }
+        if ($change) {
+            @File::replace($file, implode(PHP_EOL, $lines));
+        }
     }
 };

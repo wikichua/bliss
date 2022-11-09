@@ -8,8 +8,10 @@ use Illuminate\Support\Str;
 
 class Bliss
 {
-    public function encodeURIComponent($str) {
-        $revert = array('%21'=>'!', '%2A'=>'*', '%27'=>"'", '%28'=>'(', '%29'=>')');
+    public function encodeURIComponent($str)
+    {
+        $revert = ['%21' => '!', '%2A' => '*', '%27' => "'", '%28' => '(', '%29' => ')'];
+
         return strtr(rawurlencode($str), $revert);
     }
 
@@ -130,7 +132,7 @@ class Bliss
         }
 
         app(config('bliss.Models.Audit'))->create([
-            'user_id' => auth()->check() ? auth()->user()->id : 1,
+            'user_id' => auth()->check() ? auth()->user()->id : config('bliss.admin.id'),
             'model_id' => $model ? $model->id : null,
             'model_class' => $model ? $model::class : null,
             'message' => $message,
@@ -170,13 +172,13 @@ class Bliss
         ];
     }
 
-    public function sendAlertNotification(string $message, int $sender, array $receivers, $link = '', $icon = '')
+    public function sendAlertNotification(string $message, string $sender, array $receivers, $link = '', $icon = '')
     {
         dispatch(function () use ($message, $sender, $receivers, $link, $icon) {
             $chunkedReceivers = array_chunk($receivers, 1000);
             foreach ($chunkedReceivers as $receivers) {
                 foreach ($receivers as $receiver) {
-                    if ($receiver != $sender || $sender == 1) {
+                    if ($receiver != $sender || $sender == config('bliss.admin.id')) {
                         app(config('bliss.Models.Alert'))->query()->create([
                             'icon' => $icon,
                             'link' => $link,
@@ -192,12 +194,12 @@ class Bliss
         return true;
     }
 
-    public function sendAlertNotificationNow(string $message, int $sender, array $receivers, $link = '', $icon = '')
+    public function sendAlertNotificationNow(string $message, string $sender, array $receivers, $link = '', $icon = '')
     {
         $chunkedReceivers = array_chunk($receivers, 1000);
         foreach ($chunkedReceivers as $receivers) {
             foreach ($receivers as $receiver) {
-                if ($receiver != $sender || $sender == 1) {
+                if ($receiver != $sender || $sender == config('bliss.admin.id')) {
                     app(config('bliss.Models.Alert'))->query()->create([
                         'icon' => $icon,
                         'link' => $link,
@@ -214,23 +216,7 @@ class Bliss
 
     public function randomWords(int $length = 3)
     {
-        $words = cache()->rememberForever('humanRandomWord', function () {
-            $responses = \Illuminate\Support\Facades\Http::pool(fn (\Illuminate\Http\Client\Pool $pool) => [
-                $pool->get('https://raw.githubusercontent.com/AlessandroMinoccheri/human-names/master/data/male-human-names-en.json'),
-                $pool->get('https://raw.githubusercontent.com/AlessandroMinoccheri/human-names/master/data/female-human-names-en.json'),
-            ]);
-            $words = [];
-            foreach ($responses as $response) {
-                if ($response->ok()) {
-                    $words = array_merge($words, $response->json());
-                }
-            }
-
-            return $words;
-        });
-        $blocks = \Arr::random($words, $length);
-
-        return implode('-', $blocks);
+        return fake()->slug(3);
     }
 
     public function userIdsWithPermission(string $permission)

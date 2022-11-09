@@ -76,7 +76,7 @@ class Report extends Command
                     message: __('Report (:name) processes completed.', [
                         'name' => 'report-'.str_slug($report->name),
                     ]),
-                    sender: 1,
+                    sender: config('bliss.admin.id'),
                     receivers: userIdsWithPermission('read-failedjobs'),
                     link: $report->readUrl,
                 );

@@ -6,6 +6,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Http;
 use Wikichua\Bliss\Concerns\Queueable;
 
 class ExperimentFailedJobProcess implements ShouldQueue
@@ -23,9 +24,11 @@ class ExperimentFailedJobProcess implements ShouldQueue
      */
     public function handle()
     {
-        $response = \Http::withoutVerifying()->get(route('exp.random_result'));
-        // if ($response->status() != 200) {
+        Http::fake([
+            '*' => fn () => Http::response('', array_rand([400 => 400, 200 => 200])),
+        ]);
+        if (Http::withoutVerifying()->get('')->status() != 200) {
             throw new \Exception('Error Processing Request', 1);
-        // }
+        }
     }
 }

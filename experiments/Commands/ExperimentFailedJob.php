@@ -3,6 +3,7 @@
 namespace Wikichua\Bliss\Exp\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Http;
 use Wikichua\Bliss\Exp\Jobs\ExperimentFailedJobProcess;
 
 class ExperimentFailedJob extends Command

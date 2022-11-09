@@ -13,7 +13,7 @@
     "require": {
         "laravel/breeze": "^1.14",
         "livewire/livewire": "^2.10",
-        "illuminate/support": "^9.37",
+        "illuminate/support": "^9.39",
         "laravel/helpers": "^1.5",
         "jenssegers/agent": "^2.6",
         "rap2hpoutre/fast-excel": "^4.1",
@@ -23,7 +23,8 @@
         "react/child-process": "^0.6.5",
         "spatie/laravel-honeypot": "^4.3",
         "hammerstone/fast-paginate": "^0.1.10",
-        "fakerphp/faker": "^1.20"
+        "fakerphp/faker": "^1.20",
+        "laravel/sanctum": "^3.0"
     },
     "autoload": {
         "psr-4": {

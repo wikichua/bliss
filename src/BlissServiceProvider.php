@@ -20,7 +20,7 @@ class BlissServiceProvider extends ServiceProvider
      */
     public function boot(Kernel $kernel): void
     {
-        Model::shouldBeStrict(app()->isLocal());
+        // Model::shouldBeStrict(app()->isLocal());
 
         $kernel->pushMiddleware(HttpsProtocol::class);
 

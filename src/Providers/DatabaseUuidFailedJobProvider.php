@@ -22,7 +22,7 @@ class DatabaseUuidFailedJobProvider extends LaravelDatabaseUuidFailedJobProvider
             message: __('FailedJob (:queue) added.', [
                 'queue' => $queue,
             ]),
-            sender: 1,
+            sender: config('bliss.admin.id'),
             receivers: userIdsWithPermission('read-failedjobs'),
             link: $model->readUrl,
         );

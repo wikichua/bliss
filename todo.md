@@ -22,6 +22,7 @@ refer
 1. https://bladewindui.com/
 1. https://github.com/LaravelDaily/laravel-tips
 1. https://github.com/LaravelDaily/Best-Laravel-Packages
+1. https://publicapis.dev/
 
 todo
 1. https://tailwindcomponents.com/component/tailwind-multiselect-with-tom-select
@@ -59,6 +60,8 @@ todo
 1. spatie honeypot - all modules
 
 to read
+1. https://fly.io/laravel-bytes/hoarding-order/
+1. https://laraveldaily.com/post/laravel-service-classes-injection
 1. https://www.iankumu.com/blog/laravel-search/
 1. https://ayeesha.hashnode.dev/deploying-your-laravel-project-on-heroku
 1. https://sebastiandedeyne.com/vite-with-laravel/

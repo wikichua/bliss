@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'root' => '',
+    'admin' => [
+        'id' => env('ADMIN_ID', 'th1s1s5ampl30fadmin1d'),
+    ],
     'stubs' => [
         'path' => 'vendor/wikichua/bliss/stubs',
     ],

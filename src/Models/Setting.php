@@ -4,8 +4,8 @@ namespace Wikichua\Bliss\Models;
 
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Database\Eloquent\Model;
-use Wikichua\Bliss\Casts\UserTimezone;
 use Str;
+use Wikichua\Bliss\Casts\UserTimezone;
 
 class Setting extends Model
 {
