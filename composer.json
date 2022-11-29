@@ -11,9 +11,9 @@
     "homepage": "https://github.com/wikichua/bliss",
     "keywords": ["Laravel", "Bliss"],
     "require": {
-        "laravel/breeze": "^1.14",
+        "laravel/breeze": "^1.15",
         "livewire/livewire": "^2.10",
-        "illuminate/support": "^9.39",
+        "illuminate/support": "^9.41",
         "laravel/helpers": "^1.5",
         "jenssegers/agent": "^2.6",
         "rap2hpoutre/fast-excel": "^4.1",
