@@ -60,6 +60,7 @@ todo
 1. spatie honeypot - all modules
 
 to read
+1. https://turbo-laravel.com/docs/1.x/installation
 1. https://fly.io/laravel-bytes/hoarding-order/
 1. https://laraveldaily.com/post/laravel-service-classes-injection
 1. https://www.iankumu.com/blog/laravel-search/
