@@ -16,7 +16,7 @@
         "illuminate/support": "^9.43",
         "laravel/helpers": "^1.6",
         "jenssegers/agent": "^2.6",
-        "rap2hpoutre/fast-excel": "v5.0.0",
+        "rap2hpoutre/fast-excel": "^5.1",
         "lab404/laravel-impersonate": "^1.7",
         "pda/pheanstalk": "^4.0",
         "spatie/laravel-collection-macros": "^7.12",

@@ -83,3 +83,4 @@ to read
 1. https://dev.to/enrico_dev86/notification-brodacast-system-with-laravel-websocket-and-rxjs-fph
 1. laravel websocket - https://www.youtube.com/watch?v=ML-XlVSxYU4&list=PLfdtiltiRHWGoBloQG32kmesr0EUGoYpn
 1. https://github.com/def-studio/vite-livewire-plugin
+1. https://ashallendesign.co.uk/blog/collect-js-a-laravel-like-syntax-for-javascript-arrays
