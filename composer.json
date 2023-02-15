@@ -13,11 +13,11 @@
     "require": {
         "laravel/breeze": "^1.18",
         "livewire/livewire": "^2.11",
-        "illuminate/support": "^9.43",
+        "illuminate/support": "^9.0 | ^10.0",
         "laravel/helpers": "^1.6",
         "jenssegers/agent": "^2.6",
         "rap2hpoutre/fast-excel": "^5.1",
-        "lab404/laravel-impersonate": "^1.7",
+        "lab404/laravel-impersonate": "^1.7.4",
         "pda/pheanstalk": "^4.0",
         "spatie/laravel-collection-macros": "^7.12",
         "react/child-process": "^0.6.5",
