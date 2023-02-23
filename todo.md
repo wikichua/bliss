@@ -75,6 +75,7 @@ to read
 1. https://laradumps.gitbook.io/laradumps/
 1. https://freek.dev
 1. https://github.com/spatie/laravel-morph-map-generator, https://www.youtube.com/watch?v=rx1DQBE01b0
+1. https://collect.js.org/
 
 1. https://davecalnan.blog/easy-multi-tenancy-with-laravel
 1. https://tailwindcomponents.com/component/messanger-design
@@ -83,4 +84,3 @@ to read
 1. https://dev.to/enrico_dev86/notification-brodacast-system-with-laravel-websocket-and-rxjs-fph
 1. laravel websocket - https://www.youtube.com/watch?v=ML-XlVSxYU4&list=PLfdtiltiRHWGoBloQG32kmesr0EUGoYpn
 1. https://github.com/def-studio/vite-livewire-plugin
-1. https://ashallendesign.co.uk/blog/collect-js-a-laravel-like-syntax-for-javascript-arrays
