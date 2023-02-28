@@ -10,8 +10,6 @@ class Searchable extends Model
     use \Illuminate\Database\Eloquent\Concerns\HasUlids;
     use \Wikichua\Bliss\Concerns\AllModelTraits;
 
-    protected $dates = [];
-
     protected $fillable = [
         'model',
         'model_id',

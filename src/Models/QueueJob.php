@@ -13,8 +13,6 @@ class QueueJob extends Model
     // public $timestamps = false;
     const UPDATED_AT = null;
 
-    protected $dates = ['started_at', 'ended_at'];
-
     protected $fillable = [
         'uuid',
         'connection',

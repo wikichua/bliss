@@ -11,8 +11,6 @@ class Versionizer extends Model
 
     protected $auditable = false;
 
-    protected $dates = ['reverted_at'];
-
     protected $fillable = [
         'mode',
         'model_class',

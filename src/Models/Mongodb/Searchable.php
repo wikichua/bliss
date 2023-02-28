@@ -9,8 +9,6 @@ class Searchable extends Model
 {
     use \Wikichua\Bliss\Concerns\AllModelTraits;
 
-    protected $dates = [];
-
     protected $fillable = [
         'model',
         'model_id',

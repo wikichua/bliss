@@ -12,8 +12,6 @@ class FailedJob extends Model
 
     public $timestamps = false;
 
-    protected $dates = ['failed_at'];
-
     protected $fillable = [
         'uuid',
         'connection',

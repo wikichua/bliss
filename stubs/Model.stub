@@ -16,7 +16,6 @@ class [model] extends Eloquent
     protected $auditable = true;
     protected $snapshot = true;
 
-    protected $dates = ['deleted_at'];
     [fillable]
 
     protected $appends = [];

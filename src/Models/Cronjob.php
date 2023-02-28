@@ -16,8 +16,6 @@ class Cronjob extends Eloquent
 
     protected $snapshot = false;
 
-    protected $dates = ['deleted_at'];
-
     protected $fillable = [
         'name',
         'mode',

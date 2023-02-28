@@ -15,8 +15,6 @@ class Report extends Model
 
     protected $snapshot = true;
 
-    protected $dates = ['deleted_at'];
-
     protected $fillable = [
         'created_by',
         'updated_by',
