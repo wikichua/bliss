@@ -11,12 +11,12 @@
     "homepage": "https://github.com/wikichua/bliss",
     "keywords": ["Laravel", "Bliss"],
     "require": {
-        "laravel/breeze": "^1.18",
-        "livewire/livewire": "^2.11",
+        "laravel/breeze": "^1.20",
+        "livewire/livewire": "^2.12",
         "illuminate/support": "^9.0 | ^10.0",
         "laravel/helpers": "^1.6",
         "jenssegers/agent": "^2.6",
-        "rap2hpoutre/fast-excel": "^5.1",
+        "rap2hpoutre/fast-excel": "^5.2",
         "lab404/laravel-impersonate": "^1.7.4",
         "pda/pheanstalk": "^4.0",
         "spatie/laravel-collection-macros": "^7.12",
@@ -55,6 +55,6 @@
         }
     },
     "require-dev": {
-        "laravel/pint": "^1.4"
+        "laravel/pint": "^1.7"
     }
 }
