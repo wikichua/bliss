@@ -21,6 +21,8 @@ class Profile extends Component
 
     public $password_confirmation;
 
+    public $password;
+
     public function mount()
     {
         $this->model = auth()->user();

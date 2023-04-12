@@ -25,7 +25,7 @@ class ProfileSavePasswordRequest extends FormRequest
     public function rules()
     {
         return [
-            'current_password' => ['required', MatchCurrentPassword::class],
+            'current_password' => ['required', new MatchCurrentPassword],
             'password' => ['required', 'confirmed'],
             'password_confirmation' => 'required',
         ];
