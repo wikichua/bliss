@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "992eb188eaebb651564aa67e81d5e232",
+    "content-hash": "2591bf632a28a2e1563c8b98e9883c8d",
     "packages": [
         {
             "name": "brick/math",
@@ -767,16 +767,16 @@
         },
         {
             "name": "hammerstone/fast-paginate",
-            "version": "v0.1.12",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hammerstonedev/fast-paginate.git",
-                "reference": "9bfd726113317cf60d0a1d3b7a13ed8636fb1f84"
+                "reference": "1e9b31ded2fdd8526e654f6101d6c545b06fdda0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hammerstonedev/fast-paginate/zipball/9bfd726113317cf60d0a1d3b7a13ed8636fb1f84",
-                "reference": "9bfd726113317cf60d0a1d3b7a13ed8636fb1f84",
+                "url": "https://api.github.com/repos/hammerstonedev/fast-paginate/zipball/1e9b31ded2fdd8526e654f6101d6c545b06fdda0",
+                "reference": "1e9b31ded2fdd8526e654f6101d6c545b06fdda0",
                 "shasum": ""
             },
             "require": {
@@ -815,9 +815,9 @@
             "description": "Fast paginate for Laravel",
             "support": {
                 "issues": "https://github.com/hammerstonedev/fast-paginate/issues",
-                "source": "https://github.com/hammerstonedev/fast-paginate/tree/v0.1.12"
+                "source": "https://github.com/hammerstonedev/fast-paginate/tree/v1.0.1"
             },
-            "time": "2023-02-14T03:28:31+00:00"
+            "time": "2023-04-29T18:13:05+00:00"
         },
         {
             "name": "jaybizzle/crawler-detect",
@@ -1024,16 +1024,16 @@
         },
         {
             "name": "laravel/breeze",
-            "version": "v1.20.1",
+            "version": "v1.21.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/breeze.git",
-                "reference": "bb2935f40d8396c6d0c77e4099a6e072c9095b33"
+                "reference": "a7e7e2acfb2fd332183aae41c445be7a2329e93e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/breeze/zipball/bb2935f40d8396c6d0c77e4099a6e072c9095b33",
-                "reference": "bb2935f40d8396c6d0c77e4099a6e072c9095b33",
+                "url": "https://api.github.com/repos/laravel/breeze/zipball/a7e7e2acfb2fd332183aae41c445be7a2329e93e",
+                "reference": "a7e7e2acfb2fd332183aae41c445be7a2329e93e",
                 "shasum": ""
             },
             "require": {
@@ -1082,7 +1082,7 @@
                 "issues": "https://github.com/laravel/breeze/issues",
                 "source": "https://github.com/laravel/breeze"
             },
-            "time": "2023-03-28T14:37:27+00:00"
+            "time": "2023-05-04T15:02:53+00:00"
         },
         {
             "name": "laravel/framework",
@@ -1342,16 +1342,16 @@
         },
         {
             "name": "laravel/sanctum",
-            "version": "v3.2.1",
+            "version": "v3.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sanctum.git",
-                "reference": "d09d69bac55708fcd4a3b305d760e673d888baf9"
+                "reference": "8ebda85d59d3c414863a7f4d816ef8302faad876"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sanctum/zipball/d09d69bac55708fcd4a3b305d760e673d888baf9",
-                "reference": "d09d69bac55708fcd4a3b305d760e673d888baf9",
+                "url": "https://api.github.com/repos/laravel/sanctum/zipball/8ebda85d59d3c414863a7f4d816ef8302faad876",
+                "reference": "8ebda85d59d3c414863a7f4d816ef8302faad876",
                 "shasum": ""
             },
             "require": {
@@ -1365,6 +1365,7 @@
             "require-dev": {
                 "mockery/mockery": "^1.0",
                 "orchestra/testbench": "^7.0|^8.0",
+                "phpstan/phpstan": "^1.10",
                 "phpunit/phpunit": "^9.3"
             },
             "type": "library",
@@ -1403,7 +1404,7 @@
                 "issues": "https://github.com/laravel/sanctum/issues",
                 "source": "https://github.com/laravel/sanctum"
             },
-            "time": "2023-01-13T15:41:49+00:00"
+            "time": "2023-05-01T19:39:51+00:00"
         },
         {
             "name": "laravel/serializable-closure",
@@ -5966,16 +5967,16 @@
     "packages-dev": [
         {
             "name": "laravel/pint",
-            "version": "v1.8.0",
+            "version": "v1.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/pint.git",
-                "reference": "4b8f2ef22bfcddd1d163cfd282e3f42ee1a5cce2"
+                "reference": "c7a01fa9bdd79819e7a2f1ba63ac1b02e6692dbc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/pint/zipball/4b8f2ef22bfcddd1d163cfd282e3f42ee1a5cce2",
-                "reference": "4b8f2ef22bfcddd1d163cfd282e3f42ee1a5cce2",
+                "url": "https://api.github.com/repos/laravel/pint/zipball/c7a01fa9bdd79819e7a2f1ba63ac1b02e6692dbc",
+                "reference": "c7a01fa9bdd79819e7a2f1ba63ac1b02e6692dbc",
                 "shasum": ""
             },
             "require": {
@@ -6028,7 +6029,7 @@
                 "issues": "https://github.com/laravel/pint/issues",
                 "source": "https://github.com/laravel/pint"
             },
-            "time": "2023-04-04T13:08:09+00:00"
+            "time": "2023-04-25T14:52:30+00:00"
         }
     ],
     "aliases": [],
