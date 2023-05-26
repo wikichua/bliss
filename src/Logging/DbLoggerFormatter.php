@@ -3,6 +3,7 @@
 namespace Wikichua\Bliss\Logging;
 
 use Monolog\Formatter\NormalizerFormatter;
+use Monolog\LogRecord;
 
 class DbLoggerFormatter extends NormalizerFormatter
 {
@@ -11,7 +12,7 @@ class DbLoggerFormatter extends NormalizerFormatter
         parent::__construct();
     }
 
-    public function format(array $record)
+    public function format(LogRecord $record)
     {
         $record = parent::format($record);
 

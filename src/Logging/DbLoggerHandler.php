@@ -6,6 +6,7 @@ namespace Wikichua\Bliss\Logging;
 use Monolog\Formatter\FormatterInterface;
 use Monolog\Handler\AbstractProcessingHandler;
 use Monolog\Logger;
+use Monolog\LogRecord;
 
 class DbLoggerHandler extends AbstractProcessingHandler
 {
@@ -14,7 +15,7 @@ class DbLoggerHandler extends AbstractProcessingHandler
         parent::__construct($level, $bubble);
     }
 
-    protected function write(array $record): void
+    protected function write(LogRecord $record): void
     {
         $log = app(config('bliss.Models.Log'))->query();
         $log->create($record['formatted']);
