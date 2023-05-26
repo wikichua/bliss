@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2591bf632a28a2e1563c8b98e9883c8d",
+    "content-hash": "c10ed3f618b44b4ca5b6eb5c27d6e85a",
     "packages": [
         {
             "name": "brick/math",
@@ -482,16 +482,16 @@
         },
         {
             "name": "fakerphp/faker",
-            "version": "v1.21.0",
+            "version": "v1.22.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FakerPHP/Faker.git",
-                "reference": "92efad6a967f0b79c499705c69b662f738cc9e4d"
+                "reference": "f85772abd508bd04e20bb4b1bbe260a68d0066d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FakerPHP/Faker/zipball/92efad6a967f0b79c499705c69b662f738cc9e4d",
-                "reference": "92efad6a967f0b79c499705c69b662f738cc9e4d",
+                "url": "https://api.github.com/repos/FakerPHP/Faker/zipball/f85772abd508bd04e20bb4b1bbe260a68d0066d2",
+                "reference": "f85772abd508bd04e20bb4b1bbe260a68d0066d2",
                 "shasum": ""
             },
             "require": {
@@ -544,9 +544,9 @@
             ],
             "support": {
                 "issues": "https://github.com/FakerPHP/Faker/issues",
-                "source": "https://github.com/FakerPHP/Faker/tree/v1.21.0"
+                "source": "https://github.com/FakerPHP/Faker/tree/v1.22.0"
             },
-            "time": "2022-12-13T13:54:32+00:00"
+            "time": "2023-05-14T12:31:37+00:00"
         },
         {
             "name": "fruitcake/php-cors",
@@ -3287,16 +3287,16 @@
         },
         {
             "name": "spatie/laravel-collection-macros",
-            "version": "7.12.4",
+            "version": "7.12.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-collection-macros.git",
-                "reference": "b1e2ec2b75ba308b707ac4bb09150c072a7c795d"
+                "reference": "c95233e712298fa4b79baeeda77952ca1a533150"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-collection-macros/zipball/b1e2ec2b75ba308b707ac4bb09150c072a7c795d",
-                "reference": "b1e2ec2b75ba308b707ac4bb09150c072a7c795d",
+                "url": "https://api.github.com/repos/spatie/laravel-collection-macros/zipball/c95233e712298fa4b79baeeda77952ca1a533150",
+                "reference": "c95233e712298fa4b79baeeda77952ca1a533150",
                 "shasum": ""
             },
             "require": {
@@ -3353,7 +3353,7 @@
                 "spatie"
             ],
             "support": {
-                "source": "https://github.com/spatie/laravel-collection-macros/tree/7.12.4"
+                "source": "https://github.com/spatie/laravel-collection-macros/tree/7.12.5"
             },
             "funding": [
                 {
@@ -3361,7 +3361,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-03-22T13:01:33+00:00"
+            "time": "2023-05-11T14:36:36+00:00"
         },
         {
             "name": "spatie/laravel-honeypot",
